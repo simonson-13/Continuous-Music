@@ -4,11 +4,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.9.10",
     "classnames": "^2.2.6",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
     "react-howler": "^3.7.3",
-    "react-scripts": "1.1.5",
+    "react-scripts": "^3.4.0",
     "uuid": "^3.3.2"
   },
   "scripts": {
@@ -19,5 +20,17 @@
   },
   "devDependencies": {
     "gh-pages": "^2.2.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

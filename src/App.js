@@ -1,22 +1,42 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-import Piano from './Piano';
+import InstrumentSelection from './InstrumentSelection/InstrumentSelection.js'
+import Visualization from './Visualization/Visualization.js'
+import Toolbar from './Toolbar/Toolbar.js'
+
+/* import {
+  Switch,
+  Paper, 
+  Slide,
+  FormControlLabel
+  } from '@material-ui/core'; */
 
 class App extends Component {
+  constructor() {
+    super()
+
+    this.state = {
+      instrument: "" // will be set by instrument selection component later
+    }
+  }
+
+  /*
+    TODO: keyboard bindings 
+    A-L (or so) = musical sounds
+    R = rerecord?
+    space = record
+    i = opens up 'info page' (along with mouse click) 
+    **potential for other keyboard bindings!
+  */
+
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Visualization />
 
-        <Piano />
+        <Toolbar />
       </div>
     );
   }
