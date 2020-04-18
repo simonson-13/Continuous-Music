@@ -1,9 +1,49 @@
-// popup that appears when you first get on the website
-// sets a state in app.js to indicate which insrument you've selected
+import React, {Component} from 'react';
+import './InstrumentSelection.css'
 
-// probably like 4 or so buttons for the diff instrument options
-// "Choose which instrument you would like to play!"
-// button1      button2     button3     button4
+import {
+    Button,
+    Modal
+} from '@material-ui/core';
 
-// black transparent overlay over the "main" app part that shows 
-// the visualization and stuff
+
+class InstrumentSelection extends Component {
+
+   // TODO: style this better, move styling into same file
+
+    render() {
+        return (
+            <div>
+                <Modal 
+                    open={this.props.open}
+                >
+                    <div className="centered">
+                        Please choose an instrument! <br/>
+                        <Button 
+                            onClick={() => this.props.onClick("drum")}
+                        >
+                            Drum
+                        </Button>
+                        <Button 
+                            onClick={() => this.props.onClick("piano")}
+                        >
+                            Piano
+                        </Button>
+                        <Button 
+                            onClick={() => this.props.onClick("guitar")}
+                        >
+                            Guitar
+                        </Button>
+                        <Button 
+                            onClick={() => this.props.onClick("trumpet")}
+                        >
+                            Trumpet
+                        </Button>
+                    </div>
+                </Modal>
+            </div>
+        )
+    }
+}
+
+export default InstrumentSelection;
