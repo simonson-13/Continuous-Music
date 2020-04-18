@@ -2,23 +2,39 @@ import React, { Component } from 'react';
 import './App.css';
 
 import InstrumentSelection from './InstrumentSelection/InstrumentSelection.js'
+import InfoPage from './InfoPage/InfoPage.js'
 import Visualization from './Visualization/Visualization.js'
-import Toolbar from './Toolbar/Toolbar.js'
+import Bar from './Bar/Bar.js'
 
-/* import {
-  Switch,
-  Paper, 
-  Slide,
-  FormControlLabel
-  } from '@material-ui/core'; */
 
 class App extends Component {
   constructor() {
     super()
 
     this.state = {
-      instrument: "" // will be set by instrument selection component later
+      instrumentSeleted: false,
+      instrument: "", 
+      openInfo: false
     }
+  }
+
+  handleInstrumentClick(instrument) { 
+    this.setState({
+      instrumentSeleted: true,
+      instrument: instrument
+    })
+  }
+
+  handleOpenInfo = () => { 
+    this.setState({ 
+      openInfo: true
+    })
+  }
+
+  handleCloseInfo = () => { 
+    this.setState({ 
+      openInfo: false
+    })
   }
 
   /*
@@ -29,14 +45,18 @@ class App extends Component {
     i = opens up 'info page' (along with mouse click) 
     **potential for other keyboard bindings!
   */
-
-
+  
   render() {
     return (
       <div className="App">
+
+        <InstrumentSelection open={!this.state.instrumentSeleted} onClick={instrument => this.handleInstrumentClick(instrument)} />
+
+        <InfoPage open={this.state.openInfo} onOpen={this.handleOpenInfo} onClose={this.handleCloseInfo} />
+
         <Visualization />
 
-        <Toolbar />
+        <Bar />
       </div>
     );
   }
