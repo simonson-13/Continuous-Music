@@ -4,6 +4,7 @@ import './App.css';
 import InstrumentSelection from './InstrumentSelection/InstrumentSelection.js'
 import Visualization from './Visualization/Visualization.js'
 import Toolbar from './Toolbar/Toolbar.js'
+//import p5 from 'p5'
 
 /* import {
   Switch,
@@ -32,6 +33,19 @@ class App extends Component {
 
 
   render() {
+    // this.renderRef = React.createRef()
+    // this.sketch= new p5( p => {      
+    //   p.setup = () => {
+    //     p.createCanvas(200,200)
+    //     .parent(this.renderRef.current)
+    //   }
+
+    //   p.draw = () => {
+    //     p.background(0)
+    //     p.fill(255)
+    //     p.rect(100, 100, 50, 50)
+    //   }
+    // })
     return (
       <div className="App">
         <Visualization />

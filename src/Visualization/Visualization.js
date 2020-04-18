@@ -1,5 +1,5 @@
 import React from 'react';
-
+import p5 from 'p5'
 /* import {
     Switch,
     Slide,
@@ -26,8 +26,7 @@ export default function Visualization() {
 
     return (
         <div className={classes.root}>
-            Visualization will go here!!
-            maybe put a cute pastel gradient or something for now
+          vis   
         </div>
     );
 }
