@@ -41,7 +41,7 @@ class App extends Component {
 
   handleClickPiano = () => { 
     this.setState({ 
-      showPiano: !this.setState.showPiano
+      showPiano: !this.state.showPiano
     })
   }
 
@@ -63,12 +63,11 @@ class App extends Component {
         <InfoPage open={this.state.openInfo} onOpen={this.handleOpenInfo} onClose={this.handleCloseInfo} />
 
         <Visualization />
-        
-        <PianoApp />
 
-        { showPiano ? <Piano /> : null }
+        {/* TODO: stylize this better */}
+        { this.state.showPiano && <PianoApp /> }
 
-        <Bar handleShowPiano={this.handleShowPiano} />
+        <Bar handleClickPiano={this.handleClickPiano} />
       </div>
     );
   }

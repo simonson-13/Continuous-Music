@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function Bar() {
+export default function Bar (props) {
     const classes = useStyles();
     const [hidden, setHidden] = React.useState(false);
     const [hasRecording, setHasRecording] = React.useState(false);
@@ -163,7 +163,7 @@ export default function Bar() {
                                 variant="contained"
                                 startIcon={<StraightenIcon/>}
                                 size="large"
-                                onClick={this.props.handleShowPiano}> 
+                                onClick={props.handleClickPiano}> 
                                 Toggle Piano
                             </Button>
 

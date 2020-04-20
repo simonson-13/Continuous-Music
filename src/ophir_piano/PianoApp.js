@@ -1,21 +1,19 @@
 import React from 'react';
 import 'react-piano/dist/styles.css';
 
-import Header from './Header';
-import Footer from './Footer';
-import InteractiveDemo from './InteractiveDemo';
 import InteractiveDemoFireBase from './InteractiveDemoFireBase';
-import PlaybackDemo from './PlaybackDemo';
-import { lostWoods } from './songs';
 import './PianoApp.css';
 
-import ReactDOM from 'react-dom';
 import _ from 'lodash';
 import { Piano, KeyboardShortcuts, MidiNumbers } from 'react-piano';
-import SoundfontProvider from './SoundfontProvider';
-import PianoWithRecording from './PianoWithRecording';
 
-import * as firebase from 'firebase'; // import firebase!
+// import SoundfontProvider from './SoundfontProvider';
+// import PianoWithRecording from './PianoWithRecording';
+// import PlaybackDemo from './PlaybackDemo';
+// import { lostWoods } from './songs';
+// import InteractiveDemo from './InteractiveDemo';
+
+// import * as firebase from 'firebase'; // import firebase!
 
 // webkitAudioContext fallback needed to support Safari
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
