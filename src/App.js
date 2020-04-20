@@ -14,7 +14,8 @@ class App extends Component {
     this.state = {
       instrumentSeleted: false,
       instrument: "", 
-      openInfo: false
+      openInfo: false,
+      showPiano: false
     }
   }
 
@@ -37,6 +38,12 @@ class App extends Component {
     })
   }
 
+  handleClickPiano = () => { 
+    this.setState({ 
+      showPiano: !this.setState.showPiano
+    })
+  }
+
   /*
     TODO: keyboard bindings 
     A-L (or so) = musical sounds
@@ -56,7 +63,9 @@ class App extends Component {
 
         <Visualization />
 
-        <Bar />
+        { showPiano ? <Piano /> : null }
+
+        <Bar handleShowPiano={this.handleShowPiano} />
       </div>
     );
   }
