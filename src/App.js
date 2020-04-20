@@ -15,7 +15,8 @@ class App extends Component {
     this.state = {
       instrumentSeleted: false,
       instrument: "", 
-      openInfo: false
+      openInfo: false,
+      showPiano: false
     }
   }
 
@@ -35,6 +36,12 @@ class App extends Component {
   handleCloseInfo = () => { 
     this.setState({ 
       openInfo: false
+    })
+  }
+
+  handleClickPiano = () => { 
+    this.setState({ 
+      showPiano: !this.setState.showPiano
     })
   }
 
@@ -59,7 +66,9 @@ class App extends Component {
         
         <PianoApp />
 
-        <Bar />
+        { showPiano ? <Piano /> : null }
+
+        <Bar handleShowPiano={this.handleShowPiano} />
       </div>
     );
   }
