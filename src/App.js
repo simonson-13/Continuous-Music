@@ -5,6 +5,7 @@ import InstrumentSelection from './InstrumentSelection/InstrumentSelection.js'
 import InfoPage from './InfoPage/InfoPage.js'
 import Visualization from './Visualization/Visualization.js'
 import Bar from './Bar/Bar.js'
+import PianoApp from './ophir_piano/PianoApp.js'
 
 
 class App extends Component {
@@ -55,6 +56,8 @@ class App extends Component {
         <InfoPage open={this.state.openInfo} onOpen={this.handleOpenInfo} onClose={this.handleCloseInfo} />
 
         <Visualization />
+        
+        <PianoApp />
 
         <Bar />
       </div>
