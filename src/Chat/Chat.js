@@ -8,8 +8,6 @@ import {
     Drawer,
 } from '@material-ui/core'
 
-
-
 class Chat extends Component {
     constructor(props) {
         super(props)
@@ -17,40 +15,6 @@ class Chat extends Component {
             messages: [],
         }
     }
-
-    /* componentDidMount() {
-            const chatManager = new Chatkit.ChatManager({
-                instanceLocator: instanceLocator,
-                userId: 'janedoe',
-                tokenProvider: new Chatkit.TokenProvider({
-                    url: testToken
-                })
-            })
-            
-            chatManager.connect()
-            .then(currentUser => {
-                this.currentUser = currentUser
-                this.currentUser.subscribeToRoom({
-                roomId: roomId,
-                hooks: {
-                    onNewMessage: message => {
-    
-                        this.setState({
-                            messages: [...this.state.messages, message]
-                        })
-                    }
-                }
-            })
-          })
-        }
-         
-        sendMessage(text) {
-            this.currentUser.sendMessage({
-                text,
-                roomId: roomId
-            })
-        }
-        */
 
     render() {
         return (

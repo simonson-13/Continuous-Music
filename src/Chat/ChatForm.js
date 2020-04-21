@@ -4,9 +4,9 @@ import Message from './Message';
 
 import firebase from 'firebase';
 
-// https://medium.com/@Chilid/react-firebase-chat-app-a115653b7477
+// I followed this tutorial: https://medium.com/@Chilid/react-firebase-chat-app-a115653b7477
 
-// maybe look into this: https://css-tricks.com/building-a-real-time-chat-app-with-react-and-firebase/
+// maybe look into this? https://css-tricks.com/building-a-real-time-chat-app-with-react-and-firebase/
 
 export default class ChatForm extends Component {
     constructor(props) {
