@@ -2,12 +2,8 @@ import React, {Component} from 'react';
 import './InfoPage.css'
 
 import {
-    IconButton,
     Modal
 } from '@material-ui/core';
-
-import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
-
 
 class InfoPage extends Component {
 
@@ -16,9 +12,6 @@ class InfoPage extends Component {
     render() {
         return (
             <div>
-                <IconButton type="button" onClick={this.props.onOpen}>
-                    <HelpOutlineIcon />
-                </IconButton>
                 <Modal 
                     open={this.props.open}
                     onClose={this.props.onClose}

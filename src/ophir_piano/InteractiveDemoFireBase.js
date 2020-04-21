@@ -1,6 +1,6 @@
 import React from 'react';
 import { Piano, KeyboardShortcuts, MidiNumbers } from 'react-piano';
-import MdArrowDownward from 'react-icons/lib/md/arrow-downward';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 
 import DimensionsProvider from './DimensionsProvider';
 import InstrumentListProvider from './InstrumentListProvider';
@@ -114,12 +114,6 @@ class InteractiveDemoFireBase extends React.Component {
         hostname={this.props.soundfontHostname}
         render={({ isLoading, playNote, stopNote, stopAllNotes }) => (
           <div>
-            <div className="text-center">
-              <p className="">Try it by clicking, tapping, or using your keyboard:</p>
-              <div style={{ color: '#777' }}>
-                <MdArrowDownward size={32} />
-              </div>
-            </div>
             <div className="mt-4">
               <DimensionsProvider>
                 {({ containerWidth }) => (
