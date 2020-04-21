@@ -9,17 +9,12 @@ import PianoConfig from './PianoConfig';
 
 import * as firebase from 'firebase'; // import firebase!
 
-// utility functions 
-function removeByValueOnce(a, val){
-  for(let i=0; i<a.length; i++) {
-    if (a[i] === val) {
-      a.splice(i, 1);
-      break;
-    }
-  }
-}
+
+
+
 
 class InteractiveDemoFireBase extends React.Component {
+  
   
   /** ======================= START MY CODE BLOCK ========================  */
   constructor() {
@@ -34,6 +29,7 @@ class InteractiveDemoFireBase extends React.Component {
         keyboardShortcutOffset: 0,
       },
       activeNotes: [],
+      midiData: {},
     };
     this.dbRef = firebase.database().ref();
     this.liveRef = this.dbRef.child('live');
@@ -57,6 +53,41 @@ class InteractiveDemoFireBase extends React.Component {
       }) 
       console.log(this.state.activeNotes)
     });
+
+    // Try connecting to MIDI controller
+    if (navigator.requestMIDIAccess) {
+      navigator.requestMIDIAccess({
+        sysex: false
+      }).then(this.onMIDISuccess, this.onMIDIFailure);
+    } else {
+      console.warn("No MIDI support in your browser")
+    }
+  }
+
+  // on success
+  onMIDISuccess = (midi_data) => {
+    // this is all our MIDI data
+    this.state.midiData = midi_data;
+    var allInputs = this.state.midiData.inputs.values();
+    // loop over all available inputs and listen for any MIDI input
+    for (var input = allInputs.next(); input && !input.done; input = allInputs.next()) {
+      // when a MIDI value is received call the onMIDIMessage function
+      input.value.onmidimessage = this.gotMIDImessage;
+    }
+  }
+
+  // handle midi event
+  gotMIDImessage = (messageData) => {
+    if (messageData.data[0] === 144) {  // handle pressing key
+      this.onPlayNoteInput(messageData.data[1], {undefined});  // handle note number
+    } else {  // handle releasing key
+      this.onStopNoteInput(messageData.data[1], {undefined});
+    }
+  }
+
+  // on failure
+  onMIDIFailure = () => {
+    console.warn("Not recognising MIDI controller")
   }
 
   onPlayNoteInput = (midiNumber, { prevActiveNotes }) => {
