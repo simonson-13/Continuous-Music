@@ -23,7 +23,7 @@ class UsernameModal extends Component {
             <div>
                 <Modal 
                     open={this.props.open}
-                    onClose={this.props.onClose}
+                    //onClose={this.props.onClose}
                 >
                     <div className="centered">
                         Please enter a username for yourself! (Press Enter to submit) <br/>
