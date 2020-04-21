@@ -94,14 +94,14 @@ class App extends Component {
           handleChatChange={this.handleChatChange}
         />
 
-        { this.state.showChat &&
           <Chat 
+            showChat={this.state.showChat}
             handleCloseChat={this.handleCloseChat}
             username={this.state.username}
             usernameSet={this.state.usernameSet}
             handleUsernameSubmit={this.handleUsernameSubmit}
           /> 
-        }
+        
 
         {/* TODO: stylize this better */}
         { this.state.showPiano && <PianoApp /> }

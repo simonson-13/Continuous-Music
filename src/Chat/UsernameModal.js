@@ -51,7 +51,6 @@ class UsernameModal extends Component {
                                   }}
                             />
                         </FormControl>
-                        
                     </div>
                 </Modal>
             </div>

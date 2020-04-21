@@ -83,12 +83,6 @@ class InteractiveDemoFireBase extends React.Component {
         hostname={this.props.soundfontHostname}
         render={({ isLoading, playNote, stopNote, stopAllNotes }) => (
           <div>
-            <div className="text-center">
-              <p className="">Try it by clicking, tapping, or using your keyboard:</p>
-              <div style={{ color: '#777' }}>
-                <KeyboardArrowDownIcon />
-              </div>
-            </div>
             <div className="mt-4">
               <DimensionsProvider>
                 {({ containerWidth }) => (
