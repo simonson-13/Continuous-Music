@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactStopwatch from 'react-stopwatch';
 
 import {
     IconButton,
@@ -8,6 +7,7 @@ import {
     Toolbar,
     Button,
     Tooltip
+    LinearProgress
 } from '@material-ui/core';
 
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
@@ -17,7 +17,6 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import SendIcon from '@material-ui/icons/Send';
 import StraightenIcon from '@material-ui/icons/Straighten';
 import GetAppIcon from '@material-ui/icons/GetApp';
-
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -73,6 +72,12 @@ export default function Bar (props) {
 
         // logic to listen to recording 
         // make sure people cant play the recording while ur still recording it
+        // OR auto stop recording if you play?
+        // stopRecording?
+    }
+
+    const stopRecording = () => {
+
     }
 
     const handleUpload = () => { 
@@ -121,6 +126,18 @@ export default function Bar (props) {
                                         disabled={hasRecording}
                                     >
                                         <MicIcon/>
+                                    </Button>
+                                    </span>
+                                </Tooltip>
+
+                                <Tooltip title="Stop" arrow>
+                                    <span className={classes.button}>
+                                    <Button  
+                                        variant="contained"
+                                        size="large"
+                                        onClick={stopRecording}
+                                    >
+                                        <StopIcon/>
                                     </Button>
                                     </span>
                                 </Tooltip>
