@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:3000/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <!--
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+    -->
+    <link rel="manifest" href="http://localhost:3000/manifest.json">
+    <link rel="shortcut icon" href="http://localhost:3000/favicon.ico">
+    <link rel="stylesheet" href="./index_files/bootstrap.min.css">
+    <link href="./index_files/icon" rel="stylesheet">
+  <title>React App</title><style type="text/css">body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+</style><style type="text/css">html, body { height: 100%; width: 100%; margin: 0; }</style><style type="text/css">.centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+
+    padding: 20px;
+
+    background-color: white;
+
+    text-align: center;
+  }</style><style type="text/css">.centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+
+    padding: 20px;
+
+    background-color: white;
+
+    text-align: center;
+  }</style><style type="text/css">.ReactPiano__Keyboard {
+  /* Used for absolute positioning of .ReactPiano__Key--accidental elements */
+  position: relative;
+  /* Used to lay out .ReactPiano__Key--natural elements */
+  display: flex;
+}
+
+.ReactPiano__Key {
+  /* Used for flexbox layout of the child .ReactPiano__NoteLabelContainer elements */
+  display: flex;
+}
+
+/*
+ * Styles of accidental notes (flat or sharp)
+ */
+.ReactPiano__Key--accidental {
+  background: #555;
+  border: 1px solid #fff;
+  border-top: 1px solid transparent;
+  border-radius: 0 0 4px 4px;
+  cursor: pointer;
+  height: 66%;
+  /* Overlay on top of natural keys */
+  z-index: 1;
+  /* Use absolute positioning along with inline styles specified in JS to put keys in correct locations. */
+  position: absolute;
+  top: 0;
+}
+
+/*
+ * Styles of natural notes (white keys)
+ */
+.ReactPiano__Key--natural {
+  background: #f6f5f3;
+  border: 1px solid #888;
+  border-radius: 0 0 6px 6px;
+  cursor: pointer;
+  z-index: 0;
+  /*
+   * Uses flexbox with margin instead of absolute positioning to have more consistent margin rendering.
+   * This causes inline styles to be ignored.
+   */
+  flex: 1 1;
+  margin-right: 1px;
+}
+
+.ReactPiano__Key--natural:last-child {
+  /* Don't render extra margin on the last natural note */
+  margin-right: 0;
+}
+
+/*
+ * Styles of "active" or pressed-down keys
+ */
+.ReactPiano__Key--active {
+  background: #3ac8da;
+}
+
+.ReactPiano__Key--active.ReactPiano__Key--accidental {
+  border: 1px solid #fff;
+  border-top: 1px solid #3ac8da;
+  /* Slight height reduction for "pushed-down" effect */
+  height: 65%;
+}
+
+.ReactPiano__Key--active.ReactPiano__Key--natural {
+  border: 1px solid #3ac8da;
+  /* Slight height reduction for "pushed-down" effect */
+  height: 98%;
+}
+
+/*
+ * Styles for disabled state
+ */
+.ReactPiano__Key--disabled.ReactPiano__Key--accidental {
+  background: #ddd;
+  border: 1px solid #999;
+}
+
+.ReactPiano__Key--disabled.ReactPiano__Key--natural {
+  background: #eee;
+  border: 1px solid #aaa;
+}
+
+/*
+ * Styles for the note label inside a piano key
+ */
+.ReactPiano__NoteLabelContainer {
+  flex: 1 1;
+  /* Align children .ReactPiano__NoteLabel to the bottom of the key */
+  align-self: flex-end;
+}
+
+.ReactPiano__NoteLabel {
+  font-size: 12px;
+  text-align: center;
+  text-transform: capitalize;
+  /* Disable text selection */
+  -webkit-user-select: none;
+          user-select: none;
+}
+
+.ReactPiano__NoteLabel--accidental {
+  color: #f8e8d5;
+  margin-bottom: 3px;
+}
+
+.ReactPiano__NoteLabel--natural {
+  color: #888;
+  margin-bottom: 3px;
+}
+
+.ReactPiano__NoteLabel--natural.ReactPiano__NoteLabel--active {
+  color: #f8e8d5;
+}
+</style><style type="text/css">.bg-yellow {
+  background-color: #f8e8d5;
+}
+</style><style type="text/css">:root {
+    --main-color: #5ea3d0;
+    --secondary-color: white;
+    --main-text-color: #3e5869;
+    --secondary-text-color: #b0c7d6;
+    --send-message-form: #F5F5F5;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: system-ui;
+    font-weight: 200;
+    color: #3e5869; 
+	background: #181b21 url(https://www.toptal.com/designers/subtlepatterns/patterns/nami.png);
+}
+
+#root {
+    height: 100%;
+}
+
+.chat {
+    height: 100%;
+	background: #181b21 url(https://www.toptal.com/designers/subtlepatterns/patterns/nami.png);
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    color: var(--secondary-color);
+    background: var(--main-color);
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+/*
+.drawer { 
+    width:200px
+}
+*/
+
+.message {
+    margin: 15px 0;
+}
+
+.message div:nth-child(1) {
+    font-size: 11px;
+    color: var(--main-text-color);
+    opacity: 0.9;
+    margin-bottom: 6px;
+}
+.message div:nth-child(2) {
+    background: var(--main-color);
+    color: var(--secondary-color);
+    display: inline;
+    padding: 4px 8px;
+    border-radius: 8px;
+}
+
+.message-list {
+    box-sizing: border-box;
+    padding: 0 0 0 6px;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+    background: white;
+}
+
+.send-message-form {
+    background: var(--send-message-form);
+    display: flex;
+    box-sizing: border-box;
+    height: 60px;
+}
+
+.send-message-form input {
+    width: 100%;
+    padding: 15px 10px;
+    border: none;
+    margin: 0;
+    background: var(--send-message-form);
+    font-weight: 200;
+}
+
+.send-message-form input:focus {
+    outline-width: 0;
+}
+
+.send-message-form input::placeholder {
+    color: black;
+}
+</style><style type="text/css">.form {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    width: 100%;
+}
+.form__row {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    padding: 20px;
+}
+.form__input {
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 5px 0 0 5px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    outline: 0;
+}
+.form__input:focus {
+    background-color: rgba(245, 243, 243, 0.5);
+}
+.form__button {
+    padding: 0 30px;
+    background-color: #000;
+    color: #fff;
+    border: 0;
+    border-radius: 0 5px 5px 0;
+    outline: 0;
+    cursor: pointer;
+}
+.form__button:hover {
+    background-color: rgba(0, 0, 0, .8);
+}
+.form__message {
+    width: 100%;
+    padding: 0 20px;
+}</style><style type="text/css">.message {
+    position: relative;
+    padding: 10px 60px 10px 20px;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, .05);
+    text-align: left;
+    line-height: 1.7;
+}
+.message:nth-child(even) {
+    background-color: rgba(0, 0, 0, .025);
+}
+.message__author {
+    font-weight: 600;
+    margin-right: 10px;
+    color: rgba(0, 0, 0, 1);
+}</style><style type="text/css">.clearfix::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.chatApp__loaderWrapper {
+	margin: 80px auto;
+	text-align: center;
+}
+.chatApp__loaderText {
+	color: #4870df;
+	font-weight: bold;
+}
+.chatApp__loader,
+.chatApp__loader::before,
+.chatApp__loader::after {
+	border-radius: 1em;
+	width: 1em;
+	height: 1em;
+	animation-fill-mode: both;
+	animation: loading 1.8s infinite ease-in-out;
+}
+.chatApp__loader {
+	margin: auto;
+	color: #4870df;
+	font-size: 12px;
+	position: relative;
+	animation-delay: -0.16s;
+}
+.chatApp__loader::before,
+.chatApp__loader::after {
+	content: '';
+	position: absolute;
+	top: 0;
+}
+.chatApp__loader::before {
+	left: -1.5em;
+	animation-delay: -0.32s;
+}
+.chatApp__loader::after {
+	left: 1.5em;
+}
+.chatApp__room {
+	padding: 2em 2em 0em 0em;
+	display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+	animation: fadeChatApp 0.6s ease-in-out;
+	animation-fill-mode: forwards;
+	font-family: 'Quicksand', sans-serif;
+	letter-spacing: -0.23px;
+}
+.chatApp__conv {
+	flex-grow: 1;
+	flex-shrink: 1;
+	flex-basis: 0;
+	float: left;
+	margin: 0 2.5rem;
+	box-shadow: 0 35px 20px -30px rgba(0,0,0,0.1);
+	width: calc(100% - 50px);
+}
+.chatApp__convTitle {
+	display: inline-block;
+	margin: 0 0 2rem 0;
+	font-size: 18px;
+	font-weight: bold;
+	color: #f0f0f0;
+	text-transform: uppercase;
+	position: relative;
+}
+.chatApp__convTitle::after {
+	content: '';
+	position: absolute;
+	background-color: #4870df;
+	width: 100%;
+	height: 2px;
+	border-radius: 30px;
+	left: 0;
+	right: 0;
+	bottom: -16px;
+}
+.chatApp__convTimeline {
+	display: flex;
+	height: 400px;
+	padding: 1rem;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	background-color: #fff;
+	flex-direction: column-reverse;
+	overflow-y: auto;
+}
+.chatApp__convMessageItem {
+	padding: 1rem 0 0 0;
+	opacity: 0;
+	transition: all 0.15s ease-in-out;
+	animation: fadeNewMessage 0.5s;
+	animation-fill-mode: forwards;
+}
+.chatApp__convMessageAvatar {
+	width: 40px;
+	height: 40px;
+	border-radius: 40px;
+	image-rendering: -webkit-optimize-contrast;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	user-select: none;
+}
+.chatApp__convMessageValue {
+	position: relative;
+	max-width: 50%;
+	min-height: 40px;
+	padding: 0.75rem;
+	border-radius: 4px;
+	font-size: 14px;
+	line-height: 18px;
+	font-weight: bold;
+	box-shadow: 0px 10px 10px -8px rgba(0,0,0,0.08);
+	box-sizing: border-box;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.chatApp__convMessageItem--left .chatApp__convMessageAvatar {
+	float: left;
+}
+.chatApp__convMessageItem--left .chatApp__convMessageValue {
+	float: left;
+	text-align: left;
+	margin: 0 0 0 1rem;
+	color: #fff;
+	background-color: #4870df;
+}
+.chatApp__convMessageItem--left .chatApp__convMessageValue::before {
+	content: '';
+	position: absolute;
+	top: 14px;
+	left: -8px;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 6px 10px 6px 0;
+	border-color: transparent #4870df transparent transparent;
+}
+.chatApp__convMessageItem--right .chatApp__convMessageAvatar {
+	float: right;
+}
+.chatApp__convMessageItem--right .chatApp__convMessageValue {
+	float: right;
+	text-align: right;
+	margin: 0 1rem 0 0;
+	background-color: #fafafa;
+}
+.chatApp__convMessageItem--right .chatApp__convMessageValue::after {
+	content: '';
+	position: absolute;
+	top: 14px;
+	right: -8px;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 6px 0 6px 10px;
+	border-color: transparent transparent transparent #fafafa;
+}
+.chatApp__convMessageItem--left .chatApp__convMessageValue a {
+	color: #91ffb1;
+}
+.chatApp__convMessageItem--left .chatApp__convMessageValue a:hover,
+.chatApp__convMessageItem--left .chatApp__convMessageValue a:focus {
+	color: #75ff9e;
+}
+.chatApp__convMessageItem--right .chatApp__convMessageValue a {
+	color: #09f;
+}
+.chatApp__convMessageItem--right .chatApp__convMessageValue a:hover,
+.chatApp__convMessageItem--right .chatApp__convMessageValue a:focus {
+	color: #007dd1;
+}
+.chatApp__convSendMessage {
+	position: relative;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+	background-color: #fff;
+}
+.chatApp__convSendMessage {
+	padding: 1rem;
+}
+.chatApp__convInput {
+	float: left;
+	height: 40px;
+	border: none;
+	padding: 0.5rem 1rem;
+	border-radius: 40px;
+	margin: 0 0.5rem 0 0;
+	width: calc(100% - 52px);
+	background-color: #dedfed;
+	box-shadow: inset 0 0 0 2px #dedfed;
+	font-size: 14px;
+	font-family: 'Quicksand', sans-serif;
+	font-weight: bold;
+	transition: 0.15s all ease-in-out;
+	box-sizing: border-box;
+}
+.chatApp__convInput::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: #b1b1b1;
+	opacity: 1;
+}
+.chatApp__convInput:-ms-input-placeholder { /* Internet Explorer 10-11 */
+	color: #b1b1b1;
+}
+.chatApp__convInput::-ms-input-placeholder { /* Microsoft Edge */
+	color: #b1b1b1;
+}
+.chatApp__convInput:focus, .chatApp__convInput:active {
+	box-shadow: inset 0 0 0 2px #7690d6;
+}
+.chatApp__convInput:focus {
+	outline: none;
+}
+.chatApp__convButton {
+	float: right;
+	position: relative;
+	width: 40px;
+	height: 40px;
+	cursor: pointer;
+	padding: 8px;
+	border-radius: 30px;
+	color: #fff;
+	background-color: #4870df;
+	text-align: center;
+	box-shadow: 0px 14px 10px -8px rgba(0,0,0,0.2);
+	transition: 0.15s all ease-in-out;
+	box-sizing: border-box;
+	-webkit-user-select: none;
+	user-select: none;
+}
+.chatApp__convButton:hover {
+	background-color: #3c559c;
+}
+.chatApp__convButton i {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	padding: 0 0 0 1px;
+	font-size: 22px;
+}
+.chatApp__convButton--loading {
+	cursor: wait;
+	background-color: #4870df;
+}
+.chatApp__convButton--loading:hover {
+	background-color: #4870df;
+}
+.chatApp__convButton--loading::before, .chatApp__convButton--loading::after {
+	content: '';
+	position: absolute;
+	z-index: 1;
+	display: block;
+	left: 0;
+	right: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 8px;
+	height: 8px;
+	margin: auto;
+	border-radius: 40px;
+	background-color: #fff;
+}
+.chatApp__convButton--loading::after {
+	animation: loadSendMessage 1.5s;
+	animation-fill-mode: forwards;
+	animation-iteration-count: infinite;
+}
+.chatApp__convButton--loading i {
+	display: none;
+}
+.chatApp__convSendMessage--typing .chatApp__convTyping {
+	display: block;
+}
+.chatApp__convTyping {
+	position: absolute;
+	top: 0;
+	font-size: 10px;
+	font-weight: bold;
+}
+.chatApp__convTypingDot {
+	position: relative;
+	left: 4px;
+	display: inline-block;
+	width: 2px;
+	height: 2px;
+	background-color: #606060;
+	animation: typingMessage 1.5s;
+	animation-fill-mode: forwards;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+}
+.chatApp__convTypingDot::before, .chatApp__convTypingDot::after {
+	content: '';
+	position: absolute;
+	display: inline-block;
+	width: 2px;
+	height: 2px;
+	background-color: #606060;
+	animation: typingMessage 1.5s;
+	animation-fill-mode: forwards;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+}
+.chatApp__convTypingDot::before {
+	left: 4px;
+	animation-delay: 0.5s;
+}
+.chatApp__convTypingDot::after {
+	left: 8px;
+	animation-delay: 1s;
+}
+@media screen and (max-width:768px) {
+	.chatApp__room { flex-wrap: wrap; padding: 2rem 1rem; }
+	.chatApp__conv { flex-basis: 100%; min-width: auto; width: 100%; margin: 0; }
+	.chatApp__conv:first-of-type { margin: 0 0 4rem 0; }
+}
+@keyframes loading {
+	0%, 80%, 100% { box-shadow: 0 1em 0 -1.3em; }
+	40% { box-shadow: 0 1em 0 0; }
+}
+@keyframes fadeChatApp {
+	0% { opacity: 0; transform: translateY(1rem); }
+	100% { opacity: 1; transform: translateY(0px); }
+}
+@keyframes fadeNewMessage {
+	0% { opacity: 0; transform: translateY(1rem); }
+	100% { opacity: 1; transform: translateY(0px); }
+}
+@keyframes loadSendMessage {
+	0% { opacity: 1; width: 4px; height: 4px; }
+	100% { opacity: 0; width: 100%; height: 100%; }
+}
+@keyframes typingMessage {
+	0% { background-color: #606060; }
+	50% { background-color: #fff; }
+	60% { background-color: #606060; }
+}</style><style data-jss="" data-meta="MuiSvgIcon">
+.MuiSvgIcon-root {
+  fill: currentColor;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  font-size: 1.5rem;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  flex-shrink: 0;
+  user-select: none;
+}
+.MuiSvgIcon-colorPrimary {
+  color: #3f51b5;
+}
+.MuiSvgIcon-colorSecondary {
+  color: #f50057;
+}
+.MuiSvgIcon-colorAction {
+  color: rgba(0, 0, 0, 0.54);
+}
+.MuiSvgIcon-colorError {
+  color: #f44336;
+}
+.MuiSvgIcon-colorDisabled {
+  color: rgba(0, 0, 0, 0.26);
+}
+.MuiSvgIcon-fontSizeInherit {
+  font-size: inherit;
+}
+.MuiSvgIcon-fontSizeSmall {
+  font-size: 1.25rem;
+}
+.MuiSvgIcon-fontSizeLarge {
+  font-size: 2.1875rem;
+}
+</style><style data-jss="" data-meta="MuiPaper">
+.MuiPaper-root {
+  color: rgba(0, 0, 0, 0.87);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  background-color: #fff;
+}
+.MuiPaper-rounded {
+  border-radius: 4px;
+}
+.MuiPaper-outlined {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+.MuiPaper-elevation0 {
+  box-shadow: none;
+}
+.MuiPaper-elevation1 {
+  box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation2 {
+  box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation3 {
+  box-shadow: 0px 3px 3px -2px rgba(0,0,0,0.2),0px 3px 4px 0px rgba(0,0,0,0.14),0px 1px 8px 0px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation4 {
+  box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation5 {
+  box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 5px 8px 0px rgba(0,0,0,0.14),0px 1px 14px 0px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation6 {
+  box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation7 {
+  box-shadow: 0px 4px 5px -2px rgba(0,0,0,0.2),0px 7px 10px 1px rgba(0,0,0,0.14),0px 2px 16px 1px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation8 {
+  box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation9 {
+  box-shadow: 0px 5px 6px -3px rgba(0,0,0,0.2),0px 9px 12px 1px rgba(0,0,0,0.14),0px 3px 16px 2px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation10 {
+  box-shadow: 0px 6px 6px -3px rgba(0,0,0,0.2),0px 10px 14px 1px rgba(0,0,0,0.14),0px 4px 18px 3px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation11 {
+  box-shadow: 0px 6px 7px -4px rgba(0,0,0,0.2),0px 11px 15px 1px rgba(0,0,0,0.14),0px 4px 20px 3px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation12 {
+  box-shadow: 0px 7px 8px -4px rgba(0,0,0,0.2),0px 12px 17px 2px rgba(0,0,0,0.14),0px 5px 22px 4px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation13 {
+  box-shadow: 0px 7px 8px -4px rgba(0,0,0,0.2),0px 13px 19px 2px rgba(0,0,0,0.14),0px 5px 24px 4px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation14 {
+  box-shadow: 0px 7px 9px -4px rgba(0,0,0,0.2),0px 14px 21px 2px rgba(0,0,0,0.14),0px 5px 26px 4px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation15 {
+  box-shadow: 0px 8px 9px -5px rgba(0,0,0,0.2),0px 15px 22px 2px rgba(0,0,0,0.14),0px 6px 28px 5px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation16 {
+  box-shadow: 0px 8px 10px -5px rgba(0,0,0,0.2),0px 16px 24px 2px rgba(0,0,0,0.14),0px 6px 30px 5px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation17 {
+  box-shadow: 0px 8px 11px -5px rgba(0,0,0,0.2),0px 17px 26px 2px rgba(0,0,0,0.14),0px 6px 32px 5px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation18 {
+  box-shadow: 0px 9px 11px -5px rgba(0,0,0,0.2),0px 18px 28px 2px rgba(0,0,0,0.14),0px 7px 34px 6px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation19 {
+  box-shadow: 0px 9px 12px -6px rgba(0,0,0,0.2),0px 19px 29px 2px rgba(0,0,0,0.14),0px 7px 36px 6px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation20 {
+  box-shadow: 0px 10px 13px -6px rgba(0,0,0,0.2),0px 20px 31px 3px rgba(0,0,0,0.14),0px 8px 38px 7px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation21 {
+  box-shadow: 0px 10px 13px -6px rgba(0,0,0,0.2),0px 21px 33px 3px rgba(0,0,0,0.14),0px 8px 40px 7px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation22 {
+  box-shadow: 0px 10px 14px -6px rgba(0,0,0,0.2),0px 22px 35px 3px rgba(0,0,0,0.14),0px 8px 42px 7px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation23 {
+  box-shadow: 0px 11px 14px -7px rgba(0,0,0,0.2),0px 23px 36px 3px rgba(0,0,0,0.14),0px 9px 44px 8px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation24 {
+  box-shadow: 0px 11px 15px -7px rgba(0,0,0,0.2),0px 24px 38px 3px rgba(0,0,0,0.14),0px 9px 46px 8px rgba(0,0,0,0.12);
+}
+</style><style data-jss="" data-meta="MuiTouchRipple">
+.MuiTouchRipple-root {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  overflow: hidden;
+  position: absolute;
+  border-radius: inherit;
+  pointer-events: none;
+}
+.MuiTouchRipple-ripple {
+  opacity: 0;
+  position: absolute;
+}
+.MuiTouchRipple-rippleVisible {
+  opacity: 0.3;
+  animation: MuiTouchRipple-keyframes-enter 550ms cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scale(1);
+}
+.MuiTouchRipple-ripplePulsate {
+  animation-duration: 200ms;
+}
+.MuiTouchRipple-child {
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 1;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+.MuiTouchRipple-childLeaving {
+  opacity: 0;
+  animation: MuiTouchRipple-keyframes-exit 550ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.MuiTouchRipple-childPulsate {
+  top: 0;
+  left: 0;
+  position: absolute;
+  animation: MuiTouchRipple-keyframes-pulsate 2500ms cubic-bezier(0.4, 0, 0.2, 1) 200ms infinite;
+}
+@-webkit-keyframes MuiTouchRipple-keyframes-enter {
+  0% {
+    opacity: 0.1;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+}
+@-webkit-keyframes MuiTouchRipple-keyframes-exit {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes MuiTouchRipple-keyframes-pulsate {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.92);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+</style><style data-jss="" data-meta="MuiButtonBase">
+.MuiButtonBase-root {
+  color: inherit;
+  border: 0;
+  cursor: pointer;
+  margin: 0;
+  display: inline-flex;
+  outline: 0;
+  padding: 0;
+  position: relative;
+  align-items: center;
+  user-select: none;
+  border-radius: 0;
+  vertical-align: middle;
+  -moz-appearance: none;
+  justify-content: center;
+  text-decoration: none;
+  background-color: transparent;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.MuiButtonBase-root::-moz-focus-inner {
+  border-style: none;
+}
+.MuiButtonBase-root.Mui-disabled {
+  cursor: default;
+  pointer-events: none;
+}
+</style><style data-jss="" data-meta="MuiButton">
+.MuiButton-root {
+  color: rgba(0, 0, 0, 0.87);
+  padding: 6px 16px;
+  font-size: 0.875rem;
+  min-width: 64px;
+  box-sizing: border-box;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 500;
+  line-height: 1.75;
+  border-radius: 4px;
+  letter-spacing: 0.02857em;
+  text-transform: uppercase;
+}
+.MuiButton-root:hover {
+  text-decoration: none;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+.MuiButton-root.Mui-disabled {
+  color: rgba(0, 0, 0, 0.26);
+}
+@media (hover: none) {
+  .MuiButton-root:hover {
+    background-color: transparent;
+  }
+}
+.MuiButton-root:hover.Mui-disabled {
+  background-color: transparent;
+}
+.MuiButton-label {
+  width: 100%;
+  display: inherit;
+  align-items: inherit;
+  justify-content: inherit;
+}
+.MuiButton-text {
+  padding: 6px 8px;
+}
+.MuiButton-textPrimary {
+  color: #3f51b5;
+}
+.MuiButton-textPrimary:hover {
+  background-color: rgba(63, 81, 181, 0.04);
+}
+@media (hover: none) {
+  .MuiButton-textPrimary:hover {
+    background-color: transparent;
+  }
+}
+.MuiButton-textSecondary {
+  color: #f50057;
+}
+.MuiButton-textSecondary:hover {
+  background-color: rgba(245, 0, 87, 0.04);
+}
+@media (hover: none) {
+  .MuiButton-textSecondary:hover {
+    background-color: transparent;
+  }
+}
+.MuiButton-outlined {
+  border: 1px solid rgba(0, 0, 0, 0.23);
+  padding: 5px 15px;
+}
+.MuiButton-outlined.Mui-disabled {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+.MuiButton-outlinedPrimary {
+  color: #3f51b5;
+  border: 1px solid rgba(63, 81, 181, 0.5);
+}
+.MuiButton-outlinedPrimary:hover {
+  border: 1px solid #3f51b5;
+  background-color: rgba(63, 81, 181, 0.04);
+}
+@media (hover: none) {
+  .MuiButton-outlinedPrimary:hover {
+    background-color: transparent;
+  }
+}
+.MuiButton-outlinedSecondary {
+  color: #f50057;
+  border: 1px solid rgba(245, 0, 87, 0.5);
+}
+.MuiButton-outlinedSecondary:hover {
+  border: 1px solid #f50057;
+  background-color: rgba(245, 0, 87, 0.04);
+}
+.MuiButton-outlinedSecondary.Mui-disabled {
+  border: 1px solid rgba(0, 0, 0, 0.26);
+}
+@media (hover: none) {
+  .MuiButton-outlinedSecondary:hover {
+    background-color: transparent;
+  }
+}
+.MuiButton-contained {
+  color: rgba(0, 0, 0, 0.87);
+  box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12);
+  background-color: #e0e0e0;
+}
+.MuiButton-contained:hover {
+  box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);
+  background-color: #d5d5d5;
+}
+.MuiButton-contained.Mui-focusVisible {
+  box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12);
+}
+.MuiButton-contained:active {
+  box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
+}
+.MuiButton-contained.Mui-disabled {
+  color: rgba(0, 0, 0, 0.26);
+  box-shadow: none;
+  background-color: rgba(0, 0, 0, 0.12);
+}
+@media (hover: none) {
+  .MuiButton-contained:hover {
+    box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12);
+    background-color: #e0e0e0;
+  }
+}
+.MuiButton-contained:hover.Mui-disabled {
+  background-color: rgba(0, 0, 0, 0.12);
+}
+.MuiButton-containedPrimary {
+  color: #fff;
+  background-color: #3f51b5;
+}
+.MuiButton-containedPrimary:hover {
+  background-color: #303f9f;
+}
+@media (hover: none) {
+  .MuiButton-containedPrimary:hover {
+    background-color: #3f51b5;
+  }
+}
+.MuiButton-containedSecondary {
+  color: #fff;
+  background-color: #f50057;
+}
+.MuiButton-containedSecondary:hover {
+  background-color: #c51162;
+}
+@media (hover: none) {
+  .MuiButton-containedSecondary:hover {
+    background-color: #f50057;
+  }
+}
+.MuiButton-disableElevation {
+  box-shadow: none;
+}
+.MuiButton-disableElevation:hover {
+  box-shadow: none;
+}
+.MuiButton-disableElevation.Mui-focusVisible {
+  box-shadow: none;
+}
+.MuiButton-disableElevation:active {
+  box-shadow: none;
+}
+.MuiButton-disableElevation.Mui-disabled {
+  box-shadow: none;
+}
+.MuiButton-colorInherit {
+  color: inherit;
+  border-color: currentColor;
+}
+.MuiButton-textSizeSmall {
+  padding: 4px 5px;
+  font-size: 0.8125rem;
+}
+.MuiButton-textSizeLarge {
+  padding: 8px 11px;
+  font-size: 0.9375rem;
+}
+.MuiButton-outlinedSizeSmall {
+  padding: 3px 9px;
+  font-size: 0.8125rem;
+}
+.MuiButton-outlinedSizeLarge {
+  padding: 7px 21px;
+  font-size: 0.9375rem;
+}
+.MuiButton-containedSizeSmall {
+  padding: 4px 10px;
+  font-size: 0.8125rem;
+}
+.MuiButton-containedSizeLarge {
+  padding: 8px 22px;
+  font-size: 0.9375rem;
+}
+.MuiButton-fullWidth {
+  width: 100%;
+}
+.MuiButton-startIcon {
+  display: inherit;
+  margin-left: -4px;
+  margin-right: 8px;
+}
+.MuiButton-startIcon.MuiButton-iconSizeSmall {
+  margin-left: -2px;
+}
+.MuiButton-endIcon {
+  display: inherit;
+  margin-left: 8px;
+  margin-right: -4px;
+}
+.MuiButton-endIcon.MuiButton-iconSizeSmall {
+  margin-right: -2px;
+}
+.MuiButton-iconSizeSmall > *:first-child {
+  font-size: 18px;
+}
+.MuiButton-iconSizeMedium > *:first-child {
+  font-size: 20px;
+}
+.MuiButton-iconSizeLarge > *:first-child {
+  font-size: 22px;
+}
+</style><style data-jss="" data-meta="MuiIconButton">
+.MuiIconButton-root {
+  flex: 0 0 auto;
+  color: rgba(0, 0, 0, 0.54);
+  padding: 12px;
+  overflow: visible;
+  font-size: 1.5rem;
+  text-align: center;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 50%;
+}
+.MuiIconButton-root:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+.MuiIconButton-root.Mui-disabled {
+  color: rgba(0, 0, 0, 0.26);
+  background-color: transparent;
+}
+@media (hover: none) {
+  .MuiIconButton-root:hover {
+    background-color: transparent;
+  }
+}
+.MuiIconButton-edgeStart {
+  margin-left: -12px;
+}
+.MuiIconButton-sizeSmall.MuiIconButton-edgeStart {
+  margin-left: -3px;
+}
+.MuiIconButton-edgeEnd {
+  margin-right: -12px;
+}
+.MuiIconButton-sizeSmall.MuiIconButton-edgeEnd {
+  margin-right: -3px;
+}
+.MuiIconButton-colorInherit {
+  color: inherit;
+}
+.MuiIconButton-colorPrimary {
+  color: #3f51b5;
+}
+.MuiIconButton-colorPrimary:hover {
+  background-color: rgba(63, 81, 181, 0.04);
+}
+@media (hover: none) {
+  .MuiIconButton-colorPrimary:hover {
+    background-color: transparent;
+  }
+}
+.MuiIconButton-colorSecondary {
+  color: #f50057;
+}
+.MuiIconButton-colorSecondary:hover {
+  background-color: rgba(245, 0, 87, 0.04);
+}
+@media (hover: none) {
+  .MuiIconButton-colorSecondary:hover {
+    background-color: transparent;
+  }
+}
+.MuiIconButton-sizeSmall {
+  padding: 3px;
+  font-size: 1.125rem;
+}
+.MuiIconButton-label {
+  width: 100%;
+  display: flex;
+  align-items: inherit;
+  justify-content: inherit;
+}
+</style><style data-jss="" data-meta="MuiDrawer">
+.MuiDrawer-docked {
+  flex: 0 0 auto;
+}
+.MuiDrawer-paper {
+  top: 0;
+  flex: 1 0 auto;
+  height: 100%;
+  display: flex;
+  outline: 0;
+  z-index: 1200;
+  position: fixed;
+  overflow-y: auto;
+  flex-direction: column;
+  -webkit-overflow-scrolling: touch;
+}
+.MuiDrawer-paperAnchorLeft {
+  left: 0;
+  right: auto;
+}
+.MuiDrawer-paperAnchorRight {
+  left: auto;
+  right: 0;
+}
+.MuiDrawer-paperAnchorTop {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: auto;
+  height: auto;
+  max-height: 100%;
+}
+.MuiDrawer-paperAnchorBottom {
+  top: auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: auto;
+  max-height: 100%;
+}
+.MuiDrawer-paperAnchorDockedLeft {
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
+}
+.MuiDrawer-paperAnchorDockedTop {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+.MuiDrawer-paperAnchorDockedRight {
+  border-left: 1px solid rgba(0, 0, 0, 0.12);
+}
+.MuiDrawer-paperAnchorDockedBottom {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+</style><style data-jss="" data-meta="MuiTooltip">
+.MuiTooltip-popper {
+  flip: false;
+  z-index: 1500;
+  pointer-events: none;
+}
+.MuiTooltip-popperInteractive {
+  pointer-events: auto;
+}
+.MuiTooltip-popperArrow[x-placement*="bottom"] .MuiTooltip-arrow {
+  top: 0;
+  flip: false;
+  left: 0;
+  width: 2em;
+  height: 1em;
+  margin-top: -0.95em;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+.MuiTooltip-popperArrow[x-placement*="top"] .MuiTooltip-arrow {
+  flip: false;
+  left: 0;
+  width: 2em;
+  bottom: 0;
+  height: 1em;
+  margin-left: 4px;
+  margin-right: 4px;
+  margin-bottom: -0.95em;
+}
+.MuiTooltip-popperArrow[x-placement*="right"] .MuiTooltip-arrow {
+  flip: false;
+  left: 0;
+  width: 1em;
+  height: 2em;
+  margin-top: 4px;
+  margin-left: -0.95em;
+  margin-bottom: 4px;
+}
+.MuiTooltip-popperArrow[x-placement*="left"] .MuiTooltip-arrow {
+  flip: false;
+  right: 0;
+  width: 1em;
+  height: 2em;
+  margin-top: 4px;
+  margin-right: -0.95em;
+  margin-bottom: 4px;
+}
+.MuiTooltip-popperArrow[x-placement*="left"] .MuiTooltip-arrow::before {
+  flip: false;
+  border-color: transparent transparent transparent currentcolor;
+  border-width: 1em 0 1em 1em;
+}
+.MuiTooltip-popperArrow[x-placement*="right"] .MuiTooltip-arrow::before {
+  flip: false;
+  border-color: transparent currentcolor transparent transparent;
+  border-width: 1em 1em 1em 0;
+}
+.MuiTooltip-popperArrow[x-placement*="top"] .MuiTooltip-arrow::before {
+  flip: false;
+  border-color: currentcolor transparent transparent transparent;
+  border-width: 1em 1em 0 1em;
+}
+.MuiTooltip-popperArrow[x-placement*="bottom"] .MuiTooltip-arrow::before {
+  flip: false;
+  border-color: transparent transparent currentcolor transparent;
+  border-width: 0 1em 1em 1em;
+}
+.MuiTooltip-tooltip {
+  color: #fff;
+  padding: 4px 8px;
+  font-size: 0.625rem;
+  max-width: 300px;
+  word-wrap: break-word;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 500;
+  line-height: 1.4em;
+  border-radius: 4px;
+  background-color: rgba(97, 97, 97, 0.9);
+}
+.MuiTooltip-tooltipArrow {
+  margin: 0;
+  position: relative;
+}
+.MuiTooltip-arrow {
+  color: rgba(97, 97, 97, 0.9);
+  position: absolute;
+  font-size: 6px;
+}
+.MuiTooltip-arrow::before {
+  width: 0;
+  height: 0;
+  margin: auto;
+  content: "";
+  display: block;
+  border-style: solid;
+}
+.MuiTooltip-touch {
+  padding: 8px 16px;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.14286em;
+}
+.MuiTooltip-tooltipPlacementLeft {
+  margin: 0 24px ;
+  transform-origin: right center;
+}
+@media (min-width:600px) {
+  .MuiTooltip-tooltipPlacementLeft {
+    margin: 0 14px;
+  }
+}
+.MuiTooltip-tooltipPlacementRight {
+  margin: 0 24px;
+  transform-origin: left center;
+}
+@media (min-width:600px) {
+  .MuiTooltip-tooltipPlacementRight {
+    margin: 0 14px;
+  }
+}
+.MuiTooltip-tooltipPlacementTop {
+  margin: 24px 0;
+  transform-origin: center bottom;
+}
+@media (min-width:600px) {
+  .MuiTooltip-tooltipPlacementTop {
+    margin: 14px 0;
+  }
+}
+.MuiTooltip-tooltipPlacementBottom {
+  margin: 24px 0;
+  transform-origin: center top;
+}
+@media (min-width:600px) {
+  .MuiTooltip-tooltipPlacementBottom {
+    margin: 14px 0;
+  }
+}
+</style><style data-jss="" data-meta="makeStyles">
+.makeStyles-root-1 {
+  height: 100vh;
+  position: relative;
+  background: grey;
+  justify-content: center;
+}
+.makeStyles-openDrop-2 {
+  left: 0;
+  bottom: 0;
+  position: absolute;
+}
+</style><style data-jss="" data-meta="makeStyles">
+.makeStyles-root-76 {
+  justify-content: center;
+}
+.makeStyles-closeDrop-78 {
+  margin-left: -.5vw;
+}
+.makeStyles-appBar-79 {
+  top: auto;
+  color: black;
+  bottom: 0;
+  background: white;
+}
+.makeStyles-centerButtons-80 {
+  margin-left: auto;
+  margin-right: auto;
+}
+.makeStyles-button-81 {
+  margin: 0px 25px;
+}
+</style></head>    <!--
+      Notice the use of  in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    
+  
+  <body data-gr-c-s-loaded="true" style="overflow: hidden;">
+    <noscript aria-hidden="true">
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <div id="root" aria-hidden="true"><div class="App"><div></div><div></div><div class="makeStyles-root-1"><button class="MuiButtonBase-root MuiIconButton-root" tabindex="0" type="button" title="Info"><span class="MuiIconButton-label"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"></path></svg></span><span class="MuiTouchRipple-root"></span></button>Visualization will go here!! todo: css to make this take up the whole page with icons on top of it<button class="MuiButtonBase-root MuiIconButton-root" tabindex="0" type="button" title="Chat"><span class="MuiIconButton-label"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z"></path></svg></span><span class="MuiTouchRipple-root"></span></button><div class="makeStyles-openDrop-2"><button class="MuiButtonBase-root MuiIconButton-root makeStyles-openButton-3" tabindex="0" type="button" title="Open Toolbar"><span class="MuiIconButton-label"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg></span><span class="MuiTouchRipple-root"></span></button></div></div><div class="chat"><div class="MuiDrawer-root MuiDrawer-docked drawer"><div class="MuiPaper-root MuiDrawer-paper MuiDrawer-paperAnchorRight MuiDrawer-paperAnchorDockedRight MuiPaper-elevation0" style="visibility: hidden; transform: translateX(1039px) translateX(-632px);"><div></div><div class="app__list chat"><div class="chatApp__room"><div class="chatApp__conv"><div class="chatApp__convTitle">Chat</div><div class="chatApp__convTimeline"><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/Claire.png" alt="Claire" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">Claire:<br>Hey guys!!</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/Shannen.png" alt="Shannen" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">Shannen:<br>Hey!</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/Ophir.png" alt="Ophir" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">Ophir:<br>Hello 👋</div></div></div><div class="chatApp__convSendMessage clearfix"><div class="chatApp__convTyping"></div><form><input type="hidden" value=""><input type="hidden" value="https://api.adorable.io/avatars/285/.png"><input type="text" class="chatApp__convInput" placeholder="Text message" tabindex="0"><div class="chatApp__convButton "><i class="material-icons">send</i></div></form></div></div></div></div></div></div></div><div class="makeStyles-root-76"><div class="makeStyles-wrapper-77"></div></div></div></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  <script src="./index_files/bundle.js.download"></script><script src="./index_files/0.chunk.js.download"></script><script src="./index_files/main.chunk.js.download"></script><div role="presentation" style="position: fixed; z-index: 1300; right: 0px; bottom: 0px; top: 0px; left: 0px;"><div aria-hidden="true" style="z-index: -1; position: fixed; right: 0px; bottom: 0px; top: 0px; left: 0px; background-color: rgba(0, 0, 0, 0.5); -webkit-tap-highlight-color: transparent;"></div><div tabindex="0" data-test="sentinelStart"></div><div class="centered" tabindex="-1">Please choose an instrument! <br><button class="MuiButtonBase-root MuiButton-root MuiButton-text" tabindex="0" type="button"><span class="MuiButton-label">Drum</span><span class="MuiTouchRipple-root"></span></button><button class="MuiButtonBase-root MuiButton-root MuiButton-text" tabindex="0" type="button"><span class="MuiButton-label">Piano</span><span class="MuiTouchRipple-root"></span></button><button class="MuiButtonBase-root MuiButton-root MuiButton-text" tabindex="0" type="button"><span class="MuiButton-label">Guitar</span><span class="MuiTouchRipple-root"></span></button><button class="MuiButtonBase-root MuiButton-root MuiButton-text" tabindex="0" type="button"><span class="MuiButton-label">Trumpet</span><span class="MuiTouchRipple-root"></span></button></div><div tabindex="0" data-test="sentinelEnd"></div></div>
+
+</body></html>

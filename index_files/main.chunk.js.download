@@ -1,0 +1,3401 @@
+(this["webpackJsonppiano-task"] = this["webpackJsonppiano-task"] || []).push([["main"],{
+
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/App.css":
+/*!************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!./node_modules/postcss-loader/src??postcss!./src/App.css ***!
+  \************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, "html, body { height: 100%; width: 100%; margin: 0; }", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/Chat/Chat.css":
+/*!******************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!./node_modules/postcss-loader/src??postcss!./src/Chat/Chat.css ***!
+  \******************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, ":root {\r\n    --main-color: #5ea3d0;\r\n    --secondary-color: white;\r\n    --main-text-color: #3e5869;\r\n    --secondary-text-color: #b0c7d6;\r\n    --send-message-form: #F5F5F5;\r\n}\r\n\r\nhtml, body {\r\n    height: 100%;\r\n    margin: 0;\r\n    padding: 0;\r\n    font-family: system-ui;\r\n    font-weight: 200;\r\n    color: #3e5869; \r\n\tbackground: #181b21 url(https://www.toptal.com/designers/subtlepatterns/patterns/nami.png);\r\n}\r\n\r\n#root {\r\n    height: 100%;\r\n}\r\n\r\n.chat {\r\n    height: 100%;\r\n\tbackground: #181b21 url(https://www.toptal.com/designers/subtlepatterns/patterns/nami.png);\r\n}\r\n\r\n.title {\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    height: 40px;\r\n    color: var(--secondary-color);\r\n    background: var(--main-color);\r\n    box-sizing: border-box;\r\n    margin: 0;\r\n    padding: 0;\r\n    text-align: center;\r\n}\r\n\r\n/*\r\n.drawer { \r\n    width:200px\r\n}\r\n*/\r\n\r\n.message {\r\n    margin: 15px 0;\r\n}\r\n\r\n.message div:nth-child(1) {\r\n    font-size: 11px;\r\n    color: var(--main-text-color);\r\n    opacity: 0.9;\r\n    margin-bottom: 6px;\r\n}\r\n.message div:nth-child(2) {\r\n    background: var(--main-color);\r\n    color: var(--secondary-color);\r\n    display: inline;\r\n    padding: 4px 8px;\r\n    border-radius: 8px;\r\n}\r\n\r\n.message-list {\r\n    box-sizing: border-box;\r\n    padding: 0 0 0 6px;\r\n    margin: 0;\r\n    width: 100%;\r\n    height: 100%;\r\n    overflow: scroll;\r\n    background: white;\r\n}\r\n\r\n.send-message-form {\r\n    background: var(--send-message-form);\r\n    display: flex;\r\n    box-sizing: border-box;\r\n    height: 60px;\r\n}\r\n\r\n.send-message-form input {\r\n    width: 100%;\r\n    padding: 15px 10px;\r\n    border: none;\r\n    margin: 0;\r\n    background: var(--send-message-form);\r\n    font-weight: 200;\r\n}\r\n\r\n.send-message-form input:focus {\r\n    outline-width: 0;\r\n}\r\n\r\n.send-message-form input::placeholder {\r\n    color: black;\r\n}\r\n", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/Chat/ChatForm.css":
+/*!**********************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!./node_modules/postcss-loader/src??postcss!./src/Chat/ChatForm.css ***!
+  \**********************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, ".form {\r\n    display: flex;\r\n    flex-wrap: nowrap;\r\n    flex-direction: column;\r\n    width: 100%;\r\n}\r\n.form__row {\r\n    display: flex;\r\n    flex-wrap: nowrap;\r\n    width: 100%;\r\n    padding: 20px;\r\n}\r\n.form__input {\r\n    width: 100%;\r\n    padding: 15px 20px;\r\n    border-radius: 5px 0 0 5px;\r\n    border: 1px solid #ddd;\r\n    box-sizing: border-box;\r\n    outline: 0;\r\n}\r\n.form__input:focus {\r\n    background-color: rgba(245, 243, 243, 0.5);\r\n}\r\n.form__button {\r\n    padding: 0 30px;\r\n    background-color: #000;\r\n    color: #fff;\r\n    border: 0;\r\n    border-radius: 0 5px 5px 0;\r\n    outline: 0;\r\n    cursor: pointer;\r\n}\r\n.form__button:hover {\r\n    background-color: rgba(0, 0, 0, .8);\r\n}\r\n.form__message {\r\n    width: 100%;\r\n    padding: 0 20px;\r\n}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/Chat/Message.css":
+/*!*********************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!./node_modules/postcss-loader/src??postcss!./src/Chat/Message.css ***!
+  \*********************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, ".message {\r\n    position: relative;\r\n    padding: 10px 60px 10px 20px;\r\n    font-size: 12px;\r\n    color: rgba(0, 0, 0, 0.6);\r\n    background-color: rgba(0, 0, 0, .05);\r\n    text-align: left;\r\n    line-height: 1.7;\r\n}\r\n.message:nth-child(even) {\r\n    background-color: rgba(0, 0, 0, .025);\r\n}\r\n.message__author {\r\n    font-weight: 600;\r\n    margin-right: 10px;\r\n    color: rgba(0, 0, 0, 1);\r\n}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/ChatRoom/chat.css":
+/*!**********************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!./node_modules/postcss-loader/src??postcss!./src/ChatRoom/chat.css ***!
+  \**********************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, ".clearfix::after {\r\n\tcontent: \"\";\r\n\tdisplay: block;\r\n\tclear: both;\r\n}\r\n\r\n.chatApp__loaderWrapper {\r\n\tmargin: 80px auto;\r\n\ttext-align: center;\r\n}\r\n.chatApp__loaderText {\r\n\tcolor: #4870df;\r\n\tfont-weight: bold;\r\n}\r\n.chatApp__loader,\r\n.chatApp__loader::before,\r\n.chatApp__loader::after {\r\n\tborder-radius: 1em;\r\n\twidth: 1em;\r\n\theight: 1em;\r\n\tanimation-fill-mode: both;\r\n\tanimation: loading 1.8s infinite ease-in-out;\r\n}\r\n.chatApp__loader {\r\n\tmargin: auto;\r\n\tcolor: #4870df;\r\n\tfont-size: 12px;\r\n\tposition: relative;\r\n\tanimation-delay: -0.16s;\r\n}\r\n.chatApp__loader::before,\r\n.chatApp__loader::after {\r\n\tcontent: '';\r\n\tposition: absolute;\r\n\ttop: 0;\r\n}\r\n.chatApp__loader::before {\r\n\tleft: -1.5em;\r\n\tanimation-delay: -0.32s;\r\n}\r\n.chatApp__loader::after {\r\n\tleft: 1.5em;\r\n}\r\n.chatApp__room {\r\n\tpadding: 2em 2em 0em 0em;\r\n\tdisplay: flex;\r\n    flex-wrap: nowrap;\r\n    flex-direction: column;\r\n\tanimation: fadeChatApp 0.6s ease-in-out;\r\n\tanimation-fill-mode: forwards;\r\n\tfont-family: 'Quicksand', sans-serif;\r\n\tletter-spacing: -0.23px;\r\n}\r\n.chatApp__conv {\r\n\tflex-grow: 1;\r\n\tflex-shrink: 1;\r\n\tflex-basis: 0;\r\n\tfloat: left;\r\n\tmargin: 0 2.5rem;\r\n\tbox-shadow: 0 35px 20px -30px rgba(0,0,0,0.1);\r\n\twidth: calc(100% - 50px);\r\n}\r\n.chatApp__convTitle {\r\n\tdisplay: inline-block;\r\n\tmargin: 0 0 2rem 0;\r\n\tfont-size: 18px;\r\n\tfont-weight: bold;\r\n\tcolor: #f0f0f0;\r\n\ttext-transform: uppercase;\r\n\tposition: relative;\r\n}\r\n.chatApp__convTitle::after {\r\n\tcontent: '';\r\n\tposition: absolute;\r\n\tbackground-color: #4870df;\r\n\twidth: 100%;\r\n\theight: 2px;\r\n\tborder-radius: 30px;\r\n\tleft: 0;\r\n\tright: 0;\r\n\tbottom: -16px;\r\n}\r\n.chatApp__convTimeline {\r\n\tdisplay: flex;\r\n\theight: 400px;\r\n\tpadding: 1rem;\r\n\tborder-top-left-radius: 8px;\r\n\tborder-top-right-radius: 8px;\r\n\tbackground-color: #fff;\r\n\tflex-direction: column-reverse;\r\n\toverflow-y: auto;\r\n}\r\n.chatApp__convMessageItem {\r\n\tpadding: 1rem 0 0 0;\r\n\topacity: 0;\r\n\ttransition: all 0.15s ease-in-out;\r\n\tanimation: fadeNewMessage 0.5s;\r\n\tanimation-fill-mode: forwards;\r\n}\r\n.chatApp__convMessageAvatar {\r\n\twidth: 40px;\r\n\theight: 40px;\r\n\tborder-radius: 40px;\r\n\timage-rendering: -webkit-optimize-contrast;\r\n\t-webkit-touch-callout: none;\r\n\t-webkit-user-select: none;\r\n\tuser-select: none;\r\n}\r\n.chatApp__convMessageValue {\r\n\tposition: relative;\r\n\tmax-width: 50%;\r\n\tmin-height: 40px;\r\n\tpadding: 0.75rem;\r\n\tborder-radius: 4px;\r\n\tfont-size: 14px;\r\n\tline-height: 18px;\r\n\tfont-weight: bold;\r\n\tbox-shadow: 0px 10px 10px -8px rgba(0,0,0,0.08);\r\n\tbox-sizing: border-box;\r\n\toverflow: hidden;\r\n\ttext-overflow: ellipsis;\r\n}\r\n.chatApp__convMessageItem--left .chatApp__convMessageAvatar {\r\n\tfloat: left;\r\n}\r\n.chatApp__convMessageItem--left .chatApp__convMessageValue {\r\n\tfloat: left;\r\n\ttext-align: left;\r\n\tmargin: 0 0 0 1rem;\r\n\tcolor: #fff;\r\n\tbackground-color: #4870df;\r\n}\r\n.chatApp__convMessageItem--left .chatApp__convMessageValue::before {\r\n\tcontent: '';\r\n\tposition: absolute;\r\n\ttop: 14px;\r\n\tleft: -8px;\r\n\twidth: 0;\r\n\theight: 0;\r\n\tborder-style: solid;\r\n\tborder-width: 6px 10px 6px 0;\r\n\tborder-color: transparent #4870df transparent transparent;\r\n}\r\n.chatApp__convMessageItem--right .chatApp__convMessageAvatar {\r\n\tfloat: right;\r\n}\r\n.chatApp__convMessageItem--right .chatApp__convMessageValue {\r\n\tfloat: right;\r\n\ttext-align: right;\r\n\tmargin: 0 1rem 0 0;\r\n\tbackground-color: #fafafa;\r\n}\r\n.chatApp__convMessageItem--right .chatApp__convMessageValue::after {\r\n\tcontent: '';\r\n\tposition: absolute;\r\n\ttop: 14px;\r\n\tright: -8px;\r\n\twidth: 0;\r\n\theight: 0;\r\n\tborder-style: solid;\r\n\tborder-width: 6px 0 6px 10px;\r\n\tborder-color: transparent transparent transparent #fafafa;\r\n}\r\n.chatApp__convMessageItem--left .chatApp__convMessageValue a {\r\n\tcolor: #91ffb1;\r\n}\r\n.chatApp__convMessageItem--left .chatApp__convMessageValue a:hover,\r\n.chatApp__convMessageItem--left .chatApp__convMessageValue a:focus {\r\n\tcolor: #75ff9e;\r\n}\r\n.chatApp__convMessageItem--right .chatApp__convMessageValue a {\r\n\tcolor: #09f;\r\n}\r\n.chatApp__convMessageItem--right .chatApp__convMessageValue a:hover,\r\n.chatApp__convMessageItem--right .chatApp__convMessageValue a:focus {\r\n\tcolor: #007dd1;\r\n}\r\n.chatApp__convSendMessage {\r\n\tposition: relative;\r\n\tborder-bottom-left-radius: 8px;\r\n\tborder-bottom-right-radius: 8px;\r\n\tbackground-color: #fff;\r\n}\r\n.chatApp__convSendMessage {\r\n\tpadding: 1rem;\r\n}\r\n.chatApp__convInput {\r\n\tfloat: left;\r\n\theight: 40px;\r\n\tborder: none;\r\n\tpadding: 0.5rem 1rem;\r\n\tborder-radius: 40px;\r\n\tmargin: 0 0.5rem 0 0;\r\n\twidth: calc(100% - 52px);\r\n\tbackground-color: #dedfed;\r\n\tbox-shadow: inset 0 0 0 2px #dedfed;\r\n\tfont-size: 14px;\r\n\tfont-family: 'Quicksand', sans-serif;\r\n\tfont-weight: bold;\r\n\ttransition: 0.15s all ease-in-out;\r\n\tbox-sizing: border-box;\r\n}\r\n.chatApp__convInput::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */\r\n\tcolor: #b1b1b1;\r\n\topacity: 1;\r\n}\r\n.chatApp__convInput:-ms-input-placeholder { /* Internet Explorer 10-11 */\r\n\tcolor: #b1b1b1;\r\n}\r\n.chatApp__convInput::-ms-input-placeholder { /* Microsoft Edge */\r\n\tcolor: #b1b1b1;\r\n}\r\n.chatApp__convInput:focus, .chatApp__convInput:active {\r\n\tbox-shadow: inset 0 0 0 2px #7690d6;\r\n}\r\n.chatApp__convInput:focus {\r\n\toutline: none;\r\n}\r\n.chatApp__convButton {\r\n\tfloat: right;\r\n\tposition: relative;\r\n\twidth: 40px;\r\n\theight: 40px;\r\n\tcursor: pointer;\r\n\tpadding: 8px;\r\n\tborder-radius: 30px;\r\n\tcolor: #fff;\r\n\tbackground-color: #4870df;\r\n\ttext-align: center;\r\n\tbox-shadow: 0px 14px 10px -8px rgba(0,0,0,0.2);\r\n\ttransition: 0.15s all ease-in-out;\r\n\tbox-sizing: border-box;\r\n\t-webkit-user-select: none;\r\n\tuser-select: none;\r\n}\r\n.chatApp__convButton:hover {\r\n\tbackground-color: #3c559c;\r\n}\r\n.chatApp__convButton i {\r\n\tposition: relative;\r\n\ttop: 50%;\r\n\ttransform: translateY(-50%);\r\n\tpadding: 0 0 0 1px;\r\n\tfont-size: 22px;\r\n}\r\n.chatApp__convButton--loading {\r\n\tcursor: wait;\r\n\tbackground-color: #4870df;\r\n}\r\n.chatApp__convButton--loading:hover {\r\n\tbackground-color: #4870df;\r\n}\r\n.chatApp__convButton--loading::before, .chatApp__convButton--loading::after {\r\n\tcontent: '';\r\n\tposition: absolute;\r\n\tz-index: 1;\r\n\tdisplay: block;\r\n\tleft: 0;\r\n\tright: 0;\r\n\ttop: 50%;\r\n\ttransform: translateY(-50%);\r\n\twidth: 8px;\r\n\theight: 8px;\r\n\tmargin: auto;\r\n\tborder-radius: 40px;\r\n\tbackground-color: #fff;\r\n}\r\n.chatApp__convButton--loading::after {\r\n\tanimation: loadSendMessage 1.5s;\r\n\tanimation-fill-mode: forwards;\r\n\tanimation-iteration-count: infinite;\r\n}\r\n.chatApp__convButton--loading i {\r\n\tdisplay: none;\r\n}\r\n.chatApp__convSendMessage--typing .chatApp__convTyping {\r\n\tdisplay: block;\r\n}\r\n.chatApp__convTyping {\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tfont-size: 10px;\r\n\tfont-weight: bold;\r\n}\r\n.chatApp__convTypingDot {\r\n\tposition: relative;\r\n\tleft: 4px;\r\n\tdisplay: inline-block;\r\n\twidth: 2px;\r\n\theight: 2px;\r\n\tbackground-color: #606060;\r\n\tanimation: typingMessage 1.5s;\r\n\tanimation-fill-mode: forwards;\r\n\tanimation-iteration-count: infinite;\r\n\tanimation-timing-function: ease-in-out;\r\n}\r\n.chatApp__convTypingDot::before, .chatApp__convTypingDot::after {\r\n\tcontent: '';\r\n\tposition: absolute;\r\n\tdisplay: inline-block;\r\n\twidth: 2px;\r\n\theight: 2px;\r\n\tbackground-color: #606060;\r\n\tanimation: typingMessage 1.5s;\r\n\tanimation-fill-mode: forwards;\r\n\tanimation-iteration-count: infinite;\r\n\tanimation-timing-function: ease-in-out;\r\n}\r\n.chatApp__convTypingDot::before {\r\n\tleft: 4px;\r\n\tanimation-delay: 0.5s;\r\n}\r\n.chatApp__convTypingDot::after {\r\n\tleft: 8px;\r\n\tanimation-delay: 1s;\r\n}\r\n@media screen and (max-width:768px) {\r\n\t.chatApp__room { flex-wrap: wrap; padding: 2rem 1rem; }\r\n\t.chatApp__conv { flex-basis: 100%; min-width: auto; width: 100%; margin: 0; }\r\n\t.chatApp__conv:first-of-type { margin: 0 0 4rem 0; }\r\n}\r\n@keyframes loading {\r\n\t0%, 80%, 100% { box-shadow: 0 1em 0 -1.3em; }\r\n\t40% { box-shadow: 0 1em 0 0; }\r\n}\r\n@keyframes fadeChatApp {\r\n\t0% { opacity: 0; transform: translateY(1rem); }\r\n\t100% { opacity: 1; transform: translateY(0px); }\r\n}\r\n@keyframes fadeNewMessage {\r\n\t0% { opacity: 0; transform: translateY(1rem); }\r\n\t100% { opacity: 1; transform: translateY(0px); }\r\n}\r\n@keyframes loadSendMessage {\r\n\t0% { opacity: 1; width: 4px; height: 4px; }\r\n\t100% { opacity: 0; width: 100%; height: 100%; }\r\n}\r\n@keyframes typingMessage {\r\n\t0% { background-color: #606060; }\r\n\t50% { background-color: #fff; }\r\n\t60% { background-color: #606060; }\r\n}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/InfoPage/InfoPage.css":
+/*!**************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!./node_modules/postcss-loader/src??postcss!./src/InfoPage/InfoPage.css ***!
+  \**************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, ".centered {\r\n    position: fixed;\r\n    top: 50%;\r\n    left: 50%;\r\n    /* bring your own prefixes */\r\n    transform: translate(-50%, -50%);\r\n\r\n    padding: 20px;\r\n\r\n    background-color: white;\r\n\r\n    text-align: center;\r\n  }", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/InstrumentSelection/InstrumentSelection.css":
+/*!************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!./node_modules/postcss-loader/src??postcss!./src/InstrumentSelection/InstrumentSelection.css ***!
+  \************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, ".centered {\r\n    position: fixed;\r\n    top: 50%;\r\n    left: 50%;\r\n    /* bring your own prefixes */\r\n    transform: translate(-50%, -50%);\r\n\r\n    padding: 20px;\r\n\r\n    background-color: white;\r\n\r\n    text-align: center;\r\n  }", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/index.css":
+/*!**************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!./node_modules/postcss-loader/src??postcss!./src/index.css ***!
+  \**************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, "body {\r\n  margin: 0;\r\n  padding: 0;\r\n  font-family: sans-serif;\r\n}\r\n", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/ophir_piano/PianoApp.css":
+/*!*****************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!./node_modules/postcss-loader/src??postcss!./src/ophir_piano/PianoApp.css ***!
+  \*****************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, ".bg-yellow {\r\n  background-color: #f8e8d5;\r\n}\r\n", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./src/App.css":
+/*!*********************!*\
+  !*** ./src/App.css ***!
+  \*********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../node_modules/postcss-loader/src??postcss!./App.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/App.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(true) {
+	module.hot.accept(/*! !../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../node_modules/postcss-loader/src??postcss!./App.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/App.css", function() {
+		var newContent = __webpack_require__(/*! !../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../node_modules/postcss-loader/src??postcss!./App.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/App.css");
+
+		if(typeof newContent === 'string') newContent = [[module.i, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./src/App.js":
+/*!********************!*\
+  !*** ./src/App.js ***!
+  \********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./App.css */ "./src/App.css");
+/* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_App_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _InstrumentSelection_InstrumentSelection_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./InstrumentSelection/InstrumentSelection.js */ "./src/InstrumentSelection/InstrumentSelection.js");
+/* harmony import */ var _InfoPage_InfoPage_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./InfoPage/InfoPage.js */ "./src/InfoPage/InfoPage.js");
+/* harmony import */ var _Visualization_Visualization_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Visualization/Visualization.js */ "./src/Visualization/Visualization.js");
+/* harmony import */ var _Bar_Bar_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Bar/Bar.js */ "./src/Bar/Bar.js");
+/* harmony import */ var _ophir_piano_PianoApp_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./ophir_piano/PianoApp.js */ "./src/ophir_piano/PianoApp.js");
+/* harmony import */ var _Chat_Chat_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Chat/Chat.js */ "./src/Chat/Chat.js");
+var _jsxFileName = "C:\\Users\\ophir\\Box Sync\\Spring 2020\\CMSC498N\\ongoing-music\\src\\App.js";
+
+
+
+
+
+
+
+
+
+class App extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
+  constructor() {
+    super();
+
+    this.handleOpenInfo = () => {
+      this.setState({
+        showInfo: true
+      });
+    };
+
+    this.handleCloseInfo = () => {
+      this.setState({
+        showInfo: false
+      });
+    };
+
+    this.handleClickPiano = () => {
+      this.setState({
+        showPiano: !this.state.showPiano
+      });
+    };
+
+    this.handleBarChange = () => {
+      this.setState({
+        showBar: !this.state.showBar
+      });
+    };
+
+    this.handleChatChange = () => {
+      this.setState({
+        showChat: !this.state.showChat
+      });
+    };
+
+    this.handleCloseChat = () => {
+      this.setState({
+        showChat: false
+      });
+    };
+
+    this.handleUsernameSubmit = username => {
+      this.setState({
+        username: username,
+        usernameSet: true
+      });
+    };
+
+    this.state = {
+      instrumentSeleted: false,
+      instrument: "",
+      showInfo: false,
+      showPiano: false,
+      showBar: false,
+      showChat: false,
+      usernameSet: false,
+      username: ""
+    };
+  }
+
+  handleInstrumentClick(instrument) {
+    this.setState({
+      instrumentSeleted: true,
+      instrument: instrument
+    });
+  }
+
+  render() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "App",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 80,
+        columnNumber: 7
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_InstrumentSelection_InstrumentSelection_js__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      open: !this.state.instrumentSeleted,
+      onClick: instrument => this.handleInstrumentClick(instrument),
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 82,
+        columnNumber: 9
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_InfoPage_InfoPage_js__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      open: this.state.showInfo,
+      onOpen: this.handleOpenInfo,
+      onClose: this.handleCloseInfo,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 86,
+        columnNumber: 9
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Visualization_Visualization_js__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      openInfo: this.handleOpenInfo,
+      handleBarChange: this.handleBarChange,
+      handleChatChange: this.handleChatChange,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 91,
+        columnNumber: 9
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Chat_Chat_js__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      showChat: this.state.showChat,
+      handleCloseChat: this.handleCloseChat,
+      username: this.state.username,
+      usernameSet: this.state.usernameSet,
+      handleUsernameSubmit: this.handleUsernameSubmit,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 97,
+        columnNumber: 11
+      }
+    }), this.state.showPiano && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ophir_piano_PianoApp_js__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 107,
+        columnNumber: 35
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Bar_Bar_js__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      handleClickPiano: this.handleClickPiano,
+      showBar: this.state.showBar,
+      handleBarChange: this.handleBarChange,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 109,
+        columnNumber: 9
+      }
+    }));
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (App);
+
+/***/ }),
+
+/***/ "./src/Bar/Bar.js":
+/*!************************!*\
+  !*** ./src/Bar/Bar.js ***!
+  \************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Bar; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
+/* harmony import */ var _material_ui_icons_KeyboardArrowDown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/icons/KeyboardArrowDown */ "./node_modules/@material-ui/icons/KeyboardArrowDown.js");
+/* harmony import */ var _material_ui_icons_KeyboardArrowDown__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_KeyboardArrowDown__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _material_ui_icons_Delete__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/icons/Delete */ "./node_modules/@material-ui/icons/Delete.js");
+/* harmony import */ var _material_ui_icons_Delete__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_Delete__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _material_ui_icons_Mic__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/icons/Mic */ "./node_modules/@material-ui/icons/Mic.js");
+/* harmony import */ var _material_ui_icons_Mic__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_Mic__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _material_ui_icons_PlayArrow__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/icons/PlayArrow */ "./node_modules/@material-ui/icons/PlayArrow.js");
+/* harmony import */ var _material_ui_icons_PlayArrow__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_PlayArrow__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _material_ui_icons_Send__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/icons/Send */ "./node_modules/@material-ui/icons/Send.js");
+/* harmony import */ var _material_ui_icons_Send__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_Send__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _material_ui_icons_Straighten__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/icons/Straighten */ "./node_modules/@material-ui/icons/Straighten.js");
+/* harmony import */ var _material_ui_icons_Straighten__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_Straighten__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _material_ui_icons_GetApp__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/icons/GetApp */ "./node_modules/@material-ui/icons/GetApp.js");
+/* harmony import */ var _material_ui_icons_GetApp__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_GetApp__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
+var _jsxFileName = "C:\\Users\\ophir\\Box Sync\\Spring 2020\\CMSC498N\\ongoing-music\\src\\Bar\\Bar.js";
+
+
+
+
+
+
+
+
+
+
+const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_9__["makeStyles"])(theme => ({
+  root: {
+    justifyContent: "center"
+  },
+  wrapper: {//width: 100 + theme.spacing(2),
+  },
+  closeDrop: {
+    // marginTop: "-10vh",
+    marginLeft: "-.5vw"
+  },
+  appBar: {
+    top: 'auto',
+    bottom: 0,
+    //height: "20vh",
+    background: "white",
+    color: "black"
+  },
+  centerButtons: {
+    marginLeft: "auto",
+    marginRight: "auto"
+  },
+  button: {
+    margin: "0px 25px"
+  }
+}));
+function Bar(props) {
+  const classes = useStyles();
+  const [hasRecording, setHasRecording] = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(false);
+
+  const handleDelete = () => {
+    setHasRecording(prev => !prev); // if in the middle of recording, stop recording b4 delete
+    // logic to delete local recording
+  };
+
+  const handleRecord = () => {
+    // logic to record 
+    setHasRecording(prev => !prev);
+  };
+
+  const playRecording = () => {// logic to listen to recording 
+    // make sure people cant play the recording while ur still recording it
+  };
+
+  const handleUpload = () => {// logic to listen to recording 
+    // make sure people cant play the recording while ur still recording it
+  };
+
+  const handleDownload = () => {// logic to download your recording 
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: classes.root,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 89,
+      columnNumber: 9
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: classes.wrapper,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 90,
+      columnNumber: 13
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["Slide"], {
+    direction: "up",
+    in: props.showBar,
+    mountOnEnter: true,
+    unmountOnExit: true,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 91,
+      columnNumber: 17
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["AppBar"], {
+    className: classes.appBar,
+    position: "fixed",
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 92,
+      columnNumber: 21
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["Toolbar"], {
+    className: classes.toolbar,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 93,
+      columnNumber: 25
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
+    title: "Close Toolbar",
+    arrow: true,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 94,
+      columnNumber: 29
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["IconButton"], {
+    edge: "start",
+    className: classes.closeDrop,
+    onClick: props.handleBarChange,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 95,
+      columnNumber: 33
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_KeyboardArrowDown__WEBPACK_IMPORTED_MODULE_2___default.a, {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 96,
+      columnNumber: 37
+    }
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: classes.centerButtons,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 100,
+      columnNumber: 29
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
+    title: "Delete Recording",
+    arrow: true,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 101,
+      columnNumber: 33
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: classes.button,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 102,
+      columnNumber: 37
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+    variant: "contained",
+    size: "large",
+    onClick: handleDelete,
+    disabled: !hasRecording,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 103,
+      columnNumber: 37
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Delete__WEBPACK_IMPORTED_MODULE_3___default.a, {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 109,
+      columnNumber: 41
+    }
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
+    title: "Record",
+    arrow: true,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 114,
+      columnNumber: 33
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: classes.button,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 115,
+      columnNumber: 37
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+    variant: "contained",
+    size: "large",
+    onClick: handleRecord,
+    disabled: hasRecording,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 116,
+      columnNumber: 37
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Mic__WEBPACK_IMPORTED_MODULE_4___default.a, {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 122,
+      columnNumber: 41
+    }
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
+    title: "Listen",
+    arrow: true,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 127,
+      columnNumber: 33
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: classes.button,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 128,
+      columnNumber: 37
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+    variant: "contained",
+    size: "large",
+    onClick: playRecording,
+    disabled: !hasRecording,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 129,
+      columnNumber: 37
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_PlayArrow__WEBPACK_IMPORTED_MODULE_5___default.a, {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 135,
+      columnNumber: 41
+    }
+  })))), "some kinda progress bar for recording", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
+    title: "Upload",
+    arrow: true,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 144,
+      columnNumber: 33
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: classes.button,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 145,
+      columnNumber: 37
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+    variant: "contained",
+    size: "large",
+    onClick: handleUpload,
+    disabled: !hasRecording,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 146,
+      columnNumber: 37
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Send__WEBPACK_IMPORTED_MODULE_6___default.a, {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 152,
+      columnNumber: 41
+    }
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
+    title: "Download",
+    arrow: true,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 157,
+      columnNumber: 33
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: classes.button,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 158,
+      columnNumber: 37
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+    variant: "contained",
+    size: "large",
+    onClick: handleDownload,
+    disabled: !hasRecording,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 159,
+      columnNumber: 37
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_GetApp__WEBPACK_IMPORTED_MODULE_8___default.a, {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 165,
+      columnNumber: 41
+    }
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
+    title: "Toggle Piano",
+    arrow: true,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 170,
+      columnNumber: 33
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: classes.button,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 171,
+      columnNumber: 37
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+    variant: "contained",
+    size: "large",
+    onClick: props.handleClickPiano,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 172,
+      columnNumber: 37
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Straighten__WEBPACK_IMPORTED_MODULE_7___default.a, {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 177,
+      columnNumber: 41
+    }
+  }))))))))));
+}
+
+/***/ }),
+
+/***/ "./src/Chat/Chat.css":
+/*!***************************!*\
+  !*** ./src/Chat/Chat.css ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../node_modules/postcss-loader/src??postcss!./Chat.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/Chat/Chat.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(true) {
+	module.hot.accept(/*! !../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../node_modules/postcss-loader/src??postcss!./Chat.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/Chat/Chat.css", function() {
+		var newContent = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../node_modules/postcss-loader/src??postcss!./Chat.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/Chat/Chat.css");
+
+		if(typeof newContent === 'string') newContent = [[module.i, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./src/Chat/Chat.js":
+/*!**************************!*\
+  !*** ./src/Chat/Chat.js ***!
+  \**************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Chat_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Chat.css */ "./src/Chat/Chat.css");
+/* harmony import */ var _Chat_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_Chat_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _UsernameModal_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./UsernameModal.js */ "./src/Chat/UsernameModal.js");
+/* harmony import */ var _ChatForm_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ChatForm.js */ "./src/Chat/ChatForm.js");
+/* harmony import */ var _ChatRoom_chat_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../ChatRoom/chat.js */ "./src/ChatRoom/chat.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
+var _jsxFileName = "C:\\Users\\ophir\\Box Sync\\Spring 2020\\CMSC498N\\ongoing-music\\src\\Chat\\Chat.js";
+
+
+
+
+
+
+
+class Chat extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
+  constructor(props) {
+    super(props);
+    this.state = {
+      messages: []
+    };
+  }
+
+  render() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "chat",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 22,
+        columnNumber: 13
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__["Drawer"], {
+      className: "drawer",
+      variant: "persistent",
+      anchor: "right",
+      open: this.props.showChat,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 23,
+        columnNumber: 17
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UsernameModal_js__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      open: !this.props.usernameSet && this.props.showChat,
+      handleChange: username => this.props.handleUsernameSubmit(username),
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 29,
+        columnNumber: 21
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "app__list chat",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 34,
+        columnNumber: 21
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ChatRoom_chat_js__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      username: this.props.username,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 35,
+        columnNumber: 29
+      }
+    }))));
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Chat);
+
+/***/ }),
+
+/***/ "./src/Chat/ChatForm.css":
+/*!*******************************!*\
+  !*** ./src/Chat/ChatForm.css ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../node_modules/postcss-loader/src??postcss!./ChatForm.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/Chat/ChatForm.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(true) {
+	module.hot.accept(/*! !../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../node_modules/postcss-loader/src??postcss!./ChatForm.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/Chat/ChatForm.css", function() {
+		var newContent = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../node_modules/postcss-loader/src??postcss!./ChatForm.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/Chat/ChatForm.css");
+
+		if(typeof newContent === 'string') newContent = [[module.i, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./src/Chat/ChatForm.js":
+/*!******************************!*\
+  !*** ./src/Chat/ChatForm.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ChatForm; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _ChatForm_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ChatForm.css */ "./src/Chat/ChatForm.css");
+/* harmony import */ var _ChatForm_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_ChatForm_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Message__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Message */ "./src/Chat/Message.js");
+/* harmony import */ var firebase__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! firebase */ "./node_modules/firebase/dist/index.cjs.js");
+/* harmony import */ var firebase__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(firebase__WEBPACK_IMPORTED_MODULE_3__);
+var _jsxFileName = "C:\\Users\\ophir\\Box Sync\\Spring 2020\\CMSC498N\\ongoing-music\\src\\Chat\\ChatForm.js";
+
+
+
+ // I followed this tutorial: https://medium.com/@Chilid/react-firebase-chat-app-a115653b7477
+// maybe look into this? https://css-tricks.com/building-a-real-time-chat-app-with-react-and-firebase/
+
+class ChatForm extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userName: this.props.username,
+      message: '',
+      list: []
+    }; // Commented out for the sake of compilation
+
+    this.messageRef = firebase__WEBPACK_IMPORTED_MODULE_3___default.a.database().ref().child('messages');
+    this.listenMessages();
+  }
+
+  handleChange(event) {
+    this.setState({
+      message: event.target.value
+    });
+  }
+
+  handleSend() {
+    if (this.state.message) {
+      var newItem = {
+        userName: this.state.userName,
+        message: this.state.message
+      };
+      this.messageRef.push(newItem);
+      this.setState({
+        message: ''
+      });
+    }
+  }
+
+  handleKeyPress(event) {
+    if (event.key === 'Enter') {
+      this.handleSend();
+    }
+  } // Commented out for the sake of compilation
+
+
+  listenMessages() {
+    this.messageRef.limitToLast(10).on('value', message => {
+      this.setState({
+        list: Object.values(message.val())
+      });
+    });
+  }
+
+  render() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "form",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 62,
+        columnNumber: 13
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "form__message",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 63,
+        columnNumber: 17
+      }
+    }, this.state.list.map((item, index) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Message__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      key: index,
+      message: item,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 65,
+        columnNumber: 25
+      }
+    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "form__row",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 68,
+        columnNumber: 17
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      className: "form__input",
+      type: "text",
+      placeholder: "Type message",
+      value: this.state.message,
+      onChange: this.handleChange.bind(this),
+      onKeyPress: this.handleKeyPress.bind(this),
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 69,
+        columnNumber: 21
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      className: "form__button",
+      onClick: this.handleSend.bind(this),
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 77,
+        columnNumber: 21
+      }
+    }, "Send")));
+  }
+
+}
+
+/***/ }),
+
+/***/ "./src/Chat/Message.css":
+/*!******************************!*\
+  !*** ./src/Chat/Message.css ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../node_modules/postcss-loader/src??postcss!./Message.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/Chat/Message.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(true) {
+	module.hot.accept(/*! !../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../node_modules/postcss-loader/src??postcss!./Message.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/Chat/Message.css", function() {
+		var newContent = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../node_modules/postcss-loader/src??postcss!./Message.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/Chat/Message.css");
+
+		if(typeof newContent === 'string') newContent = [[module.i, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./src/Chat/Message.js":
+/*!*****************************!*\
+  !*** ./src/Chat/Message.js ***!
+  \*****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Message; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Message_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Message.css */ "./src/Chat/Message.css");
+/* harmony import */ var _Message_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_Message_css__WEBPACK_IMPORTED_MODULE_1__);
+var _jsxFileName = "C:\\Users\\ophir\\Box Sync\\Spring 2020\\CMSC498N\\ongoing-music\\src\\Chat\\Message.js";
+
+
+class Message extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
+  render() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "message",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 7,
+        columnNumber: 7
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "message__author",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 8,
+        columnNumber: 13
+      }
+    }, this.props.message.userName, ":"), this.props.message.message);
+  }
+
+}
+
+/***/ }),
+
+/***/ "./src/Chat/UsernameModal.js":
+/*!***********************************!*\
+  !*** ./src/Chat/UsernameModal.js ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Chat_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Chat.css */ "./src/Chat/Chat.css");
+/* harmony import */ var _Chat_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_Chat_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
+var _jsxFileName = "C:\\Users\\ophir\\Box Sync\\Spring 2020\\CMSC498N\\ongoing-music\\src\\Chat\\UsernameModal.js";
+
+
+
+
+class UsernameModal extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: false
+    };
+  } // TODO: style this better, move styling into same file
+
+
+  render() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 23,
+        columnNumber: 13
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Modal"], {
+      open: this.props.open //onClose={this.props.onClose}
+      ,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 24,
+        columnNumber: 17
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "centered",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 28,
+        columnNumber: 21
+      }
+    }, "Please enter a username for yourself! (Hit Enter to submit) ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 29,
+        columnNumber: 85
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["FormControl"], {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 30,
+        columnNumber: 25
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["TextField"], {
+      required: true,
+      label: "Username" //variant="outlined"
+      ,
+      error: this.state.error,
+      helperText: this.state.error ? "Username cannot be empty." : null,
+      onKeyPress: e => {
+        if (e.target.value === "") {
+          this.setState({
+            error: true
+          });
+        } else if (e.key === 'Enter') {
+          this.props.handleChange(e.target.value);
+        } else {
+          this.setState({
+            error: false
+          });
+        }
+      },
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 31,
+        columnNumber: 29
+      }
+    })))));
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (UsernameModal);
+
+/***/ }),
+
+/***/ "./src/ChatRoom/chat.css":
+/*!*******************************!*\
+  !*** ./src/ChatRoom/chat.css ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../node_modules/postcss-loader/src??postcss!./chat.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/ChatRoom/chat.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(true) {
+	module.hot.accept(/*! !../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../node_modules/postcss-loader/src??postcss!./chat.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/ChatRoom/chat.css", function() {
+		var newContent = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../node_modules/postcss-loader/src??postcss!./chat.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/ChatRoom/chat.css");
+
+		if(typeof newContent === 'string') newContent = [[module.i, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./src/ChatRoom/chat.js":
+/*!******************************!*\
+  !*** ./src/ChatRoom/chat.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ChatRoom; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _chat_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./chat.css */ "./src/ChatRoom/chat.css");
+/* harmony import */ var _chat_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_chat_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var firebase__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! firebase */ "./node_modules/firebase/dist/index.cjs.js");
+/* harmony import */ var firebase__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(firebase__WEBPACK_IMPORTED_MODULE_2__);
+var _jsxFileName = "C:\\Users\\ophir\\Box Sync\\Spring 2020\\CMSC498N\\ongoing-music\\src\\ChatRoom\\chat.js";
+
+
+
+/* detect url in a message and add a link tag */
+
+function detectURL(message) {
+  var urlRegex = /(((https?:\/\/)|(www\.))[^\s]+)/g;
+  return message.replace(urlRegex, function (urlMatch) {
+    return '<a href="' + urlMatch + '">' + urlMatch + '</a>';
+  });
+}
+/* ========== */
+
+/* Title component */
+
+
+class Title extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+  constructor(props, context) {
+    super(props, context);
+  }
+
+  render() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "chatApp__convTitle",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 21,
+        columnNumber: 4
+      }
+    }, "Chat");
+  }
+
+}
+/* end Title component */
+
+/* ========== */
+
+/* ========== */
+
+/* InputMessage component - used to type the message */
+
+
+class InputMessage extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+  constructor(props, context) {
+    super(props, context);
+    this.handleSendMessage = this.handleSendMessage.bind(this);
+    this.handleTyping = this.handleTyping.bind(this);
+  }
+
+  handleSendMessage(event) {
+    event.preventDefault();
+    /* Disable sendMessage if the message is empty */
+
+    if (this.messageInput.value.length > 0) {
+      this.props.sendMessageLoading(this.ownerInput.value, this.ownerAvatarInput.value, this.messageInput.value);
+      /* Reset input after send*/
+
+      this.messageInput.value = '';
+    }
+  }
+
+  handleTyping(event) {
+    /* Tell users when another user has at least started to write */
+    if (this.messageInput.value.length > 0) {
+      this.props.typing(this.ownerInput.value);
+    } else {
+      /* When there is no more character, the user no longer writes */
+      this.props.resetTyping(this.ownerInput.value);
+    }
+  }
+
+  render() {
+    /* If the chatbox state is loading, loading class for display */
+    var loadingClass = this.props.isLoading ? 'chatApp__convButton--loading' : '';
+    let sendButtonIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      className: "material-icons",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 58,
+        columnNumber: 24
+      }
+    }, "send");
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      onSubmit: this.handleSendMessage,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 60,
+        columnNumber: 4
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      type: "hidden",
+      ref: owner => this.ownerInput = owner,
+      value: this.props.owner,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 61,
+        columnNumber: 5
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      type: "hidden",
+      ref: ownerAvatar => this.ownerAvatarInput = ownerAvatar,
+      value: this.props.ownerAvatar,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 66,
+        columnNumber: 5
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      type: "text",
+      ref: message => this.messageInput = message,
+      className: "chatApp__convInput",
+      placeholder: "Text message",
+      onKeyDown: this.handleTyping,
+      onKeyUp: this.handleTyping,
+      tabIndex: "0",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 71,
+        columnNumber: 5
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: 'chatApp__convButton ' + loadingClass,
+      onClick: this.handleSendMessage,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 80,
+        columnNumber: 5
+      }
+    }, sendButtonIcon));
+  }
+
+}
+/* end InputMessage component */
+
+/* ========== */
+
+/* ========== */
+
+/* TypingIndicator component */
+
+
+class TypingIndicator extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+  constructor(props, context) {
+    super(props, context);
+  }
+
+  render() {
+    let typersDisplay = '';
+    let countTypers = 0;
+    /* for each user writing messages in chatroom */
+
+    for (var key of this.props.isTyping) {
+      /* retrieve the name if it isn't the owner of the chatbox */
+      if (key != this.props.owner && this.props.isTyping[key]) {
+        typersDisplay += ', ' + key;
+        countTypers++;
+      }
+    }
+    /* formatting text */
+
+
+    typersDisplay = typersDisplay.substr(1);
+    typersDisplay += countTypers > 1 ? ' are ' : ' is ';
+    /* if at least one other person writes */
+
+    if (countTypers > 0) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "chatApp__convTyping",
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 113,
+          columnNumber: 5
+        }
+      }, typersDisplay, " writing", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "chatApp__convTypingDot",
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 114,
+          columnNumber: 5
+        }
+      }));
+    }
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "chatApp__convTyping",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 119,
+        columnNumber: 4
+      }
+    });
+  }
+
+}
+/* end TypingIndicator component */
+
+/* ========== */
+
+/* ========== */
+
+/* MessageList component - contains all messages */
+
+
+class MessageList extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+  constructor(props, context) {
+    super(props, context);
+  }
+
+  render() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "chatApp__convTimeline",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 134,
+        columnNumber: 4
+      }
+    }, this.props.messages.slice(0).reverse().map(messageItem => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(MessageItem, {
+      key: messageItem.id,
+      owner: this.props.owner,
+      sender: messageItem.sender,
+      senderAvatar: messageItem.senderAvatar,
+      message: messageItem.sender + ":<br>" + messageItem.message,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 137,
+        columnNumber: 6
+      }
+    })));
+  }
+
+}
+/* end MessageList component */
+
+/* ========== */
+
+/* ========== */
+
+/* MessageItem component - composed of a message and the sender's avatar */
+
+
+class MessageItem extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+  render() {
+    /* message position formatting - right if I'm the author */
+    let messagePosition = this.props.owner == this.props.sender ? 'chatApp__convMessageItem--right' : 'chatApp__convMessageItem--left';
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "chatApp__convMessageItem " + messagePosition + " clearfix",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 161,
+        columnNumber: 4
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      src: this.props.senderAvatar,
+      alt: this.props.sender,
+      className: "chatApp__convMessageAvatar",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 162,
+        columnNumber: 5
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "chatApp__convMessageValue",
+      dangerouslySetInnerHTML: {
+        __html: this.props.message
+      },
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 163,
+        columnNumber: 5
+      }
+    }));
+  }
+
+}
+/* end MessageItem component */
+
+/* ========== */
+
+/* ========== */
+
+/* ChatBox component - composed of Title, MessageList, TypingIndicator, InputMessage */
+
+
+class ChatBox extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      isLoading: false
+    };
+    this.sendMessageLoading = this.sendMessageLoading.bind(this);
+    var timeout = null;
+  }
+  /* catch the sendMessage signal and update the loading state then continues the sending instruction */
+
+
+  sendMessageLoading(sender, senderAvatar, message) {
+    this.setState({
+      isLoading: true
+    });
+    this.props.sendMessage(sender, senderAvatar, message);
+    setTimeout(() => {
+      this.setState({
+        isLoading: false
+      });
+    }, 400);
+  }
+
+  render() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "chatApp__conv",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 192,
+        columnNumber: 4
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Title, {
+      owner: this.props.owner,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 193,
+        columnNumber: 5
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(MessageList, {
+      owner: this.props.owner,
+      messages: this.props.messages,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 196,
+        columnNumber: 5
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "chatApp__convSendMessage clearfix",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 200,
+        columnNumber: 5
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TypingIndicator, {
+      owner: this.props.owner,
+      isTyping: this.props.isTyping,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 201,
+        columnNumber: 6
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(InputMessage, {
+      isLoading: this.state.isLoading,
+      owner: this.props.owner,
+      ownerAvatar: this.props.ownerAvatar,
+      sendMessage: this.props.sendMessage,
+      sendMessageLoading: this.sendMessageLoading,
+      typing: this.props.typing,
+      resetTyping: this.props.resetTyping,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 205,
+        columnNumber: 6
+      }
+    })));
+  }
+
+}
+/* end ChatBox component */
+
+/* ========== */
+
+/* ========== */
+
+/* ChatRoom component - composed of multiple ChatBoxes */
+
+
+class ChatRoom extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      messages: [],
+      isTyping: []
+    };
+    this.sendMessage = this.sendMessage.bind(this);
+    this.typing = this.typing.bind(this);
+    this.resetTyping = this.resetTyping.bind(this);
+    this.username = this.props.username;
+  }
+
+  componentDidMount() {
+    this.dbRef = firebase__WEBPACK_IMPORTED_MODULE_2___default.a.database().ref();
+    this.msgsRef = this.dbRef.child('chat').child('messages');
+    this.isTypingRef = this.dbRef.child('chat').child('isTyping'); // get 'messages' and 'isTyping' lists from firebase
+
+    this.msgsRef.on('value', snap => {
+      let messageList = snap.val();
+      this.setState({
+        messages: messageList
+      });
+    }); // get 'messages' and 'isTyping' lists from firebase
+
+    this.isTypingRef.on('value', snap => {
+      let isTypingList = snap.val();
+      /*this.setState({]
+        isTyping: 
+      })*/
+    });
+  }
+  /* adds a new message to the chatroom */
+
+
+  sendMessage(sender, senderAvatar, message) {
+    setTimeout(() => {
+      let messageFormat = detectURL(message);
+      let newMessageItem = {
+        id: this.state.messages.length + 1,
+        sender: sender,
+        senderAvatar: senderAvatar,
+        message: messageFormat
+      };
+      this.msgsRef.child(this.state.messages.length).set(newMessageItem);
+      this.resetTyping(sender);
+    }, 400);
+  }
+  /* updates the writing indicator if not already displayed */
+
+
+  typing(writer) {
+    if (!this.state.isTyping[writer]) {
+      let stateTyping = this.state.isTyping;
+      stateTyping[writer] = true;
+      this.setState({
+        isTyping: stateTyping
+      });
+    }
+  }
+  /* hide the writing indicator */
+
+
+  resetTyping(writer) {
+    let stateTyping = this.state.isTyping;
+    stateTyping[writer] = false;
+    this.setState({
+      isTyping: stateTyping
+    });
+  }
+
+  render() {
+    let users = {};
+    let chatBoxes = [];
+    let messages = this.state.messages;
+    let isTyping = this.state.isTyping;
+    let sendMessage = this.sendMessage;
+    let typing = this.typing;
+    let resetTyping = this.resetTyping;
+    /* user details - can add as many users as desired */
+
+    users[0] = {
+      name: this.props.username,
+      avatar: 'https://api.adorable.io/avatars/285/' + this.props.username + '.png'
+    };
+    /* creation of a chatbox for each user present in the chatroom */
+
+    Object.keys(users).map(function (key) {
+      var user = users[key];
+      chatBoxes.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ChatBox, {
+        className: "Form",
+        key: key,
+        owner: user.name,
+        ownerAvatar: user.avatar,
+        sendMessage: sendMessage,
+        typing: typing,
+        resetTyping: resetTyping,
+        messages: messages,
+        isTyping: isTyping,
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 304,
+          columnNumber: 5
+        }
+      }));
+    });
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "chatApp__room",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 317,
+        columnNumber: 4
+      }
+    }, chatBoxes);
+  }
+
+}
+/* end ChatRoom component */
+
+/* ========== */
+
+/***/ }),
+
+/***/ "./src/InfoPage/InfoPage.css":
+/*!***********************************!*\
+  !*** ./src/InfoPage/InfoPage.css ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../node_modules/postcss-loader/src??postcss!./InfoPage.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/InfoPage/InfoPage.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(true) {
+	module.hot.accept(/*! !../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../node_modules/postcss-loader/src??postcss!./InfoPage.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/InfoPage/InfoPage.css", function() {
+		var newContent = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../node_modules/postcss-loader/src??postcss!./InfoPage.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/InfoPage/InfoPage.css");
+
+		if(typeof newContent === 'string') newContent = [[module.i, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./src/InfoPage/InfoPage.js":
+/*!**********************************!*\
+  !*** ./src/InfoPage/InfoPage.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _InfoPage_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./InfoPage.css */ "./src/InfoPage/InfoPage.css");
+/* harmony import */ var _InfoPage_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_InfoPage_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
+var _jsxFileName = "C:\\Users\\ophir\\Box Sync\\Spring 2020\\CMSC498N\\ongoing-music\\src\\InfoPage\\InfoPage.js";
+
+
+
+
+class InfoPage extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
+  // TODO: style this better, move styling into same file
+  render() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 14,
+        columnNumber: 13
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Modal"], {
+      open: this.props.open,
+      onClose: this.props.onClose,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 15,
+        columnNumber: 17
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "centered",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 19,
+        columnNumber: 21
+      }
+    }, "info about this project!! credits to us at bottom hehe")));
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (InfoPage);
+
+/***/ }),
+
+/***/ "./src/InstrumentSelection/InstrumentSelection.css":
+/*!*********************************************************!*\
+  !*** ./src/InstrumentSelection/InstrumentSelection.css ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../node_modules/postcss-loader/src??postcss!./InstrumentSelection.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/InstrumentSelection/InstrumentSelection.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(true) {
+	module.hot.accept(/*! !../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../node_modules/postcss-loader/src??postcss!./InstrumentSelection.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/InstrumentSelection/InstrumentSelection.css", function() {
+		var newContent = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../node_modules/postcss-loader/src??postcss!./InstrumentSelection.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/InstrumentSelection/InstrumentSelection.css");
+
+		if(typeof newContent === 'string') newContent = [[module.i, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./src/InstrumentSelection/InstrumentSelection.js":
+/*!********************************************************!*\
+  !*** ./src/InstrumentSelection/InstrumentSelection.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _InstrumentSelection_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./InstrumentSelection.css */ "./src/InstrumentSelection/InstrumentSelection.css");
+/* harmony import */ var _InstrumentSelection_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_InstrumentSelection_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
+var _jsxFileName = "C:\\Users\\ophir\\Box Sync\\Spring 2020\\CMSC498N\\ongoing-music\\src\\InstrumentSelection\\InstrumentSelection.js";
+
+
+
+
+class InstrumentSelection extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
+  // TODO: style this better, move styling into same file
+  render() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 15,
+        columnNumber: 13
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Modal"], {
+      open: this.props.open,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 16,
+        columnNumber: 17
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "centered",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 19,
+        columnNumber: 21
+      }
+    }, "Please choose an instrument! ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 20,
+        columnNumber: 54
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+      onClick: () => this.props.onClick("drum"),
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 21,
+        columnNumber: 25
+      }
+    }, "Drum"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+      onClick: () => this.props.onClick("piano"),
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 26,
+        columnNumber: 25
+      }
+    }, "Piano"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+      onClick: () => this.props.onClick("guitar"),
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 31,
+        columnNumber: 25
+      }
+    }, "Guitar"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+      onClick: () => this.props.onClick("trumpet"),
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 36,
+        columnNumber: 25
+      }
+    }, "Trumpet"))));
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (InstrumentSelection);
+
+/***/ }),
+
+/***/ "./src/Visualization/Visualization.js":
+/*!********************************************!*\
+  !*** ./src/Visualization/Visualization.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Visualization; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
+/* harmony import */ var _material_ui_icons_HelpOutline__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/icons/HelpOutline */ "./node_modules/@material-ui/icons/HelpOutline.js");
+/* harmony import */ var _material_ui_icons_HelpOutline__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_HelpOutline__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _material_ui_icons_KeyboardArrowUp__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/icons/KeyboardArrowUp */ "./node_modules/@material-ui/icons/KeyboardArrowUp.js");
+/* harmony import */ var _material_ui_icons_KeyboardArrowUp__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_KeyboardArrowUp__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _material_ui_icons_QuestionAnswer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/icons/QuestionAnswer */ "./node_modules/@material-ui/icons/QuestionAnswer.js");
+/* harmony import */ var _material_ui_icons_QuestionAnswer__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_QuestionAnswer__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
+var _jsxFileName = "C:\\Users\\ophir\\Box Sync\\Spring 2020\\CMSC498N\\ongoing-music\\src\\Visualization\\Visualization.js";
+
+
+
+
+
+
+const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__["makeStyles"])(theme => ({
+  root: {
+    position: "relative",
+    justifyContent: "center",
+    height: "100vh",
+    background: "grey"
+  },
+  openDrop: {
+    position: "absolute",
+    left: "0",
+    bottom: "0"
+  },
+  openButton: {//backgroundColor: "white"
+  }
+}));
+function Visualization(props) {
+  const classes = useStyles();
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: classes.root,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 37,
+      columnNumber: 9
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
+    title: "Info",
+    arrow: true,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 38,
+      columnNumber: 13
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["IconButton"], {
+    type: "button",
+    onClick: props.openInfo,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 39,
+      columnNumber: 17
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_HelpOutline__WEBPACK_IMPORTED_MODULE_2___default.a, {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 40,
+      columnNumber: 21
+    }
+  }))), "Visualization will go here!! todo: css to make this take up the whole page with icons on top of it", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
+    title: "Chat",
+    arrow: true,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 48,
+      columnNumber: 13
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["IconButton"], {
+    type: "button",
+    onClick: props.handleChatChange,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 49,
+      columnNumber: 17
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_QuestionAnswer__WEBPACK_IMPORTED_MODULE_4___default.a, {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 50,
+      columnNumber: 21
+    }
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: classes.openDrop,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 54,
+      columnNumber: 13
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["Tooltip"], {
+    title: "Open Toolbar",
+    arrow: true,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 55,
+      columnNumber: 17
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["IconButton"], {
+    className: classes.openButton,
+    onClick: props.handleBarChange,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 56,
+      columnNumber: 21
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_KeyboardArrowUp__WEBPACK_IMPORTED_MODULE_3___default.a, {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 57,
+      columnNumber: 25
+    }
+  })))));
+}
+
+/***/ }),
+
+/***/ "./src/index.css":
+/*!***********************!*\
+  !*** ./src/index.css ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../node_modules/postcss-loader/src??postcss!./index.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/index.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(true) {
+	module.hot.accept(/*! !../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../node_modules/postcss-loader/src??postcss!./index.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/index.css", function() {
+		var newContent = __webpack_require__(/*! !../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../node_modules/postcss-loader/src??postcss!./index.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/index.css");
+
+		if(typeof newContent === 'string') newContent = [[module.i, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index.css */ "./src/index.css");
+/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_index_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./App */ "./src/App.js");
+/* harmony import */ var _registerServiceWorker__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./registerServiceWorker */ "./src/registerServiceWorker.js");
+/* harmony import */ var firebase__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! firebase */ "./node_modules/firebase/dist/index.cjs.js");
+/* harmony import */ var firebase__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(firebase__WEBPACK_IMPORTED_MODULE_5__);
+var _jsxFileName = "C:\\Users\\ophir\\Box Sync\\Spring 2020\\CMSC498N\\ongoing-music\\src\\index.js";
+
+
+
+
+ // Import, Configure, and Initialize Firebase
+
+ // importing firebase!!!
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCjiORuncMb-6-T1lwLqH7C2vaNZJJ4rlg",
+  authDomain: "compstation-a6859.firebaseapp.com",
+  databaseURL: "https://compstation-a6859.firebaseio.com",
+  projectId: "compstation-a6859",
+  storageBucket: "compstation-a6859.appspot.com",
+  messagingSenderId: "905141170857",
+  appId: "1:905141170857:web:5981cdeaf1d13b159aefb8",
+  measurementId: "G-8WFBX5QRGW"
+};
+firebase__WEBPACK_IMPORTED_MODULE_5__["initializeApp"](firebaseConfig);
+react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_App__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  __self: undefined,
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 22,
+    columnNumber: 17
+  }
+}), document.getElementById('root'));
+Object(_registerServiceWorker__WEBPACK_IMPORTED_MODULE_4__["default"])();
+
+/***/ }),
+
+/***/ "./src/ophir_piano/DimensionsProvider.js":
+/*!***********************************************!*\
+  !*** ./src/ophir_piano/DimensionsProvider.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dimensions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dimensions */ "./node_modules/react-dimensions/index.js");
+/* harmony import */ var react_dimensions__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dimensions__WEBPACK_IMPORTED_MODULE_1__);
+var _jsxFileName = "C:\\Users\\ophir\\Box Sync\\Spring 2020\\CMSC498N\\ongoing-music\\src\\ophir_piano\\DimensionsProvider.js";
+
+
+
+class DimensionsProvider extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+  render() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 7,
+        columnNumber: 7
+      }
+    }, this.props.children({
+      containerWidth: this.props.containerWidth,
+      containerHeight: this.props.containerHeight
+    }));
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (react_dimensions__WEBPACK_IMPORTED_MODULE_1___default()()(DimensionsProvider));
+
+/***/ }),
+
+/***/ "./src/ophir_piano/InstrumentListProvider.js":
+/*!***************************************************!*\
+  !*** ./src/ophir_piano/InstrumentListProvider.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+class InstrumentListProvider extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+  constructor(...args) {
+    super(...args);
+    this.state = {
+      instrumentList: null
+    };
+
+    this.loadInstrumentList = () => {
+      fetch(`${this.props.hostname}/${this.props.soundfont}/names.json`).then(response => response.json()).then(data => {
+        this.setState({
+          instrumentList: data
+        });
+      });
+    };
+  }
+
+  componentDidMount() {
+    this.loadInstrumentList();
+  }
+
+  render() {
+    return this.props.render(this.state.instrumentList);
+  }
+
+}
+
+InstrumentListProvider.propTypes = {
+  hostname: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string.isRequired,
+  soundfont: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOf(['MusyngKite', 'FluidR3_GM']),
+  render: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func
+};
+InstrumentListProvider.defaultProps = {
+  soundfont: 'MusyngKite'
+};
+/* harmony default export */ __webpack_exports__["default"] = (InstrumentListProvider);
+
+/***/ }),
+
+/***/ "./src/ophir_piano/InteractiveDemoFireBase.js":
+/*!****************************************************!*\
+  !*** ./src/ophir_piano/InteractiveDemoFireBase.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_piano__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-piano */ "./node_modules/react-piano/dist/react-piano.esm.js");
+/* harmony import */ var _material_ui_icons_KeyboardArrowDown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/icons/KeyboardArrowDown */ "./node_modules/@material-ui/icons/KeyboardArrowDown.js");
+/* harmony import */ var _material_ui_icons_KeyboardArrowDown__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_KeyboardArrowDown__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _DimensionsProvider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./DimensionsProvider */ "./src/ophir_piano/DimensionsProvider.js");
+/* harmony import */ var _InstrumentListProvider__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./InstrumentListProvider */ "./src/ophir_piano/InstrumentListProvider.js");
+/* harmony import */ var _SoundfontProvider__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./SoundfontProvider */ "./src/ophir_piano/SoundfontProvider.js");
+/* harmony import */ var _PianoConfig__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./PianoConfig */ "./src/ophir_piano/PianoConfig.js");
+/* harmony import */ var firebase__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! firebase */ "./node_modules/firebase/dist/index.cjs.js");
+/* harmony import */ var firebase__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(firebase__WEBPACK_IMPORTED_MODULE_7__);
+var _jsxFileName = "C:\\Users\\ophir\\Box Sync\\Spring 2020\\CMSC498N\\ongoing-music\\src\\ophir_piano\\InteractiveDemoFireBase.js";
+
+
+
+
+
+
+
+ // import firebase!
+
+class InteractiveDemoFireBase extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+  /** ======================= START MY CODE BLOCK ========================  */
+  constructor() {
+    super();
+
+    this.onMIDISuccess = midi_data => {
+      // this is all our MIDI data
+      this.state.midiData = midi_data;
+      var allInputs = this.state.midiData.inputs.values(); // loop over all available inputs and listen for any MIDI input
+
+      for (var input = allInputs.next(); input && !input.done; input = allInputs.next()) {
+        // when a MIDI value is received call the onMIDIMessage function
+        input.value.onmidimessage = this.gotMIDImessage;
+      }
+    };
+
+    this.gotMIDImessage = messageData => {
+      if (messageData.data[0] === 144) {
+        // handle pressing key
+        this.onPlayNoteInput(messageData.data[1], {
+          undefined
+        }); // handle note number
+      } else {
+        // handle releasing key
+        this.onStopNoteInput(messageData.data[1], {
+          undefined
+        });
+      }
+    };
+
+    this.onMIDIFailure = () => {
+      console.warn("Not recognising MIDI controller");
+    };
+
+    this.onPlayNoteInput = (midiNumber, {
+      prevActiveNotes
+    }) => {
+      this.liveRef.child(midiNumber).set(1);
+    };
+
+    this.onStopNoteInput = (midiNumber, {
+      prevActiveNotes
+    }) => {
+      this.liveRef.child(midiNumber).set(0);
+    };
+
+    this.state = {
+      config: {
+        instrumentName: 'acoustic_grand_piano',
+        noteRange: {
+          first: react_piano__WEBPACK_IMPORTED_MODULE_1__["MidiNumbers"].fromNote('c3'),
+          last: react_piano__WEBPACK_IMPORTED_MODULE_1__["MidiNumbers"].fromNote('f5')
+        },
+        keyboardShortcutOffset: 0
+      },
+      activeNotes: [],
+      midiData: {}
+    };
+    this.dbRef = firebase__WEBPACK_IMPORTED_MODULE_7__["database"]().ref();
+    this.liveRef = this.dbRef.child('live');
+  }
+
+  componentDidMount() {
+    this.dbRef = firebase__WEBPACK_IMPORTED_MODULE_7__["database"]().ref();
+    this.liveRef = this.dbRef.child('live');
+    this.liveRef.on('value', snap => {
+      let activeNotesDB = snap.val();
+      let currentlyActiveNotes = [];
+
+      for (let note in activeNotesDB) {
+        let noteNum = Number(note);
+
+        if (activeNotesDB[noteNum] > 0) {
+          currentlyActiveNotes.push(noteNum);
+        }
+      }
+
+      this.setState({
+        activeNotes: activeNotesDB //currentlyActiveNotes
+
+      });
+      console.log(this.state.activeNotes);
+    }); // Try connecting to MIDI controller
+
+    if (navigator.requestMIDIAccess) {
+      navigator.requestMIDIAccess({
+        sysex: false
+      }).then(this.onMIDISuccess, this.onMIDIFailure);
+    } else {
+      console.warn("No MIDI support in your browser");
+    }
+  } // on success
+
+
+  /** ======================== END MY CODE BLOCK ========================  */
+  render() {
+    const keyboardShortcuts = react_piano__WEBPACK_IMPORTED_MODULE_1__["KeyboardShortcuts"].create({
+      firstNote: this.state.config.noteRange.first + this.state.config.keyboardShortcutOffset,
+      lastNote: this.state.config.noteRange.last + this.state.config.keyboardShortcutOffset,
+      keyboardConfig: react_piano__WEBPACK_IMPORTED_MODULE_1__["KeyboardShortcuts"].HOME_ROW
+    });
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SoundfontProvider__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      audioContext: this.props.audioContext,
+      instrumentName: this.state.config.instrumentName,
+      hostname: this.props.soundfontHostname,
+      render: ({
+        isLoading,
+        playNote,
+        stopNote,
+        stopAllNotes
+      }) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 116,
+          columnNumber: 11
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "mt-4",
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 117,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DimensionsProvider__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 118,
+          columnNumber: 15
+        }
+      }, ({
+        containerWidth
+      }) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_piano__WEBPACK_IMPORTED_MODULE_1__["Piano"], {
+        noteRange: this.state.config.noteRange,
+        keyboardShortcuts: keyboardShortcuts,
+        playNote: playNote,
+        stopNote: stopNote,
+        onPlayNoteInput: this.onPlayNoteInput,
+        onStopNoteInput: this.onStopNoteInput,
+        activeNotes: this.state.activeNotes,
+        disabled: isLoading,
+        width: containerWidth,
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 120,
+          columnNumber: 19
+        }
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row mt-5",
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 134,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-lg-8 offset-lg-2",
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 135,
+          columnNumber: 15
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_InstrumentListProvider__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        hostname: this.props.soundfontHostname,
+        render: instrumentList => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PianoConfig__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          config: this.state.config,
+          setConfig: config => {
+            this.setState({
+              config: Object.assign({}, this.state.config, config)
+            });
+            stopAllNotes();
+          },
+          instrumentList: instrumentList || [this.state.config.instrumentName],
+          keyboardShortcuts: keyboardShortcuts,
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 139,
+            columnNumber: 21
+          }
+        }),
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 136,
+          columnNumber: 17
+        }
+      })))),
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 111,
+        columnNumber: 7
+      }
+    });
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (InteractiveDemoFireBase);
+
+/***/ }),
+
+/***/ "./src/ophir_piano/PianoApp.css":
+/*!**************************************!*\
+  !*** ./src/ophir_piano/PianoApp.css ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../node_modules/postcss-loader/src??postcss!./PianoApp.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/ophir_piano/PianoApp.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(true) {
+	module.hot.accept(/*! !../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../node_modules/postcss-loader/src??postcss!./PianoApp.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/ophir_piano/PianoApp.css", function() {
+		var newContent = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../node_modules/postcss-loader/src??postcss!./PianoApp.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/ophir_piano/PianoApp.css");
+
+		if(typeof newContent === 'string') newContent = [[module.i, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./src/ophir_piano/PianoApp.js":
+/*!*************************************!*\
+  !*** ./src/ophir_piano/PianoApp.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_piano_dist_styles_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-piano/dist/styles.css */ "./node_modules/react-piano/dist/styles.css");
+/* harmony import */ var react_piano_dist_styles_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_piano_dist_styles_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _InteractiveDemoFireBase__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./InteractiveDemoFireBase */ "./src/ophir_piano/InteractiveDemoFireBase.js");
+/* harmony import */ var _PianoApp_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./PianoApp.css */ "./src/ophir_piano/PianoApp.css");
+/* harmony import */ var _PianoApp_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_PianoApp_css__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react_piano__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-piano */ "./node_modules/react-piano/dist/react-piano.esm.js");
+var _jsxFileName = "C:\\Users\\ophir\\Box Sync\\Spring 2020\\CMSC498N\\ongoing-music\\src\\ophir_piano\\PianoApp.js";
+
+
+
+
+
+ // import SoundfontProvider from './SoundfontProvider';
+// import PianoWithRecording from './PianoWithRecording';
+// import PlaybackDemo from './PlaybackDemo';
+// import { lostWoods } from './songs';
+// import InteractiveDemo from './InteractiveDemo';
+// import * as firebase from 'firebase'; // import firebase!
+// webkitAudioContext fallback needed to support Safari
+
+const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+const soundfontHostname = 'https://d1pzp51pvbm36p.cloudfront.net';
+const noteRange = {
+  first: react_piano__WEBPACK_IMPORTED_MODULE_5__["MidiNumbers"].fromNote('c3'),
+  last: react_piano__WEBPACK_IMPORTED_MODULE_5__["MidiNumbers"].fromNote('f4')
+};
+const keyboardShortcuts = react_piano__WEBPACK_IMPORTED_MODULE_5__["KeyboardShortcuts"].create({
+  firstNote: noteRange.first,
+  lastNote: noteRange.last,
+  keyboardConfig: react_piano__WEBPACK_IMPORTED_MODULE_5__["KeyboardShortcuts"].HOME_ROW
+});
+
+class PianoApp extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+  render() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 36,
+        columnNumber: 7
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "container",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 38,
+        columnNumber: 9
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "row mt-5",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 39,
+        columnNumber: 11
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "col-md-8 offset-md-2",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 40,
+        columnNumber: 13
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_InteractiveDemoFireBase__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      audioContext: audioContext,
+      soundfontHostname: soundfontHostname,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 41,
+        columnNumber: 15
+      }
+    })))));
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (PianoApp);
+
+/***/ }),
+
+/***/ "./src/ophir_piano/PianoConfig.js":
+/*!****************************************!*\
+  !*** ./src/ophir_piano/PianoConfig.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_piano__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-piano */ "./node_modules/react-piano/dist/react-piano.esm.js");
+var _jsxFileName = "C:\\Users\\ophir\\Box Sync\\Spring 2020\\CMSC498N\\ongoing-music\\src\\ophir_piano\\PianoConfig.js";
+
+
+
+class AutoblurSelect extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+  constructor(props) {
+    super(props);
+
+    this.onChange = event => {
+      this.props.onChange(event);
+      this.selectRef.current.blur();
+    };
+
+    this.selectRef = react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();
+  }
+
+  render() {
+    const {
+      children,
+      onChange,
+      ...otherProps
+    } = this.props;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", Object.assign({}, otherProps, {
+      onChange: this.onChange,
+      ref: this.selectRef,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 18,
+        columnNumber: 7
+      }
+    }), children);
+  }
+
+}
+
+function Label(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
+    className: "mb-1 text-muted",
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 26,
+      columnNumber: 10
+    }
+  }, props.children);
+}
+
+class PianoConfig extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+  constructor(...args) {
+    super(...args);
+
+    this.handleKeyDown = event => {
+      const numNotes = this.props.config.noteRange.last - this.props.config.noteRange.first + 1;
+      const minOffset = 0;
+      const maxOffset = numNotes - this.props.keyboardShortcuts.length;
+
+      if (event.key === 'ArrowLeft') {
+        const reducedOffset = this.props.config.keyboardShortcutOffset - 1;
+
+        if (reducedOffset >= minOffset) {
+          this.props.setConfig({
+            keyboardShortcutOffset: reducedOffset
+          });
+        }
+      } else if (event.key === 'ArrowRight') {
+        const increasedOffset = this.props.config.keyboardShortcutOffset + 1;
+
+        if (increasedOffset <= maxOffset) {
+          this.props.setConfig({
+            keyboardShortcutOffset: increasedOffset
+          });
+        }
+      }
+    };
+
+    this.onChangeFirstNote = event => {
+      this.props.setConfig({
+        noteRange: {
+          first: parseInt(event.target.value, 10),
+          last: this.props.config.noteRange.last
+        }
+      });
+    };
+
+    this.onChangeLastNote = event => {
+      this.props.setConfig({
+        noteRange: {
+          first: this.props.config.noteRange.first,
+          last: parseInt(event.target.value, 10)
+        }
+      });
+    };
+
+    this.onChangeInstrument = event => {
+      this.props.setConfig({
+        instrumentName: event.target.value
+      });
+    };
+  }
+
+  componentDidMount() {
+    window.addEventListener('keydown', this.handleKeyDown);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.handleKeyDown);
+  }
+
+  render() {
+    const midiNumbersToNotes = react_piano__WEBPACK_IMPORTED_MODULE_1__["MidiNumbers"].NATURAL_MIDI_NUMBERS.reduce((obj, midiNumber) => {
+      obj[midiNumber] = react_piano__WEBPACK_IMPORTED_MODULE_1__["MidiNumbers"].getAttributes(midiNumber).note;
+      return obj;
+    }, {});
+    const {
+      noteRange,
+      instrumentName
+    } = this.props.config;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "form-row",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 91,
+        columnNumber: 7
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "col-3",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 92,
+        columnNumber: 9
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Label, {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 93,
+        columnNumber: 11
+      }
+    }, "First note"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(AutoblurSelect, {
+      className: "form-control",
+      onChange: this.onChangeFirstNote,
+      value: noteRange.first,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 94,
+        columnNumber: 11
+      }
+    }, react_piano__WEBPACK_IMPORTED_MODULE_1__["MidiNumbers"].NATURAL_MIDI_NUMBERS.map(midiNumber => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      value: midiNumber,
+      disabled: midiNumber >= noteRange.last,
+      key: midiNumber,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 100,
+        columnNumber: 15
+      }
+    }, midiNumbersToNotes[midiNumber])))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "col-3",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 106,
+        columnNumber: 9
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Label, {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 107,
+        columnNumber: 11
+      }
+    }, "Last note"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(AutoblurSelect, {
+      className: "form-control",
+      onChange: this.onChangeLastNote,
+      value: noteRange.last,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 108,
+        columnNumber: 11
+      }
+    }, react_piano__WEBPACK_IMPORTED_MODULE_1__["MidiNumbers"].NATURAL_MIDI_NUMBERS.map(midiNumber => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      value: midiNumber,
+      disabled: midiNumber <= noteRange.first,
+      key: midiNumber,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 114,
+        columnNumber: 15
+      }
+    }, midiNumbersToNotes[midiNumber])))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "col-6",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 120,
+        columnNumber: 9
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Label, {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 121,
+        columnNumber: 11
+      }
+    }, "Instrument"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(AutoblurSelect, {
+      className: "form-control",
+      value: instrumentName,
+      onChange: this.onChangeInstrument,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 122,
+        columnNumber: 11
+      }
+    }, this.props.instrumentList.map(value => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      value: value,
+      key: value,
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 128,
+        columnNumber: 15
+      }
+    }, value)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "col mt-2",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 134,
+        columnNumber: 9
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
+      className: "text-muted",
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 135,
+        columnNumber: 11
+      }
+    }, "Use ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 136,
+        columnNumber: 17
+      }
+    }, "left arrow"), " and ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 136,
+        columnNumber: 49
+      }
+    }, "right arrow"), " to move the keyboard shortcuts around.")));
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (PianoConfig);
+
+/***/ }),
+
+/***/ "./src/ophir_piano/SoundfontProvider.js":
+/*!**********************************************!*\
+  !*** ./src/ophir_piano/SoundfontProvider.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var soundfont_player__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! soundfont-player */ "./node_modules/soundfont-player/lib/index.js");
+/* harmony import */ var soundfont_player__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(soundfont_player__WEBPACK_IMPORTED_MODULE_2__);
+// See https://github.com/danigb/soundfont-player
+// for more documentation on prop options.
+
+
+
+
+class SoundfontProvider extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+  constructor(props) {
+    super(props);
+
+    this.loadInstrument = instrumentName => {
+      // Re-trigger loading state
+      this.setState({
+        instrument: null
+      });
+      soundfont_player__WEBPACK_IMPORTED_MODULE_2___default.a.instrument(this.props.audioContext, instrumentName, {
+        format: this.props.format,
+        soundfont: this.props.soundfont,
+        nameToUrl: (name, soundfont, format) => {
+          return `${this.props.hostname}/${soundfont}/${name}-${format}.js`;
+        }
+      }).then(instrument => {
+        this.setState({
+          instrument
+        });
+      });
+    };
+
+    this.playNote = midiNumber => {
+      this.resumeAudio().then(() => {
+        const audioNode = this.state.instrument.play(midiNumber);
+        this.setState({
+          activeAudioNodes: Object.assign({}, this.state.activeAudioNodes, {
+            [midiNumber]: audioNode
+          })
+        });
+      });
+    };
+
+    this.stopNote = midiNumber => {
+      this.resumeAudio().then(() => {
+        if (!this.state.activeAudioNodes[midiNumber]) {
+          return;
+        }
+
+        const audioNode = this.state.activeAudioNodes[midiNumber];
+        audioNode.stop();
+        this.setState({
+          activeAudioNodes: Object.assign({}, this.state.activeAudioNodes, {
+            [midiNumber]: null
+          })
+        });
+      });
+    };
+
+    this.resumeAudio = () => {
+      if (this.props.audioContext.state === 'suspended') {
+        return this.props.audioContext.resume();
+      } else {
+        return Promise.resolve();
+      }
+    };
+
+    this.stopAllNotes = () => {
+      this.props.audioContext.resume().then(() => {
+        const activeAudioNodes = Object.values(this.state.activeAudioNodes);
+        activeAudioNodes.forEach(node => {
+          if (node) {
+            node.stop();
+          }
+        });
+        this.setState({
+          activeAudioNodes: {}
+        });
+      });
+    };
+
+    this.state = {
+      activeAudioNodes: {},
+      instrument: null
+    };
+  }
+
+  componentDidMount() {
+    this.loadInstrument(this.props.instrumentName);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.instrumentName !== this.props.instrumentName) {
+      this.loadInstrument(this.props.instrumentName);
+    }
+
+    if (prevState.instrument !== this.state.instrument) {
+      if (!this.props.onLoad) {
+        return;
+      }
+
+      this.props.onLoad({
+        playNote: this.playNote,
+        stopNote: this.stopNote,
+        stopAllNotes: this.stopAllNotes
+      });
+    }
+  }
+
+  render() {
+    return this.props.render ? this.props.render({
+      isLoading: !this.state.instrument,
+      playNote: this.playNote,
+      stopNote: this.stopNote,
+      stopAllNotes: this.stopAllNotes
+    }) : null;
+  }
+
+}
+
+SoundfontProvider.propTypes = {
+  instrumentName: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string.isRequired,
+  hostname: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string.isRequired,
+  format: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOf(['mp3', 'ogg']),
+  soundfont: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOf(['MusyngKite', 'FluidR3_GM']),
+  audioContext: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.instanceOf(window.AudioContext),
+  onLoad: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+  render: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func
+};
+SoundfontProvider.defaultProps = {
+  format: 'mp3',
+  soundfont: 'MusyngKite',
+  instrumentName: 'acoustic_grand_piano'
+};
+/* harmony default export */ __webpack_exports__["default"] = (SoundfontProvider);
+
+/***/ }),
+
+/***/ "./src/registerServiceWorker.js":
+/*!**************************************!*\
+  !*** ./src/registerServiceWorker.js ***!
+  \**************************************/
+/*! exports provided: default, unregister */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return register; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unregister", function() { return unregister; });
+// In production, we register a service worker to serve assets from local cache.
+// This lets the app load faster on subsequent visits in production, and gives
+// it offline capabilities. However, it also means that developers (and users)
+// will only see deployed updates on the "N+1" visit to a page, since previously
+// cached resources are updated in the background.
+// To learn more about the benefits of this model, read https://goo.gl/KwvDNy.
+// This link also includes instructions on opting out of this behavior.
+const isLocalhost = Boolean(window.location.hostname === 'localhost' || // [::1] is the IPv6 localhost address.
+window.location.hostname === '[::1]' || // 127.0.0.1/8 is considered localhost for IPv4.
+window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/));
+function register() {
+  if (false) {}
+}
+
+function registerValidSW(swUrl) {
+  navigator.serviceWorker.register(swUrl).then(registration => {
+    registration.onupdatefound = () => {
+      const installingWorker = registration.installing;
+
+      installingWorker.onstatechange = () => {
+        if (installingWorker.state === 'installed') {
+          if (navigator.serviceWorker.controller) {
+            // At this point, the old content will have been purged and
+            // the fresh content will have been added to the cache.
+            // It's the perfect time to display a "New content is
+            // available; please refresh." message in your web app.
+            console.log('New content is available; please refresh.');
+          } else {
+            // At this point, everything has been precached.
+            // It's the perfect time to display a
+            // "Content is cached for offline use." message.
+            console.log('Content is cached for offline use.');
+          }
+        }
+      };
+    };
+  }).catch(error => {
+    console.error('Error during service worker registration:', error);
+  });
+}
+
+function checkValidServiceWorker(swUrl) {
+  // Check if the service worker can be found. If it can't reload the page.
+  fetch(swUrl).then(response => {
+    // Ensure service worker exists, and that we really are getting a JS file.
+    if (response.status === 404 || response.headers.get('content-type').indexOf('javascript') === -1) {
+      // No service worker found. Probably a different app. Reload the page.
+      navigator.serviceWorker.ready.then(registration => {
+        registration.unregister().then(() => {
+          window.location.reload();
+        });
+      });
+    } else {
+      // Service worker found. Proceed as normal.
+      registerValidSW(swUrl);
+    }
+  }).catch(() => {
+    console.log('No internet connection found. App is running in offline mode.');
+  });
+}
+
+function unregister() {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.ready.then(registration => {
+      registration.unregister();
+    });
+  }
+}
+
+/***/ }),
+
+/***/ 1:
+/*!**************************************************************************************************************!*\
+  !*** multi (webpack)/hot/dev-server.js ./node_modules/react-dev-utils/webpackHotDevClient.js ./src/index.js ***!
+  \**************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(/*! C:\Users\ophir\Box Sync\Spring 2020\CMSC498N\ongoing-music\node_modules\webpack\hot\dev-server.js */"./node_modules/webpack/hot/dev-server.js");
+__webpack_require__(/*! C:\Users\ophir\Box Sync\Spring 2020\CMSC498N\ongoing-music\node_modules\react-dev-utils\webpackHotDevClient.js */"./node_modules/react-dev-utils/webpackHotDevClient.js");
+module.exports = __webpack_require__(/*! C:\Users\ophir\Box Sync\Spring 2020\CMSC498N\ongoing-music\src\index.js */"./src/index.js");
+
+
+/***/ })
+
+},[[1,"runtime-main",0]]]);
+//# sourceMappingURL=main.chunk.js.map
