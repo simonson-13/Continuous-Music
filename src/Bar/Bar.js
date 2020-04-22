@@ -14,6 +14,7 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import DeleteIcon from '@material-ui/icons/Delete';
 import MicIcon from '@material-ui/icons/Mic';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import StopIcon from '@material-ui/icons/Stop';
 import SendIcon from '@material-ui/icons/Send';
 import StraightenIcon from '@material-ui/icons/Straighten';
 import GetAppIcon from '@material-ui/icons/GetApp';
