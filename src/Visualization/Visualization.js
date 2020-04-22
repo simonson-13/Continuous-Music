@@ -8,6 +8,7 @@ import {
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
+import Sketch from './sketch.js';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -57,8 +58,9 @@ export default function Visualization(props) {
                         <KeyboardArrowUpIcon/>
                     </IconButton> 
                 </Tooltip>
-                
             </div>
+
+            <Sketch />
             
         </div>
     );
