@@ -2,55 +2,115 @@ import React, { Component } from 'react';
 import './App.css';
 
 import InstrumentSelection from './InstrumentSelection/InstrumentSelection.js'
+import InfoPage from './InfoPage/InfoPage.js'
 import Visualization from './Visualization/Visualization.js'
-import Toolbar from './Toolbar/Toolbar.js'
-//import p5 from 'p5'
+import Bar from './Bar/Bar.js'
+import PianoApp from './ophir_piano/PianoApp.js'
+import Chat from './Chat/Chat.js'
 
-/* import {
-  Switch,
-  Paper, 
-  Slide,
-  FormControlLabel
-  } from '@material-ui/core'; */
 
 class App extends Component {
   constructor() {
     super()
 
     this.state = {
-      instrument: "" // will be set by instrument selection component later
+      instrumentSeleted: false,
+      instrument: "", 
+      showInfo: false,
+      showPiano: false,
+      showBar: false,
+      showChat: false,
+      usernameSet: false,
+      username: "",
     }
   }
 
-  /*
-    TODO: keyboard bindings 
-    A-L (or so) = musical sounds
-    R = rerecord?
-    space = record
-    i = opens up 'info page' (along with mouse click) 
-    **potential for other keyboard bindings!
-  */
+  handleInstrumentClick(instrument) { 
+    this.setState({
+      instrumentSeleted: true,
+      instrument: instrument
+    })
+  }
 
+  handleOpenInfo = () => { 
+    this.setState({ 
+      showInfo: true
+    })
+  }
+
+  handleCloseInfo = () => { 
+    this.setState({ 
+      showInfo: false
+    })
+  }
+
+  handleClickPiano = () => { 
+    this.setState({ 
+      showPiano: !this.state.showPiano
+    })
+  }
+
+  handleBarChange = () => { 
+    this.setState({
+      showBar: !this.state.showBar
+    })
+  }
+  
+  handleChatChange = () => { 
+    this.setState({
+      showChat: !this.state.showChat
+    })
+  }
+  
+  handleCloseChat = () => { 
+    this.setState({
+      showChat: false
+    })
+  }
+
+  handleUsernameSubmit = (username) => { 
+    this.setState({
+        username: username,
+        usernameSet: true
+    })
+  }
 
   render() {
-    // this.renderRef = React.createRef()
-    // this.sketch= new p5( p => {      
-    //   p.setup = () => {
-    //     p.createCanvas(200,200)
-    //     .parent(this.renderRef.current)
-    //   }
-
-    //   p.draw = () => {
-    //     p.background(0)
-    //     p.fill(255)
-    //     p.rect(100, 100, 50, 50)
-    //   }
-    // })
     return (
       <div className="App">
-        <Visualization />
 
-        <Toolbar />
+        <InstrumentSelection 
+          open={!this.state.instrumentSeleted} 
+          onClick={instrument => this.handleInstrumentClick(instrument)} 
+        />
+        <InfoPage 
+          open={this.state.showInfo} 
+          onOpen={this.handleOpenInfo} 
+          onClose={this.handleCloseInfo} 
+        />
+        <Visualization 
+          openInfo={this.handleOpenInfo}
+          handleBarChange={this.handleBarChange}
+          handleChatChange={this.handleChatChange}
+        />
+
+          <Chat 
+            showChat={this.state.showChat}
+            handleCloseChat={this.handleCloseChat}
+            username={this.state.username}
+            usernameSet={this.state.usernameSet}
+            handleUsernameSubmit={this.handleUsernameSubmit}
+          /> 
+        
+
+        {/* TODO: stylize this better */}
+        { this.state.showPiano && <PianoApp /> }
+
+        <Bar 
+          handleClickPiano={this.handleClickPiano} 
+          showBar={this.state.showBar}
+          handleBarChange={this.handleBarChange}
+        />
       </div>
     );
   }

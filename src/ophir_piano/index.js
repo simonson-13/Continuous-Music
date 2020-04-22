@@ -1,11 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import * as firebase from 'firebase';
 
-// Import, Configure, and Initialize Firebase
-import * as firebase from 'firebase';  // importing firebase!!!
+//import PianoWithRecording from './PianoWithRecording';
+
 const firebaseConfig = {
     apiKey: "AIzaSyCjiORuncMb-6-T1lwLqH7C2vaNZJJ4rlg",
     authDomain: "compstation-a6859.firebaseapp.com",
@@ -18,6 +15,3 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
