@@ -19,8 +19,8 @@ export default class ChatForm extends Component {
         };
 
         // Commented out for the sake of compilation
-        /* this.messageRef = firebase.database().ref().child('messages');
-        this.listenMessages(); */
+        this.messageRef = firebase.database().ref().child('messages');
+        this.listenMessages();
     }
 
     handleChange(event) {
@@ -47,7 +47,7 @@ export default class ChatForm extends Component {
     }
 
     // Commented out for the sake of compilation
-    /* listenMessages() {
+    listenMessages() {
         this.messageRef
             .limitToLast(10)
             .on('value', message => {
@@ -55,7 +55,7 @@ export default class ChatForm extends Component {
                     list: Object.values(message.val()),
                 });
             });
-    } */
+    }
 
     render() {
         return (

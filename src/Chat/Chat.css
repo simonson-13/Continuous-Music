@@ -13,6 +13,7 @@ html, body {
     font-family: system-ui;
     font-weight: 200;
     color: #3e5869; 
+	background: #181b21 url(https://www.toptal.com/designers/subtlepatterns/patterns/nami.png);
 }
 
 #root {
@@ -20,7 +21,8 @@ html, body {
 }
 
 .chat {
-    height: calc(100% - 100px); 
+    height: 100%;
+	background: #181b21 url(https://www.toptal.com/designers/subtlepatterns/patterns/nami.png);
 }
 
 .title {
@@ -36,9 +38,11 @@ html, body {
     text-align: center;
 }
 
-/* .drawer { 
+/*
+.drawer { 
     width:200px
-} */
+}
+*/
 
 .message {
     margin: 15px 0;

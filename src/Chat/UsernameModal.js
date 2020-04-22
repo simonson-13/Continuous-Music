@@ -26,7 +26,7 @@ class UsernameModal extends Component {
                     //onClose={this.props.onClose}
                 >
                     <div className="centered">
-                        Please enter a username for yourself! (Press Enter to submit) <br/>
+                        Please enter a username for yourself! (Hit Enter to submit) <br/>
                         <FormControl>
                             <TextField 
                                 required 
