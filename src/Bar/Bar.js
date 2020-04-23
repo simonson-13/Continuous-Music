@@ -89,10 +89,6 @@ export default function Bar() {
         // logic to download your recording 
     }
 
-    const togglePiano = () => { 
-        // togglePiano ?? probably just show a component sooo
-        // probably another state is needed and another slidey dude
-    }
 
     return (
         <div className={classes.root}>
@@ -167,7 +163,7 @@ export default function Bar() {
                                 variant="contained"
                                 startIcon={<StraightenIcon/>}
                                 size="large"
-                                onClick={togglePiano}> 
+                                onClick={this.props.handleShowPiano}> 
                                 Toggle Piano
                             </Button>
 
