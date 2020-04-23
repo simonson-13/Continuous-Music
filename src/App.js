@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
+import P5Wrapper from 'react-p5-wrapper';
 
 import InstrumentSelection from './InstrumentSelection/InstrumentSelection.js'
 import InfoPage from './InfoPage/InfoPage.js'
-import Visualization from './Visualization/Visualization.js'
+import visualization from './Visualization/p5/sketch/sketch.js'
 import Bar from './Bar/Bar.js'
 
 
@@ -59,13 +60,14 @@ class App extends Component {
 
         <InstrumentSelection open={!this.state.instrumentSeleted} onClick={instrument => this.handleInstrumentClick(instrument)} />
 
-        <InfoPage open={this.state.openInfo} onOpen={this.handleOpenInfo} onClose={this.handleCloseInfo} />
+        <InfoPage open={this.state.openInfo} onOpen={this.handleOpenInfo} onClose={this.handleCloseInfo}/>
 
-        <Visualization />
+        <P5Wrapper sketch={visualization} color={this.state.color}> </P5Wrapper>
 
-        { showPiano ? <Piano /> : null }
+        { showPiano ? <Piano/> : null }
 
         <Bar handleShowPiano={this.handleShowPiano} />
+
       </div>
     );
   }
