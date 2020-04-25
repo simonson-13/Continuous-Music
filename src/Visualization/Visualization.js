@@ -43,9 +43,8 @@ export default function Visualization(props) {
             </Tooltip>
 
             Visualization will go here!!
-            todo: css to make this take up the whole page with icons on top of it
 
-            {/* todo: css to put chat icon in top right corner */}
+            {/* todo: css to put chat icon below info icon */}
             <Tooltip title="Chat" arrow> 
                 <IconButton type="button" onClick={props.handleChatChange}>
                     <QuestionAnswerIcon />

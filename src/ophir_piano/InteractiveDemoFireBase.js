@@ -49,7 +49,7 @@ class InteractiveDemoFireBase extends React.Component {
         }
       }
       this.setState({
-        activeNotes: activeNotesDB//currentlyActiveNotes
+        activeNotes: currentlyActiveNotes//activeNotesDB
       }) 
       console.log(this.state.activeNotes)
     });
