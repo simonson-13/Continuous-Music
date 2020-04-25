@@ -1,6 +1,5 @@
 import React from 'react';
 import { Piano, KeyboardShortcuts, MidiNumbers } from 'react-piano';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 
 import DimensionsProvider from './DimensionsProvider';
 import InstrumentListProvider from './InstrumentListProvider';
@@ -9,14 +8,7 @@ import PianoConfig from './PianoConfig';
 
 import * as firebase from 'firebase'; // import firebase!
 
-
-
-
-
 class InteractiveDemoFireBase extends React.Component {
-  
-  
-  /** ======================= START MY CODE BLOCK ========================  */
   constructor() {
     super();
     this.state = {

@@ -8,6 +8,7 @@ import {
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
+
 import Sketch from './sketch.js';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -42,15 +43,29 @@ export default function Visualization(props) {
                 </IconButton>
             </Tooltip>
 
-            Visualization will go here!!
+            Visualization will go here!! (in the bg where the gray is)
 
-            {/* todo: css to put chat icon below info icon */}
+            <br/>
             <Tooltip title="Chat" arrow> 
                 <IconButton type="button" onClick={props.handleChatChange}>
                     <QuestionAnswerIcon />
                 </IconButton>
             </Tooltip>
-            
+
+            {/* TODO:
+                p5.js Sketch as Background tutorial: 
+                    https://www.youtube.com/watch?v=OIfEHD3KqCg
+
+                    tl;dr -- give the canvas a style of z-index of -1 in setup():
+                        canvas = createCanvas(windowWidth, windowHeight);
+                        canvas.position(0, 0);
+                        canvas.style('z-index', '-1');
+                potentially helpful: 
+                    https://stackoverflow.com/questions/54868777/how-to-use-react-with-p5-js
+            */}
+
+            <Sketch />
+
             <div className={classes.openDrop}> 
                 <Tooltip title="Open Toolbar" arrow> 
                     <IconButton className={classes.openButton} onClick={props.handleBarChange}> 
@@ -58,9 +73,6 @@ export default function Visualization(props) {
                     </IconButton> 
                 </Tooltip>
             </div>
-
-            <Sketch />
-            
         </div>
     );
 }
