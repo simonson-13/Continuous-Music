@@ -6,7 +6,7 @@ import InfoPage from './InfoPage/InfoPage.js'
 import Visualization from './Visualization/Visualization.js'
 import Bar from './Bar/Bar.js'
 import PianoApp from './ophir_piano/PianoApp.js'
-import Chat from './Chat/Chat.js'
+import ChatDrawer from './ChatDrawer/ChatDrawer.js'
 
 
 class App extends Component {
@@ -94,7 +94,7 @@ class App extends Component {
           handleChatChange={this.handleChatChange}
         />
 
-          <Chat 
+          <ChatDrawer 
             showChat={this.state.showChat}
             handleCloseChat={this.handleCloseChat}
             username={this.state.username}

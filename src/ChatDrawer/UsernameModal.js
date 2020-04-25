@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import './Chat.css'
 
 import {
     TextField,
@@ -18,12 +17,10 @@ class UsernameModal extends Component {
    // TODO: style this better, move styling into same file
 
     render() {
-
         return (
             <div>
                 <Modal 
                     open={this.props.open}
-                    //onClose={this.props.onClose}
                 >
                     <div className="centered">
                         Please enter a username for yourself! (Hit Enter to submit) <br/>
@@ -31,7 +28,6 @@ class UsernameModal extends Component {
                             <TextField 
                                 required 
                                 label="Username"
-                                //variant="outlined"
                                 error = {this.state.error}
                                 helperText={this.state.error ? "Username cannot be empty.":null}
                                 onKeyPress={(e) => {
@@ -48,7 +44,8 @@ class UsernameModal extends Component {
                                             error: false
                                         })
                                     }
-                                  }}
+                                  }
+                                }
                             />
                         </FormControl>
                     </div>

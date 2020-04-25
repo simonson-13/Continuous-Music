@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import './Chat.css'
 
 import UsernameModal from './UsernameModal.js'
-import ChatForm from './ChatForm.js';
-import ChatRoom from '../ChatRoom/chat.js'
+import ChatRoom from '../ChatRoom/ChatRoom.js'
 
 import {
     Drawer,
@@ -32,14 +30,12 @@ class Chat extends Component {
                     />
 
                     <div className="app__list chat">
-                            <ChatRoom username={this.props.username} />
-                        {/* <ChatForm username={this.props.username} /> */}
+                        <ChatRoom username={this.props.username} />
                     </div>
-
                 </Drawer>
             </div>
         );
     }
 }
 
-export default Chat
+export default Chat;
