@@ -3,10 +3,6 @@ import '../ChatRoom.css';
 import MessageItem from './MessageItem.js';
 
 export default class MessageList extends Component {
-	constructor(props, context) {
-		super(props, context);
-    }
-    
 	render() {
 		return (
 			<div className={"chatApp__convTimeline"}>

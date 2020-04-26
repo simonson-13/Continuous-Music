@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import '../ChatRoom.css'
 
 export default class TypingIndicator extends Component {
-	constructor(props, context) {
-		super(props, context);
-    }
-    
 	render() {
 		let typersDisplay = '';
         let countTypers = 0;
@@ -13,7 +9,7 @@ export default class TypingIndicator extends Component {
 		/* for each user writing messages in chatroom */
 		for ( var key of this.props.isTyping ) {
 			/* retrieve the name if it isn't the owner of the chatbox */
-			if( key != this.props.owner && this.props.isTyping[key] ) {
+			if( key !== this.props.owner && this.props.isTyping[key] ) {
 				typersDisplay += ', ' + key;
 				countTypers++;
 			}

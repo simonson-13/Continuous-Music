@@ -15,6 +15,7 @@ export default class ChatBox extends Component {
 		this.sendMessageLoading = this.sendMessageLoading.bind(this);
 		var timeout = null;
 	}
+
 	/* catch the sendMessage signal and update the loading state then continues the sending instruction */
 	sendMessageLoading(sender, senderAvatar, message) {
 		this.setState({ isLoading: true });
@@ -23,6 +24,7 @@ export default class ChatBox extends Component {
 			this.setState({ isLoading: false });
 		}, 400);
 	}
+	
 	render() {
 		return (
 			<div className={"chatApp__conv"}>
