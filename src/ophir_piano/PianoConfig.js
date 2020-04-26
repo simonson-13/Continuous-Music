@@ -85,11 +85,11 @@ class PianoConfig extends React.Component {
       obj[midiNumber] = MidiNumbers.getAttributes(midiNumber).note;
       return obj;
     }, {});
-    const { noteRange, instrumentName } = this.props.config;
+    const { noteRange } = this.props.config;
 
     return (
       <div className="form-row">
-        <div className="col-3">
+        <div className="col-6">
           <Label>First note</Label>
           <AutoblurSelect
             className="form-control"
@@ -103,7 +103,7 @@ class PianoConfig extends React.Component {
             ))}
           </AutoblurSelect>
         </div>
-        <div className="col-3">
+        <div className="col-6">
           <Label>Last note</Label>
           <AutoblurSelect
             className="form-control"
@@ -113,20 +113,6 @@ class PianoConfig extends React.Component {
             {MidiNumbers.NATURAL_MIDI_NUMBERS.map((midiNumber) => (
               <option value={midiNumber} disabled={midiNumber <= noteRange.first} key={midiNumber}>
                 {midiNumbersToNotes[midiNumber]}
-              </option>
-            ))}
-          </AutoblurSelect>
-        </div>
-        <div className="col-6">
-          <Label>Instrument</Label>
-          <AutoblurSelect
-            className="form-control"
-            value={instrumentName}
-            onChange={this.onChangeInstrument}
-          >
-            {this.props.instrumentList.map((value) => (
-              <option value={value} key={value}>
-                {value}
               </option>
             ))}
           </AutoblurSelect>

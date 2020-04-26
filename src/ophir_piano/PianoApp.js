@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import 'react-piano/dist/styles.css';
 
 import InteractiveDemoFireBase from './InteractiveDemoFireBase';
@@ -29,8 +29,7 @@ const keyboardShortcuts = KeyboardShortcuts.create({
   keyboardConfig: KeyboardShortcuts.HOME_ROW,
 });
 
-class PianoApp extends React.Component {
-
+class PianoApp extends Component {
   render() {
     return (
       <div>
@@ -38,7 +37,10 @@ class PianoApp extends React.Component {
         <div className="container">
           <div className="row mt-5">
             <div className="col-md-8 offset-md-2">
-              <InteractiveDemoFireBase audioContext={audioContext} soundfontHostname={soundfontHostname} />
+              <InteractiveDemoFireBase 
+                audioContext={audioContext} 
+                soundfontHostname={soundfontHostname}
+                instrument={this.props.instrument} />
             </div>
           </div>
           {/* <hr className="mt-5" />

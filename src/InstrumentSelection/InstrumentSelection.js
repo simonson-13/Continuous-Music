@@ -19,17 +19,17 @@ class InstrumentSelection extends Component {
                     <div className="centered">
                         Please choose an instrument! <br/>
                         <Button 
-                            onClick={() => this.props.onClick("drum")}
-                        >
-                            Drum
-                        </Button>
-                        <Button 
-                            onClick={() => this.props.onClick("piano")}
+                            onClick={() => this.props.onClick("acoustic_grand_piano")}
                         >
                             Piano
                         </Button>
                         <Button 
-                            onClick={() => this.props.onClick("guitar")}
+                            onClick={() => this.props.onClick("cello")}
+                        >
+                            Cello
+                        </Button>
+                        <Button 
+                            onClick={() => this.props.onClick("acoustic_guitar_nylon")}
                         >
                             Guitar
                         </Button>
@@ -37,6 +37,11 @@ class InstrumentSelection extends Component {
                             onClick={() => this.props.onClick("trumpet")}
                         >
                             Trumpet
+                        </Button>
+                        <Button 
+                            onClick={() => this.props.onClick("xylophone")}
+                        >
+                            Xylophone
                         </Button>
                     </div>
                 </Modal>

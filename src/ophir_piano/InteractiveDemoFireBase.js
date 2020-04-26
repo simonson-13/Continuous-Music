@@ -1,19 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Piano, KeyboardShortcuts, MidiNumbers } from 'react-piano';
 
 import DimensionsProvider from './DimensionsProvider';
-import InstrumentListProvider from './InstrumentListProvider';
 import SoundfontProvider from './SoundfontProvider';
 import PianoConfig from './PianoConfig';
 
 import * as firebase from 'firebase'; // import firebase!
 
-class InteractiveDemoFireBase extends React.Component {
-  constructor() {
-    super();
+class InteractiveDemoFireBase extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
       config: {
-        instrumentName: 'acoustic_grand_piano',
+        instrumentName: this.props.instrument,
         noteRange: {
           first: MidiNumbers.fromNote('c3'),
           last: MidiNumbers.fromNote('f5'),
@@ -59,7 +58,9 @@ class InteractiveDemoFireBase extends React.Component {
   // on success
   onMIDISuccess = (midi_data) => {
     // this is all our MIDI data
-    this.state.midiData = midi_data;
+    this.setState({
+      midiData: midi_data
+    })
     var allInputs = this.state.midiData.inputs.values();
     // loop over all available inputs and listen for any MIDI input
     for (var input = allInputs.next(); input && !input.done; input = allInputs.next()) {
@@ -90,8 +91,6 @@ class InteractiveDemoFireBase extends React.Component {
     this.liveRef.child(midiNumber).set(0);
   }
 
-  /** ======================== END MY CODE BLOCK ========================  */
-
   render() {
     const keyboardShortcuts = KeyboardShortcuts.create({
       firstNote: this.state.config.noteRange.first + this.state.config.keyboardShortcutOffset,
@@ -102,7 +101,7 @@ class InteractiveDemoFireBase extends React.Component {
     return (
       <SoundfontProvider
         audioContext={this.props.audioContext}
-        instrumentName={this.state.config.instrumentName}
+        instrumentName={this.props.instrument}
         hostname={this.props.soundfontHostname}
         render={({ isLoading, playNote, stopNote, stopAllNotes }) => (
           <div>
@@ -125,9 +124,8 @@ class InteractiveDemoFireBase extends React.Component {
             </div>
             <div className="row mt-5">
               <div className="col-lg-8 offset-lg-2">
-                <InstrumentListProvider
-                  hostname={this.props.soundfontHostname}
-                  render={(instrumentList) => (
+                Selected Instrument: {this.props.instrument}
+                 
                     <PianoConfig
                       config={this.state.config}
                       setConfig={(config) => {
@@ -136,11 +134,9 @@ class InteractiveDemoFireBase extends React.Component {
                         });
                         stopAllNotes();
                       }}
-                      instrumentList={instrumentList || [this.state.config.instrumentName]}
+                      instrumentName={[this.state.config.instrumentName]}
                       keyboardShortcuts={keyboardShortcuts}
                     />
-                  )}
-                />
               </div>
             </div>
           </div>

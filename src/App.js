@@ -104,7 +104,7 @@ class App extends Component {
         
 
         {/* TODO: stylize this better */}
-        { this.state.showPiano && <PianoApp /> }
+        { this.state.showPiano && <PianoApp instrument={this.state.instrument} /> }
 
         <Bar 
           handleClickPiano={this.handleClickPiano} 
