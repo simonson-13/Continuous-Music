@@ -32,7 +32,7 @@ class InfoPage extends Component {
                                 [more here on how recording works]
                         </p>
                         <p>
-                            {/* TODO: smaller font here hehe*/}
+                            {/* TODO: smaller font here hehe, maybe include links to our personal githubs? */}
                             <b>Developers:</b> Priya Emani, Ophir Gal, Shannen Lam, Simon Liao, Shivam Patel <br/>   
                             Initially created for <i>ARTT489M/CMSC498N: Digital Media, Performance, and Interactivity</i> at the University of Maryland, College Park
                         </p> 
