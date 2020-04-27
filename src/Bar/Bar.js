@@ -167,7 +167,7 @@ export default function Bar (props) {
                                     </span>
                                 </Tooltip>
 
-                                <Tooltip title="Toggle Piano" arrow> 
+                                {/* <Tooltip title="Toggle Piano" arrow> 
                                     <span className={classes.button}>
                                     <Button  
                                         variant="contained"
@@ -177,7 +177,7 @@ export default function Bar (props) {
                                         <StraightenIcon/>
                                     </Button>
                                     </span>
-                                </Tooltip>
+                                </Tooltip> */}
                             </div>
 
                         </Toolbar>

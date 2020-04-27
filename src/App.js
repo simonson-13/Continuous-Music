@@ -88,7 +88,7 @@ class App extends Component {
           onOpen={this.handleOpenInfo}
           onClose={this.handleCloseInfo}
         />
-        
+
         <Visualization
           openInfo={this.handleOpenInfo}
           handleBarChange={this.handleBarChange}
@@ -105,7 +105,8 @@ class App extends Component {
 
         <PianoDrawer
           instrument={this.state.instrument}
-          showPiano={this.state.showPiano}
+          //showPiano={this.state.showPiano}
+          showPiano={this.state.showBar}
         />
 
         <Bar
