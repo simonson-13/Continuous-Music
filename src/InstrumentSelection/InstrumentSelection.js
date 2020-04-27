@@ -8,6 +8,7 @@ import {
 
 
 class InstrumentSelection extends Component {
+
    // TODO: style this better, move styling into same file
 
     render() {

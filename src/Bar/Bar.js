@@ -5,19 +5,18 @@ import {
     Slide,
     AppBar,
     Toolbar,
-    Button,
-    Tooltip
-    LinearProgress
+    Button 
 } from '@material-ui/core';
 
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import DeleteIcon from '@material-ui/icons/Delete';
 import MicIcon from '@material-ui/icons/Mic';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import StopIcon from '@material-ui/icons/Stop';
 import SendIcon from '@material-ui/icons/Send';
 import StraightenIcon from '@material-ui/icons/Straighten';
 import GetAppIcon from '@material-ui/icons/GetApp';
+
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -29,32 +28,37 @@ const useStyles = makeStyles((theme) => ({
         //width: 100 + theme.spacing(2),
     },
 
+    openDrop: { 
+        paddingLeft: "30px"
+    },
+
     closeDrop: { 
-       // marginTop: "-10vh",
+        marginTop: "-10vh",
         marginLeft: "-.5vw"
     },
 
     appBar: {
         top: 'auto',
         bottom: 0,
-        //height: "20vh",
+        height: "20vh",
         background: "white",
         color: "black"
-    },
+      },
 
-    centerButtons: { 
-        marginLeft: "auto",
-        marginRight: "auto"
-    },
-
-    button: { 
-        margin: "0px 25px",
+    toolbar: { 
+        height: "20vh"
     }
 }));
 
-export default function Bar (props) {
+export default function Bar() {
     const classes = useStyles();
+    const [hidden, setHidden] = React.useState(false);
     const [hasRecording, setHasRecording] = React.useState(false);
+
+
+    const handleChange = () => {
+        setHidden((prev) => !prev);
+    };
 
     const handleDelete = () => { 
         setHasRecording((prev) => !prev);
@@ -73,12 +77,6 @@ export default function Bar (props) {
 
         // logic to listen to recording 
         // make sure people cant play the recording while ur still recording it
-        // OR auto stop recording if you play?
-        // stopRecording?
-    }
-
-    const stopRecording = () => {
-
     }
 
     const handleUpload = () => { 
@@ -95,109 +93,79 @@ export default function Bar (props) {
     return (
         <div className={classes.root}>
             <div className={classes.wrapper}>
-                <Slide direction="up" in={props.showBar} mountOnEnter unmountOnExit>
+                <IconButton className={classes.openDrop} onClick={handleChange}> 
+                    <KeyboardArrowUpIcon/>
+                </IconButton> 
+                    
+                <Slide direction="up" in={hidden} mountOnEnter unmountOnExit>
+                    {/* TODO: bar stuff goes here */}
                     <AppBar className={classes.appBar} position="fixed" > 
                         <Toolbar className={classes.toolbar}> 
-                            <Tooltip title="Close Toolbar" arrow> 
-                                <IconButton edge="start" className={classes.closeDrop} onClick={props.handleBarChange}> 
-                                    <KeyboardArrowDownIcon/>
-                                </IconButton>
-                            </Tooltip>
+                            <IconButton className={classes.closeDrop} onClick={handleChange}> 
+                                <KeyboardArrowDownIcon/>
+                            </IconButton>
                             
-                            <div className={classes.centerButtons}>
-                                <Tooltip title="Delete Recording" arrow> 
-                                    <span className={classes.button}>
-                                    <Button  
-                                        variant="contained"
-                                        size="large"
-                                        onClick={handleDelete}
-                                        disabled={!hasRecording}
-                                    >
-                                        <DeleteIcon/>
-                                    </Button>
-                                    </span>
-                                </Tooltip>
+                            <Button  
+                                variant="contained"
+                                startIcon={<DeleteIcon/>}
+                                size="large"
+                                onClick={handleDelete}
+                                disabled={!hasRecording}> 
+                                Delete
+                                Recording
+                            </Button>
+
+                            <Button  
+                                variant="contained"
+                                startIcon={<MicIcon/>}
+                                size="large"
+                                onClick={handleRecord}
+                                disabled={hasRecording}> 
+                                Record
+                            </Button>
+
+                            <Button  
+                                variant="contained"
+                                startIcon={<PlayArrowIcon/>}
+                                size="large"
+                                onClick={playRecording}
+                                disabled={!hasRecording}> 
+                                Listen
+                            </Button>
+                            
+
+                            {/* TODO: have text be like.. hover text
+                                and style this LOL. 
                                 
-                                <Tooltip title="Record" arrow>
-                                    <span className={classes.button}>
-                                    <Button  
-                                        variant="contained"
-                                        size="large"
-                                        onClick={handleRecord}
-                                        disabled={hasRecording}
-                                    >
-                                        <MicIcon/>
-                                    </Button>
-                                    </span>
-                                </Tooltip>
+                            */}
 
-                                <Tooltip title="Stop" arrow>
-                                    <span className={classes.button}>
-                                    <Button  
-                                        variant="contained"
-                                        size="large"
-                                        onClick={stopRecording}
-                                    >
-                                        <StopIcon/>
-                                    </Button>
-                                    </span>
-                                </Tooltip>
+                            some kinda progress bar for recording
 
-                                <Tooltip title="Listen" arrow>
-                                    <span className={classes.button}>
-                                    <Button  
-                                        variant="contained"
-                                        size="large"
-                                        onClick={playRecording}
-                                        disabled={!hasRecording}
-                                    >
-                                        <PlayArrowIcon/>
-                                    </Button>
-                                    </span>
-                                </Tooltip>
+                            <Button  
+                                variant="contained"
+                                startIcon={<SendIcon/>}
+                                size="large"
+                                onClick={handleUpload}
+                                disabled={!hasRecording}> 
+                                Upload
+                            </Button>
 
-                                {/* TODO: make button styling and hovertext better */}
+                            <Button  
+                                variant="contained"
+                                startIcon={<GetAppIcon/>}
+                                size="large"
+                                onClick={handleDownload}
+                                disabled={!hasRecording}> 
+                                Download
+                            </Button>
 
-                                some kinda progress bar for recording
-
-                                <Tooltip title="Upload" arrow>
-                                    <span className={classes.button}> 
-                                    <Button  
-                                        variant="contained"
-                                        size="large"
-                                        onClick={handleUpload}
-                                        disabled={!hasRecording}
-                                    >
-                                        <SendIcon/>
-                                    </Button>
-                                    </span>
-                                </Tooltip>
-
-                                <Tooltip title="Download" arrow> 
-                                    <span className={classes.button}>
-                                    <Button  
-                                        variant="contained"
-                                        size="large"
-                                        onClick={handleDownload}
-                                        disabled={!hasRecording}
-                                    >
-                                        <GetAppIcon/>
-                                    </Button>
-                                    </span>
-                                </Tooltip>
-
-                                <Tooltip title="Toggle Piano" arrow> 
-                                    <span className={classes.button}>
-                                    <Button  
-                                        variant="contained"
-                                        size="large"
-                                        onClick={props.handleClickPiano}
-                                    >
-                                        <StraightenIcon/>
-                                    </Button>
-                                    </span>
-                                </Tooltip>
-                            </div>
+                            <Button  
+                                variant="contained"
+                                startIcon={<StraightenIcon/>}
+                                size="large"
+                                onClick={this.props.handleShowPiano}> 
+                                Toggle Piano
+                            </Button>
 
                         </Toolbar>
                     </AppBar>
