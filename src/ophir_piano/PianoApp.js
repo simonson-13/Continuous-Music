@@ -10,7 +10,6 @@ import { KeyboardShortcuts, MidiNumbers } from 'react-piano';
 // import SoundfontProvider from './SoundfontProvider';
 // import PianoWithRecording from './PianoWithRecording';
 // import PlaybackDemo from './PlaybackDemo';
-// import { lostWoods } from './songs';
 // import InteractiveDemo from './InteractiveDemo';
 
 // import * as firebase from 'firebase'; // import firebase!
@@ -33,7 +32,6 @@ class PianoApp extends Component {
   render() {
     return (
       <div>
-        {/* <Header />  */}
         <div className="container">
           <div className="row mt-2">
             <div className="col-md-8 offset-md-2">
