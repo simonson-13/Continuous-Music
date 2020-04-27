@@ -106,7 +106,7 @@ class InteractiveDemoFireBase extends Component {
         render={({ isLoading, playNote, stopNote, stopAllNotes }) => (this.props.showPiano) ?
           (
             <div>
-              <div className="mt-4">
+              <div className="mt-2">
                 <DimensionsProvider>
                   {({ containerWidth }) => (
                     <Piano
@@ -123,7 +123,7 @@ class InteractiveDemoFireBase extends Component {
                   )}
                 </DimensionsProvider>
               </div>
-              <div className="row mt-5">
+              <div className="row mt-3">
                 <div className="col-lg-8 offset-lg-2">
                   Selected Instrument: {this.props.instrument}
 
@@ -144,7 +144,7 @@ class InteractiveDemoFireBase extends Component {
           ) : 
           (
             <div>
-              
+
             </div>
           )
         }
