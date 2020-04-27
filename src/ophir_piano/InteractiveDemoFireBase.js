@@ -29,19 +29,19 @@ class InteractiveDemoFireBase extends Component {
   componentDidMount() {
     this.dbRef = firebase.database().ref();
     this.liveRef = this.dbRef.child('live');
-    
+
     this.liveRef.on('value', snap => {
       let activeNotesDB = snap.val();
       let currentlyActiveNotes = []
       for (let note in activeNotesDB) {
         let noteNum = Number(note);
-        if (activeNotesDB[noteNum] > 0){
+        if (activeNotesDB[noteNum] > 0) {
           currentlyActiveNotes.push(noteNum);
         }
       }
       this.setState({
         activeNotes: currentlyActiveNotes//activeNotesDB
-      }) 
+      })
       console.log(this.state.activeNotes)
     });
 
@@ -72,9 +72,9 @@ class InteractiveDemoFireBase extends Component {
   // handle midi event
   gotMIDImessage = (messageData) => {
     if (messageData.data[0] === 144) {  // handle pressing key
-      this.onPlayNoteInput(messageData.data[1], {undefined});  // handle note number
+      this.onPlayNoteInput(messageData.data[1], { undefined });  // handle note number
     } else {  // handle releasing key
-      this.onStopNoteInput(messageData.data[1], {undefined});
+      this.onStopNoteInput(messageData.data[1], { undefined });
     }
   }
 
@@ -103,44 +103,51 @@ class InteractiveDemoFireBase extends Component {
         audioContext={this.props.audioContext}
         instrumentName={this.props.instrument}
         hostname={this.props.soundfontHostname}
-        render={({ isLoading, playNote, stopNote, stopAllNotes }) => (
-          <div>
-            <div className="mt-4">
-              <DimensionsProvider>
-                {({ containerWidth }) => (
-                  <Piano
-                    noteRange={this.state.config.noteRange}
-                    keyboardShortcuts={keyboardShortcuts}
-                    playNote={playNote}
-                    stopNote={stopNote}
-                    onPlayNoteInput={this.onPlayNoteInput}
-                    onStopNoteInput={this.onStopNoteInput}
-                    activeNotes={this.state.activeNotes}
-                    disabled={isLoading}
-                    width={containerWidth}
-                  />
-                )}
-              </DimensionsProvider>
-            </div>
-            <div className="row mt-5">
-              <div className="col-lg-8 offset-lg-2">
-                Selected Instrument: {this.props.instrument}
-                 
-                    <PianoConfig
-                      config={this.state.config}
-                      setConfig={(config) => {
-                        this.setState({
-                          config: Object.assign({}, this.state.config, config),
-                        });
-                        stopAllNotes();
-                      }}
-                      instrumentName={[this.state.config.instrumentName]}
+        render={({ isLoading, playNote, stopNote, stopAllNotes }) => (this.props.showPiano) ?
+          (
+            <div>
+              <div className="mt-4">
+                <DimensionsProvider>
+                  {({ containerWidth }) => (
+                    <Piano
+                      noteRange={this.state.config.noteRange}
                       keyboardShortcuts={keyboardShortcuts}
+                      playNote={playNote}
+                      stopNote={stopNote}
+                      onPlayNoteInput={this.onPlayNoteInput}
+                      onStopNoteInput={this.onStopNoteInput}
+                      activeNotes={this.state.activeNotes}
+                      disabled={isLoading}
+                      width={containerWidth}
                     />
+                  )}
+                </DimensionsProvider>
+              </div>
+              <div className="row mt-5">
+                <div className="col-lg-8 offset-lg-2">
+                  Selected Instrument: {this.props.instrument}
+
+                  <PianoConfig
+                    config={this.state.config}
+                    setConfig={(config) => {
+                      this.setState({
+                        config: Object.assign({}, this.state.config, config),
+                      });
+                      stopAllNotes();
+                    }}
+                    instrumentName={[this.state.config.instrumentName]}
+                    keyboardShortcuts={keyboardShortcuts}
+                  />
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          ) : 
+          (
+            <div>
+              
+            </div>
+          )
+        }
       />
     );
   }

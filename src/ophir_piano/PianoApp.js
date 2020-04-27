@@ -5,7 +5,7 @@ import InteractiveDemoFireBase from './InteractiveDemoFireBase';
 import './PianoApp.css';
 
 import _ from 'lodash';
-import { Piano, KeyboardShortcuts, MidiNumbers } from 'react-piano';
+import { KeyboardShortcuts, MidiNumbers } from 'react-piano';
 
 // import SoundfontProvider from './SoundfontProvider';
 // import PianoWithRecording from './PianoWithRecording';
@@ -33,14 +33,16 @@ class PianoApp extends Component {
   render() {
     return (
       <div>
-        {/** <Header />  */}
+        {/* <Header />  */}
         <div className="container">
-          <div className="row mt-5">
+          <div className="row mt-2">
             <div className="col-md-8 offset-md-2">
               <InteractiveDemoFireBase 
                 audioContext={audioContext} 
                 soundfontHostname={soundfontHostname}
-                instrument={this.props.instrument} />
+                instrument={this.props.instrument} 
+                showPiano={this.props.showPiano}  
+              />
             </div>
           </div>
           {/* <hr className="mt-5" />

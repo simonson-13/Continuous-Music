@@ -1,6 +1,8 @@
 import React from 'react';
 import { MidiNumbers } from 'react-piano';
 
+// Controls range of notes
+
 class AutoblurSelect extends React.Component {
   constructor(props) {
     super(props);
