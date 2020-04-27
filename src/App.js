@@ -5,9 +5,8 @@ import InstrumentSelection from './InstrumentSelection/InstrumentSelection.js'
 import InfoPage from './InfoPage/InfoPage.js'
 import Visualization from './Visualization/Visualization.js'
 import Bar from './Bar/Bar.js'
-import PianoApp from './ophir_piano/PianoApp.js'
+import PianoDrawer from './PianoDrawer/PianoDrawer.js'
 import ChatDrawer from './ChatDrawer/ChatDrawer.js'
-
 
 class App extends Component {
   constructor() {
@@ -15,7 +14,7 @@ class App extends Component {
 
     this.state = {
       instrumentSeleted: false,
-      instrument: "", 
+      instrument: "",
       showInfo: false,
       showPiano: false,
       showBar: false,
@@ -25,53 +24,53 @@ class App extends Component {
     }
   }
 
-  handleInstrumentClick(instrument) { 
+  handleInstrumentClick(instrument) {
     this.setState({
       instrumentSeleted: true,
       instrument: instrument
     })
   }
 
-  handleOpenInfo = () => { 
-    this.setState({ 
+  handleOpenInfo = () => {
+    this.setState({
       showInfo: true
     })
   }
 
-  handleCloseInfo = () => { 
-    this.setState({ 
+  handleCloseInfo = () => {
+    this.setState({
       showInfo: false
     })
   }
 
-  handleClickPiano = () => { 
-    this.setState({ 
+  handleClickPiano = () => {
+    this.setState({
       showPiano: !this.state.showPiano
     })
   }
 
-  handleBarChange = () => { 
+  handleBarChange = () => {
     this.setState({
       showBar: !this.state.showBar
     })
   }
-  
-  handleChatChange = () => { 
+
+  handleChatChange = () => {
     this.setState({
       showChat: !this.state.showChat
     })
   }
-  
-  handleCloseChat = () => { 
+
+  handleCloseChat = () => {
     this.setState({
       showChat: false
     })
   }
 
-  handleUsernameSubmit = (username) => { 
+  handleUsernameSubmit = (username) => {
     this.setState({
-        username: username,
-        usernameSet: true
+      username: username,
+      usernameSet: true
     })
   }
 
@@ -79,35 +78,39 @@ class App extends Component {
     return (
       <div className="App">
 
-        <InstrumentSelection 
-          open={!this.state.instrumentSeleted} 
-          onClick={instrument => this.handleInstrumentClick(instrument)} 
+        <InstrumentSelection
+          open={!this.state.instrumentSeleted}
+          onClick={instrument => this.handleInstrumentClick(instrument)}
         />
-        <InfoPage 
-          open={this.state.showInfo} 
-          onOpen={this.handleOpenInfo} 
-          onClose={this.handleCloseInfo} 
+
+        <InfoPage
+          open={this.state.showInfo}
+          onOpen={this.handleOpenInfo}
+          onClose={this.handleCloseInfo}
         />
-        <Visualization 
+        
+        <Visualization
           openInfo={this.handleOpenInfo}
           handleBarChange={this.handleBarChange}
           handleChatChange={this.handleChatChange}
         />
 
-          <ChatDrawer 
-            showChat={this.state.showChat}
-            handleCloseChat={this.handleCloseChat}
-            username={this.state.username}
-            usernameSet={this.state.usernameSet}
-            handleUsernameSubmit={this.handleUsernameSubmit}
-          /> 
-        
+        <ChatDrawer
+          showChat={this.state.showChat}
+          handleCloseChat={this.handleCloseChat}
+          username={this.state.username}
+          usernameSet={this.state.usernameSet}
+          handleUsernameSubmit={this.handleUsernameSubmit}
+        />
 
-        {/* TODO: stylize this better */}
-        { this.state.showPiano && <PianoApp instrument={this.state.instrument} /> }
+        <PianoDrawer
+          instrument={this.state.instrument}
+          showPiano={this.state.showPiano}
+        />
 
-        <Bar 
-          handleClickPiano={this.handleClickPiano} 
+        <Bar
+          className="toolbar"
+          handleClickPiano={this.handleClickPiano}
           showBar={this.state.showBar}
           handleBarChange={this.handleBarChange}
         />
