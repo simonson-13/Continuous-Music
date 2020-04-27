@@ -24,11 +24,12 @@ const useStyles = makeStyles((theme) => ({
     openDrop: {
         position: "absolute",
         left: "0",
-        bottom: "0"
+        bottom: "0",
     },
 
     openButton: { 
         //backgroundColor: "white"
+        background: "white"
     }
 }));
 
@@ -38,7 +39,11 @@ export default function Visualization(props) {
     return (
         <div className={classes.root}>
             <Tooltip title="Info" arrow> 
-                <IconButton type="button" onClick={props.openInfo}>
+                <IconButton 
+                    //className={classes.openButton} 
+                    type="button" 
+                    onClick={props.openInfo}
+                >
                     <HelpOutlineIcon />
                 </IconButton>
             </Tooltip>
@@ -47,7 +52,11 @@ export default function Visualization(props) {
 
             <br/>
             <Tooltip title="Chat" arrow> 
-                <IconButton type="button" onClick={props.handleChatChange}>
+                <IconButton 
+                    //className={classes.openButton} 
+                    type="button" 
+                    onClick={props.handleChatChange}
+                >
                     <QuestionAnswerIcon />
                 </IconButton>
             </Tooltip>
@@ -68,7 +77,10 @@ export default function Visualization(props) {
 
             <div className={classes.openDrop}> 
                 <Tooltip title="Open Toolbar" arrow> 
-                    <IconButton className={classes.openButton} onClick={props.handleBarChange}> 
+                    <IconButton 
+                        //className={classes.openButton} 
+                        onClick={props.handleBarChange}
+                    > 
                         <KeyboardArrowUpIcon/>
                     </IconButton> 
                 </Tooltip>
