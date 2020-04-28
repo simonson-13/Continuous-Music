@@ -10,6 +10,7 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 
 import Sketch from './sketch.js';
+import DimensionsProvider from './DimensionsProvider';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -18,7 +19,8 @@ const useStyles = makeStyles((theme) => ({
         position: "relative",
         justifyContent:"center",
         height: "100vh",
-        background: "grey"
+        background: "rgba(0,0,0,0)",
+        color: "white"
     },
 
     openDrop: {
@@ -27,8 +29,7 @@ const useStyles = makeStyles((theme) => ({
         bottom: "0",
     },
 
-    openButton: { 
-        //backgroundColor: "white"
+    openButton: {
         background: "white"
     }
 }));
@@ -40,7 +41,7 @@ export default function Visualization(props) {
         <div className={classes.root}>
             <Tooltip title="Info" arrow> 
                 <IconButton 
-                    //className={classes.openButton} 
+                    className={classes.openButton} 
                     type="button" 
                     onClick={props.openInfo}
                 >
@@ -48,12 +49,10 @@ export default function Visualization(props) {
                 </IconButton>
             </Tooltip>
 
-            Visualization will go here!! (in the bg where the gray is)
-
             <br/>
             <Tooltip title="Chat" arrow> 
                 <IconButton 
-                    //className={classes.openButton} 
+                    className={classes.openButton} 
                     type="button" 
                     onClick={props.handleChatChange}
                 >
@@ -72,13 +71,20 @@ export default function Visualization(props) {
                 potentially helpful: 
                     https://stackoverflow.com/questions/54868777/how-to-use-react-with-p5-js
             */}
-
-            <Sketch />
+            <DimensionsProvider>
+                  {({ containerWidth, containerHeight}) => (
+                      <Sketch 
+                        width={containerWidth}
+                        height={containerHeight}
+                      />
+                  )}
+                </DimensionsProvider>
+            
 
             <div className={classes.openDrop}> 
                 <Tooltip title="Open Toolbar" arrow> 
                     <IconButton 
-                        //className={classes.openButton} 
+                        className={classes.openButton} 
                         onClick={props.handleBarChange}
                     > 
                         <KeyboardArrowUpIcon/>
