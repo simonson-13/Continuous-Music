@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import P5Wrapper from 'react-p5-wrapper';
 
 import InstrumentSelection from './InstrumentSelection/InstrumentSelection.js'
 import InfoPage from './InfoPage/InfoPage.js'
-import visualization from './Visualization/p5/sketch/sketch.js'
+import Visualization from './Visualization/Visualization.js'
 import Bar from './Bar/Bar.js'
-
+import PianoDrawer from './PianoDrawer/PianoDrawer.js'
+import ChatDrawer from './ChatDrawer/ChatDrawer.js'
 
 class App extends Component {
   constructor() {
@@ -14,60 +14,107 @@ class App extends Component {
 
     this.state = {
       instrumentSeleted: false,
-      instrument: "", 
-      openInfo: false,
-      showPiano: false
+      instrument: "",
+      showInfo: false,
+      showPiano: false,
+      showBar: false,
+      showChat: false,
+      usernameSet: false,
+      username: "",
     }
   }
 
-  handleInstrumentClick(instrument) { 
+  handleInstrumentClick(instrument) {
     this.setState({
       instrumentSeleted: true,
       instrument: instrument
     })
   }
 
-  handleOpenInfo = () => { 
-    this.setState({ 
-      openInfo: true
+  handleOpenInfo = () => {
+    this.setState({
+      showInfo: true
     })
   }
 
-  handleCloseInfo = () => { 
-    this.setState({ 
-      openInfo: false
+  handleCloseInfo = () => {
+    this.setState({
+      showInfo: false
     })
   }
 
-  handleClickPiano = () => { 
-    this.setState({ 
-      showPiano: !this.setState.showPiano
+  handleClickPiano = () => {
+    this.setState({
+      showPiano: !this.state.showPiano
     })
   }
 
-  /*
-    TODO: keyboard bindings 
-    A-L (or so) = musical sounds
-    R = rerecord?
-    space = record
-    i = opens up 'info page' (along with mouse click) 
-    **potential for other keyboard bindings!
-  */
-  
+  handleBarChange = () => {
+    this.setState({
+      showBar: !this.state.showBar
+    })
+  }
+
+  handleChatChange = () => {
+    this.setState({
+      showChat: !this.state.showChat
+    })
+  }
+
+  handleCloseChat = () => {
+    this.setState({
+      showChat: false
+    })
+  }
+
+  handleUsernameSubmit = (username) => {
+    this.setState({
+      username: username,
+      usernameSet: true
+    })
+  }
+
   render() {
     return (
       <div className="App">
 
-        <InstrumentSelection open={!this.state.instrumentSeleted} onClick={instrument => this.handleInstrumentClick(instrument)} />
+        <InstrumentSelection
+          open={!this.state.instrumentSeleted}
+          onClick={instrument => this.handleInstrumentClick(instrument)}
+        />
 
-        <InfoPage open={this.state.openInfo} onOpen={this.handleOpenInfo} onClose={this.handleCloseInfo}/>
+        <InfoPage
+          open={this.state.showInfo}
+          onOpen={this.handleOpenInfo}
+          onClose={this.handleCloseInfo}
+        />
 
-        <P5Wrapper sketch={visualization} color={this.state.color}> </P5Wrapper>
+        <Visualization
+          openInfo={this.handleOpenInfo}
+          handleBarChange={this.handleBarChange}
+          handleChatChange={this.handleChatChange}
+        />
 
-        { showPiano ? <Piano/> : null }
+        <ChatDrawer
+          showChat={this.state.showChat}
+          handleCloseChat={this.handleCloseChat}
+          username={this.state.username}
+          usernameSet={this.state.usernameSet}
+          handleUsernameSubmit={this.handleUsernameSubmit}
+        />
 
-        <Bar handleShowPiano={this.handleShowPiano} />
+        <PianoDrawer
+          instrument={this.state.instrument}
+          //showPiano={this.state.showPiano}
+          showPiano={this.state.showBar}
+        />
 
+        <Bar
+          className="toolbar"
+          handleClickPiano={this.handleClickPiano}
+          showBar={this.state.showBar}
+          handleBarChange={this.handleBarChange}
+        />
       </div>
     );
   }
