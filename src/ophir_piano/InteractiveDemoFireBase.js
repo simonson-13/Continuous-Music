@@ -23,14 +23,11 @@ class InteractiveDemoFireBase extends Component {
       midiData: {},
     };
     this.dbRef = firebase.database().ref();
-    this.liveRef = this.dbRef.child('live');
+    this.dbPianoRef = this.dbRef.child('live').child('piano');
   }
 
   componentDidMount() {
-    this.dbRef = firebase.database().ref();
-    this.liveRef = this.dbRef.child('live');
-
-    this.liveRef.on('value', snap => {
+    this.dbPianoRef.on('value', snap => {
       let activeNotesDB = snap.val();
       let currentlyActiveNotes = []
       for (let note in activeNotesDB) {
@@ -39,10 +36,12 @@ class InteractiveDemoFireBase extends Component {
           currentlyActiveNotes.push(noteNum);
         }
       }
-      this.setState({
+
+      // set the active notes of the *corresponding* *hidden* keyboard
+      /*snap.key.setState({
         activeNotes: currentlyActiveNotes//activeNotesDB
       })
-      console.log(this.state.activeNotes)
+      console.log(this.state.activeNotes)*/
     });
 
     // Try connecting to MIDI controller
@@ -84,11 +83,11 @@ class InteractiveDemoFireBase extends Component {
   }
 
   onPlayNoteInput = (midiNumber, { prevActiveNotes }) => {
-    this.liveRef.child(midiNumber).set(1);
+    this.dbPianoRef.child(midiNumber).set(1);
   }
 
   onStopNoteInput = (midiNumber, { prevActiveNotes }) => {
-    this.liveRef.child(midiNumber).set(0);
+    this.dbPianoRef.child(midiNumber).set(0);
   }
 
   render() {
