@@ -13,7 +13,7 @@ class App extends Component {
     super()
 
     this.state = {
-      instrumentSeleted: false,
+      instrumentSelected: false,
       instrument: "",
       showInfo: false,
       showPiano: false,
@@ -26,7 +26,7 @@ class App extends Component {
 
   handleInstrumentClick(instrument) {
     this.setState({
-      instrumentSeleted: true,
+      instrumentSelected: true,
       instrument: instrument
     })
   }
@@ -79,7 +79,7 @@ class App extends Component {
       <div className="App">
 
         <InstrumentSelection
-          open={!this.state.instrumentSeleted}
+          open={!this.state.instrumentSelected}
           onClick={instrument => this.handleInstrumentClick(instrument)}
         />
 

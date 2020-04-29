@@ -18,7 +18,6 @@ export default class PianoDrawer extends Component {
                     instrument={this.props.instrument}
                     showPiano={this.props.showPiano}
                 />
-
             </Drawer>
         )
     }
