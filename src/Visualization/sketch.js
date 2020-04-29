@@ -2,18 +2,26 @@
 import React from 'react';
 import p5 from 'p5';
 import 'p5/lib/addons/p5.sound.js';
+import * as firebase from 'firebase'; // import firebase!
 
 export default class Sketch extends React.Component {
   constructor(props) {
     super(props)
     this.myRef = React.createRef()
+    this.dbRef = firebase.database().ref();
+    this.livePianoRef = this.dbRef.child('live').child('piano');
+    this.liveCelloRef = this.dbRef.child('live').child('cello');
+    this.liveTrumpetRef = this.dbRef.child('live').child('trumpet');
+    this.liveGuitarRef = this.dbRef.child('live').child('guitar');
+    this.liveXylophoneRef = this.dbRef.child('live').child('xeylophone');
+    this.pianoMidiNotes = [0];
   }
 
   Sketch = (p) => {
 
     var particles = [];
     var stars = [];
-    var speed =5;
+    var speed = 5;
 
     var serial;
     var latestData = "waiting for data";
@@ -35,20 +43,27 @@ export default class Sketch extends React.Component {
     let maxNoise = 500;
     let lapse = 0;    // timer
     let noiseProg = (x) => (x);
+    var noiseScale = 0;
 
-
-    const triangleNum = 5
-    const noiseAngleTimes = 5
-    const noiseScale = 0.003
-    let rotVertexes = []
-    let playing = true
-    let color = ["#C05021", "#FFBA08", "#20A440", "#2F7ED3", "#D79FE1"]
+    const triangleNum = 5;
+    const noiseAngleTimes = 5;
+    //const noiseScale = 0.003;
+    let rotVertexes = [];
+    let playing = true;
+    let color = ["#C05021", "#FFBA08", "#20A440", "#2F7ED3", "#D79FE1"];
 
     p.setup = () => {
       let canvas = p.createCanvas(this.props.width, this.props.height);
       canvas.position(0, 0);
       canvas.style('z-index', '-1');
-      var star = new Star();
+      //var star = new Star();
+      this.livePianoRef.on('value', snap => {
+        this.pianoMidiNotes = snap.val();
+        noiseScale = this.pianoMidiNotes.reduce((total,num) => total+num) / 1000;
+        if (noiseScale === 0) {
+          noiseScale = 0;
+        }
+      });
       
       // Create an array of 1600 star objects
       for (var i = 0; i < 1600; i++) {

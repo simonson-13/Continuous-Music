@@ -13,13 +13,13 @@ import Sketch from './sketch.js';
 import DimensionsProvider from './DimensionsProvider';
 
 import { makeStyles } from '@material-ui/core/styles';
+import './Visualization.css';
 
 const useStyles = makeStyles((theme) => ({
     root: {
         position: "relative",
         justifyContent:"center",
         height: "100vh",
-        background: "rgba(0,0,0,0)",
         color: "white"
     },
 

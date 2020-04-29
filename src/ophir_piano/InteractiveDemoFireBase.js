@@ -4,8 +4,21 @@ import { Piano, KeyboardShortcuts, MidiNumbers } from 'react-piano';
 import DimensionsProvider from './DimensionsProvider';
 import SoundfontProvider from './SoundfontProvider';
 import PianoConfig from './PianoConfig';
-
+import LivePlayBack from './LivePlayBack.js';
 import * as firebase from 'firebase'; // import firebase!
+
+// webkitAudioContext fallback needed to support Safari
+const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+const soundfontHostname = 'https://d1pzp51pvbm36p.cloudfront.net';
+
+
+const properToShortName = {
+                            'acoustic_grand_piano':'piano',
+                            'cello':'cello',
+                            'acoustic_guitar_nylon':'guitar',
+                            'trumpet':'trumpet',
+                            'xylophone':'xylophone'
+                          };
 
 class InteractiveDemoFireBase extends Component {
   constructor(props) {
@@ -23,27 +36,13 @@ class InteractiveDemoFireBase extends Component {
       midiData: {},
     };
     this.dbRef = firebase.database().ref();
-    this.dbPianoRef = this.dbRef.child('live').child('piano');
+    let instName = this.props.instrument ? this.props.instrument : 'piano';
+    this.dbLiveInstRef = this.dbRef.child('live').child(instName);
   }
 
   componentDidMount() {
-    this.dbPianoRef.on('value', snap => {
-      let activeNotesDB = snap.val();
-      let currentlyActiveNotes = []
-      for (let note in activeNotesDB) {
-        let noteNum = Number(note);
-        if (activeNotesDB[noteNum] > 0) {
-          currentlyActiveNotes.push(noteNum);
-        }
-      }
-
-      // set the active notes of the *corresponding* *hidden* keyboard
-      /*snap.key.setState({
-        activeNotes: currentlyActiveNotes//activeNotesDB
-      })
-      console.log(this.state.activeNotes)*/
-    });
-
+    let instName = this.props.instrument ? this.props.instrument : 'piano';
+    this.dbLiveInstRef = this.dbRef.child('live').child(instName);
     // Try connecting to MIDI controller
     if (navigator.requestMIDIAccess) {
       navigator.requestMIDIAccess({
@@ -83,11 +82,11 @@ class InteractiveDemoFireBase extends Component {
   }
 
   onPlayNoteInput = (midiNumber, { prevActiveNotes }) => {
-    this.dbPianoRef.child(midiNumber).set(1);
+    this.dbLiveInstRef.child(midiNumber).set(1);
   }
 
   onStopNoteInput = (midiNumber, { prevActiveNotes }) => {
-    this.dbPianoRef.child(midiNumber).set(0);
+    this.dbLiveInstRef.child(midiNumber).set(0);
   }
 
   render() {
@@ -102,50 +101,79 @@ class InteractiveDemoFireBase extends Component {
         audioContext={this.props.audioContext}
         instrumentName={this.props.instrument}
         hostname={this.props.soundfontHostname}
-        render={({ isLoading, playNote, stopNote, stopAllNotes }) => (this.props.showPiano) ?
-          (
-            <div>
-              <div className="mt-2">
-                <DimensionsProvider>
-                  {({ containerWidth }) => (
-                    <Piano
-                      noteRange={this.state.config.noteRange}
-                      keyboardShortcuts={keyboardShortcuts}
-                      playNote={playNote}
-                      stopNote={stopNote}
-                      onPlayNoteInput={this.onPlayNoteInput}
-                      onStopNoteInput={this.onStopNoteInput}
-                      activeNotes={this.state.activeNotes}
-                      disabled={isLoading}
-                      width={containerWidth}
-                    />
-                  )}
-                </DimensionsProvider>
-              </div>
-              <div className="row mt-3">
-                <div className="col-lg-8 offset-lg-2">
-                  Selected Instrument: {this.props.instrument}
+        render={({ isLoading, playNote, stopNote, stopAllNotes }) => 
+            (this.props.showPiano) ?
+            (
+              <div>
+                <div className="mt-2">
+                  <DimensionsProvider>
+                    {({ containerWidth }) => (
+                      <Piano
+                        noteRange={this.state.config.noteRange}
+                        keyboardShortcuts={keyboardShortcuts}
+                        playNote={playNote}
+                        stopNote={stopNote}
+                        onPlayNoteInput={this.onPlayNoteInput}
+                        onStopNoteInput={this.onStopNoteInput}
+                        activeNotes={this.state.activeNotes}
+                        disabled={isLoading}
+                        width={containerWidth}
+                      />
+                    )}
+                  </DimensionsProvider>
+                </div>
+                <div className="row mt-3">
+                  <div className="col-lg-8 offset-lg-2">
+                    Selected Instrument: {this.props.instrument}
 
-                  <PianoConfig
-                    config={this.state.config}
-                    setConfig={(config) => {
-                      this.setState({
-                        config: Object.assign({}, this.state.config, config),
-                      });
-                      stopAllNotes();
-                    }}
-                    instrumentName={[this.state.config.instrumentName]}
-                    keyboardShortcuts={keyboardShortcuts}
-                  />
+                    <PianoConfig
+                      config={this.state.config}
+                      setConfig={(config) => {
+                        this.setState({
+                          config: Object.assign({}, this.state.config, config),
+                        });
+                        stopAllNotes();
+                      }}
+                      instrumentName={[this.state.config.instrumentName]}
+                      keyboardShortcuts={keyboardShortcuts}
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-          ) : 
-          (
-            <div>
+            ) : 
+            (
+              <div>
 
-            </div>
-          )
+              </div>
+            )
+            
+            /*
+            <LivePlayBack
+              audioContext={audioContext}
+              instrumentName={'piano'}
+              hostname={soundfontHostname}
+            />
+            <LivePlayBack
+              audioContext={audioContext}
+              instrumentName={'cello'}
+              hostname={soundfontHostname}
+            />
+            <LivePlayBack
+              audioContext={audioContext}
+              instrumentName={'trumpet'}
+              hostname={soundfontHostname}
+            />
+            <LivePlayBack
+              audioContext={audioContext}
+              instrumentName={'guitar'}
+              hostname={soundfontHostname}
+            />
+            <LivePlayBack
+              audioContext={audioContext}
+              instrumentName={'xylophone'}
+              hostname={soundfontHostname}
+            />
+            */
         }
       />
     );

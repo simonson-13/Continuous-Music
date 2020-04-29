@@ -74,8 +74,8 @@
 	margin: 0 0 2rem 0;
 	font-size: 18px;
 	font-weight: bold;
-	color: rgb(68, 68, 68);
-	text-transform: uppercase;
+	color: rgb(211,211,211);
+	/*text-transform: uppercase;*/
 	position: relative;
 }
 
