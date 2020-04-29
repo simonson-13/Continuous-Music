@@ -8,6 +8,7 @@ import Bar from './Bar/Bar.js'
 import PianoDrawer from './PianoDrawer/PianoDrawer.js'
 import ChatDrawer from './ChatDrawer/ChatDrawer.js'
 
+
 class App extends Component {
   constructor() {
     super()

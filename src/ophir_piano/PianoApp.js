@@ -31,7 +31,9 @@ const keyboardShortcuts = KeyboardShortcuts.create({
 class PianoApp extends Component {
   render() {
     return (
-        <div className="container hello" >
+        <div
+          className="container" 
+          style={{color:"lightgray", fontWeight: "bold"}}>
           <div className="row mt-0">
             <div className="col-md-8 offset-md-2">
               <InteractiveDemoFireBase 
