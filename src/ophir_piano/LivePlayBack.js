@@ -37,12 +37,12 @@ class LivePlayBack extends React.Component {
       instrument: null,
     };
     this.dbRef = firebase.database().ref();
-    this.dbPianoRef = this.dbRef.child('live').child(this.props.instrumentName);
+    this.dbInstRef = this.dbRef.child('live').child(this.props.instrumentName);
   }
 
   componentDidMount() {
     this.loadInstrument(shortToProperName[this.props.instrumentName]);
-    this.dbPianoRef.on('value', snap => {
+    this.dbInstRef.on('value', snap => {
       console.log('DB changed');
       let liveNotesDB = snap.val();
       for (let note=0; note < liveNotesDB.length; note++){
