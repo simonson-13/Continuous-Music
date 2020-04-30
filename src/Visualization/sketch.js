@@ -19,37 +19,14 @@ export default class Sketch extends React.Component {
 
   Sketch = (p) => {
 
-    var particles = [];
-    var stars = [];
+    var stars;
     var speed = 5;
-
-    var serial;
-    var latestData = "waiting for data";
-    var input1;
-    var pitch;
-    var input2;
-    var speedx = 1;
-    var pitchx = 1 ;
-    var input3 = 1;
-    var input3x = 0;
-    var bgc = 0;
-    var bgcx;
-
-    let kMax;
-    let step;
-    let n = 100; // number of blobs
-    let radius = 0; // diameter of the circle
-    let inter = 0.05; // difference between the sizes of two blobs
-    let maxNoise = 500;
-    let lapse = 0;    // timer
-    let noiseProg = (x) => (x);
     var noiseScale = 0;
 
     const triangleNum = 5;
     const noiseAngleTimes = 5;
     //const noiseScale = 0.003;
     let rotVertexes = [];
-    let playing = true;
     let color = ["#C05021", "#FFBA08", "#20A440", "#2F7ED3", "#D79FE1"];
 
     p.setup = () => {
@@ -83,8 +60,7 @@ export default class Sketch extends React.Component {
     }
 
     p.draw = () => {
-      bgcx = 255-bgc;
-      p.background(bgc);
+      p.background(0);
       for (var i = 0; i < stars.length; i++) {
         stars[i].update();
           stars[i].show();
@@ -163,7 +139,7 @@ export default class Sketch extends React.Component {
       }
       
       show() {
-        p.fill(bgcx);
+        p.fill(255);
         p.noStroke();
         
         var sx = p.map(this.x/this.z, 0, 1, 0, p.width);
