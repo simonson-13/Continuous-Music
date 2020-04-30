@@ -9,48 +9,34 @@ export default class Sketch extends React.Component {
     super(props)
     this.myRef = React.createRef()
     this.dbRef = firebase.database().ref();
+    
     this.livePianoRef = this.dbRef.child('live').child('piano');
     this.liveCelloRef = this.dbRef.child('live').child('cello');
     this.liveTrumpetRef = this.dbRef.child('live').child('trumpet');
     this.liveGuitarRef = this.dbRef.child('live').child('guitar');
-    this.liveXylophoneRef = this.dbRef.child('live').child('xeylophone');
+    this.liveXylophoneRef = this.dbRef.child('live').child('xylophone');
+    
     this.pianoMidiNotes = [0];
+    this.celloMidiNotes = [0];
+    this.trumpetMidiNotes = [0];
+    this.guitarMidiNotes = [0];
+    this.xylophoneMidiNotes = [0];
   }
 
   Sketch = (p) => {
 
-    var particles = [];
     var stars = [];
     var speed = 5;
-
-    var serial;
-    var latestData = "waiting for data";
-    var input1;
-    var pitch;
-    var input2;
-    var speedx = 1;
-    var pitchx = 1 ;
-    var input3 = 1;
-    var input3x = 0;
-    var bgc = 0;
-    var bgcx;
-
-    let kMax;
-    let step;
-    let n = 100; // number of blobs
-    let radius = 0; // diameter of the circle
-    let inter = 0.05; // difference between the sizes of two blobs
-    let maxNoise = 500;
-    let lapse = 0;    // timer
-    let noiseProg = (x) => (x);
-    var noiseScale = 0;
+    //var noiseScale = 0;
 
     const triangleNum = 5;
-    const noiseAngleTimes = 5;
-    //const noiseScale = 0.003;
+    var noiseAngleTimes = 5;
+    var transparency = 0;
+    var noiseScale = 0.006;
     let rotVertexes = [];
     let playing = true;
     let color = ["#C05021", "#FFBA08", "#20A440", "#2F7ED3", "#D79FE1"];
+    let colrgb = [[192,80,33],[225,186,8],[32,164,64],[47,126,211],[215,159,225]];
 
     p.setup = () => {
       let canvas = p.createCanvas(this.props.width, this.props.height);
@@ -59,23 +45,72 @@ export default class Sketch extends React.Component {
       //var star = new Star();
       this.livePianoRef.on('value', snap => {
         this.pianoMidiNotes = snap.val();
-        noiseScale = this.pianoMidiNotes.reduce((total,num) => total+num) / 1000;
+        noiseScale = this.pianoMidiNotes.reduce((total,num) => total+num)/5000+.0015;
+        transparency = this.pianoMidiNotes.reduce((total,num) => total+num)*10;
         if (noiseScale === 0) {
-          noiseScale = 0;
+          noiseScale = .0015;
+        }
+        if (transparency === 0) {
+          transparency = 0;
+        }
+      });
+
+      this.liveCelloRef.on('value', snap => {
+        this.celloMidiNotes = snap.val();
+        noiseScale = this.celloMidiNotes.reduce((total,num) => total+num)/5000+.0015;
+        transparency = this.celloMidiNotes.reduce((total,num) => total+num)*12;
+        if (noiseScale === 0) {
+          noiseScale = .0015;
+        }
+        if (transparency === 0) {
+          transparency = 0;
+        }
+      });
+
+      this.liveTrumpetRef.on('value', snap => {
+        this.trumpetMidiNotes = snap.val();
+        noiseScale = this.trumpetMidiNotes.reduce((total,num) => total+num)/5000+.0015;
+        transparency = this.trumpetMidiNotes.reduce((total,num) => total+num)*12;
+        if (noiseScale === 0) {
+          noiseScale = .0015;
+        }
+        if (transparency === 0) {
+          transparency = 0;
+        }
+      });
+
+      this.liveGuitarRef.on('value', snap => {
+        this.guitarMidiNotes = snap.val();
+        noiseScale = this.guitarMidiNotes.reduce((total,num) => total+num)/5000+.0015;
+        transparency = this.guitarMidiNotes.reduce((total,num) => total+num)*12;
+        if (noiseScale === 0) {
+          noiseScale = .0015;
+        }
+        if (transparency === 0) {
+          transparency = 0;
+        }
+      });
+
+      this.liveXylophoneRef.on('value', snap => {
+        this.xylophoneMidiNotes = snap.val();
+        noiseScale = this.xylophoneMidiNotes.reduce((total,num) => total+num)/5000+.0015;
+        transparency = this.xylophoneMidiNotes.reduce((total,num) => total+num)*12;
+        if (noiseScale === 0) {
+          noiseScale = .0015;
+        }
+        if (transparency === 0) {
+          transparency = 0;
         }
       });
       
-      // Create an array of 1600 star objects
+    
       for (var i = 0; i < 1600; i++) {
           stars[i] = new Star();
-          // This also works to populate the array
-          //star = new Star();
-          //p.append(stars, star);
       }
       
-      //new stuff for triangles below
-      p.colorMode(p.HSB, 360, 100, 100, 100)
-      // p.noLoop()
+   
+      p.colorMode(p.RGB, 255, 255, 255, 255)
+
       p.strokeWeight(2)
       p.strokeJoin(p.ROUND)
 
@@ -83,35 +118,30 @@ export default class Sketch extends React.Component {
     }
 
     p.draw = () => {
-      bgcx = 255-bgc;
-      p.background(bgc);
+      p.background(0);
       for (var i = 0; i < stars.length; i++) {
         stars[i].update();
           stars[i].show();
       }
-      //new stuff for triangles
-      if(true) {
-        p.push()
-        //background(2, 80)
-        p.translate(p.width/2, p.height/2)
-        for(let i = 0; i < triangleNum; i++) {
-          let col = color[i%5]
-          drawTriangle(
-            rotVertexes[0].getVector((i/triangleNum + p.frameCount*p.TWO_PI/360/2)%1),
-            rotVertexes[1].getVector((i/triangleNum + p.frameCount*p.TWO_PI/360/2)%1),
-            rotVertexes[2].getVector((i/triangleNum + p.frameCount*p.TWO_PI/360/2)%1),
-            col
-          )
-        }
-        p.pop()
+  
+      p.push()
+      p.translate(p.width/2, p.height/2)
+      for(let i = 0; i < triangleNum; i++) {
+        drawTriangle(
+          rotVertexes[0].getVector((i/triangleNum + p.frameCount*p.TWO_PI/360/2)%1),
+          rotVertexes[1].getVector((i/triangleNum + p.frameCount*p.TWO_PI/360/2)%1),
+          rotVertexes[2].getVector((i/triangleNum + p.frameCount*p.TWO_PI/360/2)%1),
+          i
+        )
+      }
+      p.pop()
 
-        for(let i=0; i<rotVertexes.length; i++) {
-          rotVertexes[i].update(p.frameCount)
-        }
+      for(let i=0; i<rotVertexes.length; i++) {
+        rotVertexes[i].update(p.frameCount)
       }
     }
 
-    function drawTriangle(vec1, vec2, vec3, col) {
+    function drawTriangle(vec1, vec2, vec3, n) {
       let center = p5.Vector.add(vec1, vec2)
       center = p5.Vector.add(center, vec3)
       center.div(3)
@@ -122,13 +152,14 @@ export default class Sketch extends React.Component {
     
       let vecs = [vec1, vec2, vec3]
       let miniVecs = [miniVec1, miniVec2, miniVec3]
-      p.noFill()
-      p.stroke(col)
+
       for(let i=0; i<3; i++) {
         p.beginShape()
         p.vertex(miniVecs[i].x, miniVecs[i].y)
         p.vertex(vecs[i].x, vecs[i].y)
         p.vertex(vecs[(i+1)%3].x, vecs[(i+1)%3].y)
+        p.stroke(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2])
+        p.fill(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2], transparency)
         p.endShape(p.CLOSE)
       }
       for(let i=0; i<3; i++) {
@@ -136,6 +167,8 @@ export default class Sketch extends React.Component {
         p.vertex(center.x, center.y)
         p.vertex(miniVecs[i].x, miniVecs[i].y)
         p.vertex(vecs[(i+1)%3].x, vecs[(i+1)%3].y)
+        p.stroke(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2])
+        p.fill(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2], transparency)
         p.endShape(p.CLOSE)
       }
     
@@ -163,7 +196,7 @@ export default class Sketch extends React.Component {
       }
       
       show() {
-        p.fill(bgcx);
+        p.fill(255);
         p.noStroke();
         
         var sx = p.map(this.x/this.z, 0, 1, 0, p.width);
