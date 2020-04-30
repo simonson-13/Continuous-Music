@@ -27,14 +27,11 @@ export default class Sketch extends React.Component {
 
     var stars = [];
     var speed = 5;
-    //var noiseScale = 0;
-
     const triangleNum = 5;
     var noiseAngleTimes = 5;
     var transparency = 0;
     var noiseScale = 0.006;
     let rotVertexes = [];
-    let playing = true;
     let color = ["#C05021", "#FFBA08", "#20A440", "#2F7ED3", "#D79FE1"];
     let colrgb = [[192,80,33],[225,186,8],[32,164,64],[47,126,211],[215,159,225]];
 
