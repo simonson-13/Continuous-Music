@@ -12,7 +12,9 @@
     <link rel="shortcut icon" href="http://localhost:3000/favicon.ico">
     <link rel="stylesheet" href="./index_files/bootstrap.min.css">
     <link href="./index_files/icon" rel="stylesheet">
-  <title>React App</title><style type="text/css">body {
+    <script src="./index_files/p5.js.download"></script>
+    <script src="./index_files/p5.sound.js.download"></script>
+  <title>Jam Online</title><style type="text/css">body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
@@ -41,7 +43,7 @@
     background-color: white;
 
     text-align: center;
-  }</style><style type="text/css">.ReactPiano__Keyboard {
+  }</style><style type="text/css"></style><style type="text/css">.ReactPiano__Keyboard {
   /* Used for absolute positioning of .ReactPiano__Key--accidental elements */
   position: relative;
   /* Used to lay out .ReactPiano__Key--natural elements */
@@ -159,157 +161,9 @@
 </style><style type="text/css">.bg-yellow {
   background-color: #f8e8d5;
 }
-</style><style type="text/css">:root {
-    --main-color: #5ea3d0;
-    --secondary-color: white;
-    --main-text-color: #3e5869;
-    --secondary-text-color: #b0c7d6;
-    --send-message-form: #F5F5F5;
-}
-
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    font-family: system-ui;
-    font-weight: 200;
-    color: #3e5869; 
-	background: #181b21 url(https://www.toptal.com/designers/subtlepatterns/patterns/nami.png);
-}
-
-#root {
-    height: 100%;
-}
-
-.chat {
-    height: 100%;
-	background: #181b21 url(https://www.toptal.com/designers/subtlepatterns/patterns/nami.png);
-}
-
-.title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 40px;
-    color: var(--secondary-color);
-    background: var(--main-color);
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-}
-
-/*
-.drawer { 
-    width:200px
-}
-*/
-
-.message {
-    margin: 15px 0;
-}
-
-.message div:nth-child(1) {
-    font-size: 11px;
-    color: var(--main-text-color);
-    opacity: 0.9;
-    margin-bottom: 6px;
-}
-.message div:nth-child(2) {
-    background: var(--main-color);
-    color: var(--secondary-color);
-    display: inline;
-    padding: 4px 8px;
-    border-radius: 8px;
-}
-
-.message-list {
-    box-sizing: border-box;
-    padding: 0 0 0 6px;
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    overflow: scroll;
-    background: white;
-}
-
-.send-message-form {
-    background: var(--send-message-form);
-    display: flex;
-    box-sizing: border-box;
-    height: 60px;
-}
-
-.send-message-form input {
-    width: 100%;
-    padding: 15px 10px;
-    border: none;
-    margin: 0;
-    background: var(--send-message-form);
-    font-weight: 200;
-}
-
-.send-message-form input:focus {
-    outline-width: 0;
-}
-
-.send-message-form input::placeholder {
-    color: black;
-}
-</style><style type="text/css">.form {
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    width: 100%;
-}
-.form__row {
-    display: flex;
-    flex-wrap: nowrap;
-    width: 100%;
-    padding: 20px;
-}
-.form__input {
-    width: 100%;
-    padding: 15px 20px;
-    border-radius: 5px 0 0 5px;
-    border: 1px solid #ddd;
-    box-sizing: border-box;
-    outline: 0;
-}
-.form__input:focus {
-    background-color: rgba(245, 243, 243, 0.5);
-}
-.form__button {
-    padding: 0 30px;
-    background-color: #000;
-    color: #fff;
-    border: 0;
-    border-radius: 0 5px 5px 0;
-    outline: 0;
-    cursor: pointer;
-}
-.form__button:hover {
-    background-color: rgba(0, 0, 0, .8);
-}
-.form__message {
-    width: 100%;
-    padding: 0 20px;
-}</style><style type="text/css">.message {
-    position: relative;
-    padding: 10px 60px 10px 20px;
-    font-size: 12px;
-    color: rgba(0, 0, 0, 0.6);
-    background-color: rgba(0, 0, 0, .05);
-    text-align: left;
-    line-height: 1.7;
-}
-.message:nth-child(even) {
-    background-color: rgba(0, 0, 0, .025);
-}
-.message__author {
-    font-weight: 600;
-    margin-right: 10px;
-    color: rgba(0, 0, 0, 1);
+.MuiDrawer-paper {
+  background-color: rgba(0,0,0,0) !important;
+  border: 0;
 }</style><style type="text/css">.clearfix::after {
 	content: "";
 	display: block;
@@ -320,10 +174,12 @@ html, body {
 	margin: 80px auto;
 	text-align: center;
 }
+
 .chatApp__loaderText {
 	color: #4870df;
 	font-weight: bold;
 }
+
 .chatApp__loader,
 .chatApp__loader::before,
 .chatApp__loader::after {
@@ -333,6 +189,7 @@ html, body {
 	animation-fill-mode: both;
 	animation: loading 1.8s infinite ease-in-out;
 }
+
 .chatApp__loader {
 	margin: auto;
 	color: #4870df;
@@ -340,22 +197,26 @@ html, body {
 	position: relative;
 	animation-delay: -0.16s;
 }
+
 .chatApp__loader::before,
 .chatApp__loader::after {
 	content: '';
 	position: absolute;
 	top: 0;
 }
+
 .chatApp__loader::before {
 	left: -1.5em;
 	animation-delay: -0.32s;
 }
+
 .chatApp__loader::after {
 	left: 1.5em;
 }
+
 .chatApp__room {
 	padding: 2em 2em 0em 0em;
-	display: flex;
+	width: 30vw;
     flex-wrap: nowrap;
     flex-direction: column;
 	animation: fadeChatApp 0.6s ease-in-out;
@@ -363,6 +224,7 @@ html, body {
 	font-family: 'Quicksand', sans-serif;
 	letter-spacing: -0.23px;
 }
+
 .chatApp__conv {
 	flex-grow: 1;
 	flex-shrink: 1;
@@ -372,15 +234,17 @@ html, body {
 	box-shadow: 0 35px 20px -30px rgba(0,0,0,0.1);
 	width: calc(100% - 50px);
 }
+
 .chatApp__convTitle {
 	display: inline-block;
 	margin: 0 0 2rem 0;
 	font-size: 18px;
 	font-weight: bold;
-	color: #f0f0f0;
-	text-transform: uppercase;
+	color: rgb(211,211,211);
+	/*text-transform: uppercase;*/
 	position: relative;
 }
+
 .chatApp__convTitle::after {
 	content: '';
 	position: absolute;
@@ -392,6 +256,7 @@ html, body {
 	right: 0;
 	bottom: -16px;
 }
+
 .chatApp__convTimeline {
 	display: flex;
 	height: 400px;
@@ -402,6 +267,7 @@ html, body {
 	flex-direction: column-reverse;
 	overflow-y: auto;
 }
+
 .chatApp__convMessageItem {
 	padding: 1rem 0 0 0;
 	opacity: 0;
@@ -409,6 +275,7 @@ html, body {
 	animation: fadeNewMessage 0.5s;
 	animation-fill-mode: forwards;
 }
+
 .chatApp__convMessageAvatar {
 	width: 40px;
 	height: 40px;
@@ -418,6 +285,7 @@ html, body {
 	-webkit-user-select: none;
 	user-select: none;
 }
+
 .chatApp__convMessageValue {
 	position: relative;
 	max-width: 50%;
@@ -432,9 +300,11 @@ html, body {
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+
 .chatApp__convMessageItem--left .chatApp__convMessageAvatar {
 	float: left;
 }
+
 .chatApp__convMessageItem--left .chatApp__convMessageValue {
 	float: left;
 	text-align: left;
@@ -442,6 +312,7 @@ html, body {
 	color: #fff;
 	background-color: #4870df;
 }
+
 .chatApp__convMessageItem--left .chatApp__convMessageValue::before {
 	content: '';
 	position: absolute;
@@ -453,15 +324,18 @@ html, body {
 	border-width: 6px 10px 6px 0;
 	border-color: transparent #4870df transparent transparent;
 }
+
 .chatApp__convMessageItem--right .chatApp__convMessageAvatar {
 	float: right;
 }
+
 .chatApp__convMessageItem--right .chatApp__convMessageValue {
 	float: right;
 	text-align: right;
 	margin: 0 1rem 0 0;
 	background-color: #fafafa;
 }
+
 .chatApp__convMessageItem--right .chatApp__convMessageValue::after {
 	content: '';
 	position: absolute;
@@ -473,29 +347,36 @@ html, body {
 	border-width: 6px 0 6px 10px;
 	border-color: transparent transparent transparent #fafafa;
 }
+
 .chatApp__convMessageItem--left .chatApp__convMessageValue a {
 	color: #91ffb1;
 }
+
 .chatApp__convMessageItem--left .chatApp__convMessageValue a:hover,
 .chatApp__convMessageItem--left .chatApp__convMessageValue a:focus {
 	color: #75ff9e;
 }
+
 .chatApp__convMessageItem--right .chatApp__convMessageValue a {
 	color: #09f;
 }
+
 .chatApp__convMessageItem--right .chatApp__convMessageValue a:hover,
 .chatApp__convMessageItem--right .chatApp__convMessageValue a:focus {
 	color: #007dd1;
 }
+
 .chatApp__convSendMessage {
 	position: relative;
 	border-bottom-left-radius: 8px;
 	border-bottom-right-radius: 8px;
 	background-color: #fff;
 }
+
 .chatApp__convSendMessage {
 	padding: 1rem;
 }
+
 .chatApp__convInput {
 	float: left;
 	height: 40px;
@@ -512,22 +393,28 @@ html, body {
 	transition: 0.15s all ease-in-out;
 	box-sizing: border-box;
 }
+
 .chatApp__convInput::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
 	color: #b1b1b1;
 	opacity: 1;
 }
+
 .chatApp__convInput:-ms-input-placeholder { /* Internet Explorer 10-11 */
 	color: #b1b1b1;
 }
+
 .chatApp__convInput::-ms-input-placeholder { /* Microsoft Edge */
 	color: #b1b1b1;
 }
+
 .chatApp__convInput:focus, .chatApp__convInput:active {
 	box-shadow: inset 0 0 0 2px #7690d6;
 }
+
 .chatApp__convInput:focus {
 	outline: none;
 }
+
 .chatApp__convButton {
 	float: right;
 	position: relative;
@@ -545,9 +432,11 @@ html, body {
 	-webkit-user-select: none;
 	user-select: none;
 }
+
 .chatApp__convButton:hover {
 	background-color: #3c559c;
 }
+
 .chatApp__convButton i {
 	position: relative;
 	top: 50%;
@@ -555,13 +444,16 @@ html, body {
 	padding: 0 0 0 1px;
 	font-size: 22px;
 }
+
 .chatApp__convButton--loading {
 	cursor: wait;
 	background-color: #4870df;
 }
+
 .chatApp__convButton--loading:hover {
 	background-color: #4870df;
 }
+
 .chatApp__convButton--loading::before, .chatApp__convButton--loading::after {
 	content: '';
 	position: absolute;
@@ -577,23 +469,28 @@ html, body {
 	border-radius: 40px;
 	background-color: #fff;
 }
+
 .chatApp__convButton--loading::after {
 	animation: loadSendMessage 1.5s;
 	animation-fill-mode: forwards;
 	animation-iteration-count: infinite;
 }
+
 .chatApp__convButton--loading i {
 	display: none;
 }
+
 .chatApp__convSendMessage--typing .chatApp__convTyping {
 	display: block;
 }
+
 .chatApp__convTyping {
 	position: absolute;
 	top: 0;
 	font-size: 10px;
 	font-weight: bold;
 }
+
 .chatApp__convTypingDot {
 	position: relative;
 	left: 4px;
@@ -606,6 +503,7 @@ html, body {
 	animation-iteration-count: infinite;
 	animation-timing-function: ease-in-out;
 }
+
 .chatApp__convTypingDot::before, .chatApp__convTypingDot::after {
 	content: '';
 	position: absolute;
@@ -618,35 +516,43 @@ html, body {
 	animation-iteration-count: infinite;
 	animation-timing-function: ease-in-out;
 }
+
 .chatApp__convTypingDot::before {
 	left: 4px;
 	animation-delay: 0.5s;
 }
+
 .chatApp__convTypingDot::after {
 	left: 8px;
 	animation-delay: 1s;
 }
+
 @media screen and (max-width:768px) {
 	.chatApp__room { flex-wrap: wrap; padding: 2rem 1rem; }
 	.chatApp__conv { flex-basis: 100%; min-width: auto; width: 100%; margin: 0; }
 	.chatApp__conv:first-of-type { margin: 0 0 4rem 0; }
 }
+
 @keyframes loading {
 	0%, 80%, 100% { box-shadow: 0 1em 0 -1.3em; }
 	40% { box-shadow: 0 1em 0 0; }
 }
+
 @keyframes fadeChatApp {
 	0% { opacity: 0; transform: translateY(1rem); }
 	100% { opacity: 1; transform: translateY(0px); }
 }
+
 @keyframes fadeNewMessage {
 	0% { opacity: 0; transform: translateY(1rem); }
 	100% { opacity: 1; transform: translateY(0px); }
 }
+
 @keyframes loadSendMessage {
 	0% { opacity: 1; width: 4px; height: 4px; }
 	100% { opacity: 0; width: 100%; height: 100%; }
 }
+
 @keyframes typingMessage {
 	0% { background-color: #606060; }
 	50% { background-color: #fff; }
@@ -871,227 +777,6 @@ html, body {
 .MuiButtonBase-root.Mui-disabled {
   cursor: default;
   pointer-events: none;
-}
-</style><style data-jss="" data-meta="MuiButton">
-.MuiButton-root {
-  color: rgba(0, 0, 0, 0.87);
-  padding: 6px 16px;
-  font-size: 0.875rem;
-  min-width: 64px;
-  box-sizing: border-box;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-  font-weight: 500;
-  line-height: 1.75;
-  border-radius: 4px;
-  letter-spacing: 0.02857em;
-  text-transform: uppercase;
-}
-.MuiButton-root:hover {
-  text-decoration: none;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-.MuiButton-root.Mui-disabled {
-  color: rgba(0, 0, 0, 0.26);
-}
-@media (hover: none) {
-  .MuiButton-root:hover {
-    background-color: transparent;
-  }
-}
-.MuiButton-root:hover.Mui-disabled {
-  background-color: transparent;
-}
-.MuiButton-label {
-  width: 100%;
-  display: inherit;
-  align-items: inherit;
-  justify-content: inherit;
-}
-.MuiButton-text {
-  padding: 6px 8px;
-}
-.MuiButton-textPrimary {
-  color: #3f51b5;
-}
-.MuiButton-textPrimary:hover {
-  background-color: rgba(63, 81, 181, 0.04);
-}
-@media (hover: none) {
-  .MuiButton-textPrimary:hover {
-    background-color: transparent;
-  }
-}
-.MuiButton-textSecondary {
-  color: #f50057;
-}
-.MuiButton-textSecondary:hover {
-  background-color: rgba(245, 0, 87, 0.04);
-}
-@media (hover: none) {
-  .MuiButton-textSecondary:hover {
-    background-color: transparent;
-  }
-}
-.MuiButton-outlined {
-  border: 1px solid rgba(0, 0, 0, 0.23);
-  padding: 5px 15px;
-}
-.MuiButton-outlined.Mui-disabled {
-  border: 1px solid rgba(0, 0, 0, 0.12);
-}
-.MuiButton-outlinedPrimary {
-  color: #3f51b5;
-  border: 1px solid rgba(63, 81, 181, 0.5);
-}
-.MuiButton-outlinedPrimary:hover {
-  border: 1px solid #3f51b5;
-  background-color: rgba(63, 81, 181, 0.04);
-}
-@media (hover: none) {
-  .MuiButton-outlinedPrimary:hover {
-    background-color: transparent;
-  }
-}
-.MuiButton-outlinedSecondary {
-  color: #f50057;
-  border: 1px solid rgba(245, 0, 87, 0.5);
-}
-.MuiButton-outlinedSecondary:hover {
-  border: 1px solid #f50057;
-  background-color: rgba(245, 0, 87, 0.04);
-}
-.MuiButton-outlinedSecondary.Mui-disabled {
-  border: 1px solid rgba(0, 0, 0, 0.26);
-}
-@media (hover: none) {
-  .MuiButton-outlinedSecondary:hover {
-    background-color: transparent;
-  }
-}
-.MuiButton-contained {
-  color: rgba(0, 0, 0, 0.87);
-  box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12);
-  background-color: #e0e0e0;
-}
-.MuiButton-contained:hover {
-  box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);
-  background-color: #d5d5d5;
-}
-.MuiButton-contained.Mui-focusVisible {
-  box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12);
-}
-.MuiButton-contained:active {
-  box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
-}
-.MuiButton-contained.Mui-disabled {
-  color: rgba(0, 0, 0, 0.26);
-  box-shadow: none;
-  background-color: rgba(0, 0, 0, 0.12);
-}
-@media (hover: none) {
-  .MuiButton-contained:hover {
-    box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12);
-    background-color: #e0e0e0;
-  }
-}
-.MuiButton-contained:hover.Mui-disabled {
-  background-color: rgba(0, 0, 0, 0.12);
-}
-.MuiButton-containedPrimary {
-  color: #fff;
-  background-color: #3f51b5;
-}
-.MuiButton-containedPrimary:hover {
-  background-color: #303f9f;
-}
-@media (hover: none) {
-  .MuiButton-containedPrimary:hover {
-    background-color: #3f51b5;
-  }
-}
-.MuiButton-containedSecondary {
-  color: #fff;
-  background-color: #f50057;
-}
-.MuiButton-containedSecondary:hover {
-  background-color: #c51162;
-}
-@media (hover: none) {
-  .MuiButton-containedSecondary:hover {
-    background-color: #f50057;
-  }
-}
-.MuiButton-disableElevation {
-  box-shadow: none;
-}
-.MuiButton-disableElevation:hover {
-  box-shadow: none;
-}
-.MuiButton-disableElevation.Mui-focusVisible {
-  box-shadow: none;
-}
-.MuiButton-disableElevation:active {
-  box-shadow: none;
-}
-.MuiButton-disableElevation.Mui-disabled {
-  box-shadow: none;
-}
-.MuiButton-colorInherit {
-  color: inherit;
-  border-color: currentColor;
-}
-.MuiButton-textSizeSmall {
-  padding: 4px 5px;
-  font-size: 0.8125rem;
-}
-.MuiButton-textSizeLarge {
-  padding: 8px 11px;
-  font-size: 0.9375rem;
-}
-.MuiButton-outlinedSizeSmall {
-  padding: 3px 9px;
-  font-size: 0.8125rem;
-}
-.MuiButton-outlinedSizeLarge {
-  padding: 7px 21px;
-  font-size: 0.9375rem;
-}
-.MuiButton-containedSizeSmall {
-  padding: 4px 10px;
-  font-size: 0.8125rem;
-}
-.MuiButton-containedSizeLarge {
-  padding: 8px 22px;
-  font-size: 0.9375rem;
-}
-.MuiButton-fullWidth {
-  width: 100%;
-}
-.MuiButton-startIcon {
-  display: inherit;
-  margin-left: -4px;
-  margin-right: 8px;
-}
-.MuiButton-startIcon.MuiButton-iconSizeSmall {
-  margin-left: -2px;
-}
-.MuiButton-endIcon {
-  display: inherit;
-  margin-left: 8px;
-  margin-right: -4px;
-}
-.MuiButton-endIcon.MuiButton-iconSizeSmall {
-  margin-right: -2px;
-}
-.MuiButton-iconSizeSmall > *:first-child {
-  font-size: 18px;
-}
-.MuiButton-iconSizeMedium > *:first-child {
-  font-size: 20px;
-}
-.MuiButton-iconSizeLarge > *:first-child {
-  font-size: 22px;
 }
 </style><style data-jss="" data-meta="MuiIconButton">
 .MuiIconButton-root {
@@ -1355,15 +1040,18 @@ html, body {
 }
 </style><style data-jss="" data-meta="makeStyles">
 .makeStyles-root-1 {
+  color: white;
   height: 100vh;
   position: relative;
-  background: grey;
   justify-content: center;
 }
 .makeStyles-openDrop-2 {
   left: 0;
   bottom: 0;
   position: absolute;
+}
+.makeStyles-openButton-3 {
+  background: white;
 }
 </style><style data-jss="" data-meta="makeStyles">
 .makeStyles-root-76 {
@@ -1396,11 +1084,11 @@ html, body {
     -->
     
   
-  <body data-gr-c-s-loaded="true" style="overflow: hidden;">
-    <noscript aria-hidden="true">
+  <body data-gr-c-s-loaded="true" style="">
+    <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
-    <div id="root" aria-hidden="true"><div class="App"><div></div><div></div><div class="makeStyles-root-1"><button class="MuiButtonBase-root MuiIconButton-root" tabindex="0" type="button" title="Info"><span class="MuiIconButton-label"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"></path></svg></span><span class="MuiTouchRipple-root"></span></button>Visualization will go here!! todo: css to make this take up the whole page with icons on top of it<button class="MuiButtonBase-root MuiIconButton-root" tabindex="0" type="button" title="Chat"><span class="MuiIconButton-label"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z"></path></svg></span><span class="MuiTouchRipple-root"></span></button><div class="makeStyles-openDrop-2"><button class="MuiButtonBase-root MuiIconButton-root makeStyles-openButton-3" tabindex="0" type="button" title="Open Toolbar"><span class="MuiIconButton-label"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg></span><span class="MuiTouchRipple-root"></span></button></div></div><div class="chat"><div class="MuiDrawer-root MuiDrawer-docked drawer"><div class="MuiPaper-root MuiDrawer-paper MuiDrawer-paperAnchorRight MuiDrawer-paperAnchorDockedRight MuiPaper-elevation0" style="visibility: hidden; transform: translateX(1039px) translateX(-632px);"><div></div><div class="app__list chat"><div class="chatApp__room"><div class="chatApp__conv"><div class="chatApp__convTitle">Chat</div><div class="chatApp__convTimeline"><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/Claire.png" alt="Claire" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">Claire:<br>Hey guys!!</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/Shannen.png" alt="Shannen" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">Shannen:<br>Hey!</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/Ophir.png" alt="Ophir" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">Ophir:<br>Hello 👋</div></div></div><div class="chatApp__convSendMessage clearfix"><div class="chatApp__convTyping"></div><form><input type="hidden" value=""><input type="hidden" value="https://api.adorable.io/avatars/285/.png"><input type="text" class="chatApp__convInput" placeholder="Text message" tabindex="0"><div class="chatApp__convButton "><i class="material-icons">send</i></div></form></div></div></div></div></div></div></div><div class="makeStyles-root-76"><div class="makeStyles-wrapper-77"></div></div></div></div>
+    <div id="root"><div class="App"><div></div><div></div><div class="makeStyles-root-1"><button class="MuiButtonBase-root MuiIconButton-root makeStyles-openButton-3" tabindex="0" type="button" title="Info"><span class="MuiIconButton-label"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"></path></svg></span><span class="MuiTouchRipple-root"></span></button><br><button class="MuiButtonBase-root MuiIconButton-root makeStyles-openButton-3" tabindex="0" type="button" title="Chat"><span class="MuiIconButton-label"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z"></path></svg></span><span class="MuiTouchRipple-root"></span></button><div style="width: 100%; height: 100%; padding: 0px; border: 0px;"><div><div><canvas id="defaultCanvas0" class="p5Canvas" width="3789" height="1947" style="width: 1263px; height: 649px; position: absolute; left: 0px; top: 0px; z-index: -1;"></canvas></div></div></div><div class="makeStyles-openDrop-2"><button class="MuiButtonBase-root MuiIconButton-root makeStyles-openButton-3" tabindex="0" type="button" title="Open Toolbar"><span class="MuiIconButton-label"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg></span><span class="MuiTouchRipple-root"></span></button></div></div><div class="chat"><div class="MuiDrawer-root MuiDrawer-docked drawer"><div class="MuiPaper-root MuiDrawer-paper MuiDrawer-paperAnchorRight MuiDrawer-paperAnchorDockedRight MuiPaper-elevation0" style="visibility: hidden; transform: translateX(1280px) translateX(-878px);"><div></div><div class="app__list chat"><div class="chatApp__room"><div class="chatApp__conv"><div class="chatApp__convTitle">Chat</div><div class="chatApp__convTimeline"><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/Priya.png" alt="Priya" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">Priya:<br>I hear it!</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/Ophir.png" alt="Ophir" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">Ophir:<br>LoL!</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/johanv.png" alt="johanv" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">johanv:<br>kgtgygjk</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/johanv.png" alt="johanv" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">johanv:<br>eeeasa</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/Ophir.png" alt="Ophir" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">Ophir:<br>lol</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/Ophir.png" alt="Ophir" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">Ophir:<br>gnight bud</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/johanv.png" alt="johanv" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">johanv:<br>noice</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/Ophir.png" alt="Ophir" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">Ophir:<br>haha</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/johanv.png" alt="johanv" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">johanv:<br>';lkjhgfdsa</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/Ophir.png" alt="Ophir" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">Ophir:<br>yeah XDDD</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/johanv.png" alt="johanv" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">johanv:<br>i like how it plays notes when u type in chat</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/Ophir.png" alt="Ophir" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">Ophir:<br>:)</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/johanv.png" alt="johanv" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">johanv:<br>thanks</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/Ophir.png" alt="Ophir" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">Ophir:<br>sounds like a plan! feel better</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/johanv.png" alt="johanv" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">johanv:<br>better than last week, going to sleep soon to finally get back on a good schedule</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/Ophir.png" alt="Ophir" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">Ophir:<br>how u doin?</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/johanv.png" alt="johanv" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">johanv:<br>i keep the tab open</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/Ophir.png" alt="Ophir" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">Ophir:<br>lol awesome</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/johanv.png" alt="johanv" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">johanv:<br>*me</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/johanv.png" alt="johanv" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">johanv:<br>it mr</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/Ophir.png" alt="Ophir" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">Ophir:<br>Who's playing right now?</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/johanv.png" alt="johanv" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">johanv:<br>with chords: <a href="https://invidio.us/watch?v=BTENlbMHxtA">https://invidio.us/watch?v=BTENlbMHxtA</a></div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/johanv.png" alt="johanv" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">johanv:<br><a href="https://invidio.us/watch?v=ow1QqW0jzTo">https://invidio.us/watch?v=ow1QqW0jzTo</a></div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/johanv.png" alt="johanv" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">johanv:<br>good news, the actual song is in the same key weve been playing</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/johanv.png" alt="johanv" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">johanv:<br>let me go listen to it real quick</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/Will.png" alt="Will" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">Will:<br>how does the next part work</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/johanv.png" alt="johanv" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">johanv:<br>noice! I don't actually know the whole thing</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/Ophir.png" alt="Ophir" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">Ophir:<br>lol</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/Ophir.png" alt="Ophir" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">Ophir:<br>YOoOOoOo</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/Simon.png" alt="Simon" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">Simon:<br>testing testing</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/Priya.png" alt="Priya" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">Priya:<br>yo</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/Simon.png" alt="Simon" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">Simon:<br>skrttttttt skrtttttt</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/hello.png" alt="hello" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">hello:<br>yppppp</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/shivam.png" alt="shivam" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">shivam:<br>ooooooo</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/johanv.png" alt="johanv" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">johanv:<br>ayy didnt see the chat option earlier but this is great!</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/Ophir.png" alt="Ophir" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">Ophir:<br>Who's playing rn?</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/Ophir.png" alt="Ophir" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">Ophir:<br>yeah , dude code pen is aweosome :)</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/shannen.png" alt="shannen" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">shannen:<br>that's so cute</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/Ophir.png" alt="Ophir" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">Ophir:<br>I made it generate a random avatar based on the username</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/Ophir.png" alt="Ophir" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">Ophir:<br>yes</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/shannen.png" alt="shannen" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">shannen:<br>SOOOO COOL </div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/Ophir.png" alt="Ophir" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">Ophir:<br>haha</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/Ophir.png" alt="Ophir" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">Ophir:<br>IT DOESSS</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/shannen.png" alt="shannen" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">shannen:<br>IT WORKS</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/Ophir.png" alt="Ophir" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">Ophir:<br>lol!!</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/shannen.png" alt="shannen" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">shannen:<br>WOW</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/Ophir.png" alt="Ophir" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">Ophir:<br>YOOOO</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/shannen.png" alt="shannen" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">shannen:<br>hellooooo??? </div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/Claire.png" alt="Claire" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">Claire:<br>Hey guys!!</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/shannen(1).png" alt="Shannen" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">Shannen:<br>Hey!</div></div><div class="chatApp__convMessageItem chatApp__convMessageItem--left clearfix"><img src="./index_files/Ophir.png" alt="Ophir" class="chatApp__convMessageAvatar"><div class="chatApp__convMessageValue">Ophir:<br>Hello 👋</div></div></div><div class="chatApp__convSendMessage clearfix"><div class="chatApp__convTyping"></div><form><input type="hidden" value=""><input type="hidden" value="https://api.adorable.io/avatars/285/.png"><input type="text" class="chatApp__convInput" placeholder="Text message" tabindex="0"><div class="chatApp__convButton "><i class="material-icons">send</i></div></form></div></div></div></div></div></div></div><div class="MuiDrawer-root MuiDrawer-docked drawer"><div class="MuiPaper-root MuiDrawer-paper MuiDrawer-paperAnchorTop MuiDrawer-paperAnchorDockedTop MuiPaper-elevation0" style="visibility: hidden; transform: translateY(-2px);"><div class="container" style="color: lightgray; font-weight: bold;"><div class="row mt-0"><div class="col-md-8 offset-md-2"><div></div></div></div></div></div></div><div class="makeStyles-root-76"><div class="makeStyles-wrapper-77"></div></div></div></div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -1411,6 +1099,6 @@ html, body {
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-  <script src="./index_files/bundle.js.download"></script><script src="./index_files/0.chunk.js.download"></script><script src="./index_files/main.chunk.js.download"></script><div role="presentation" style="position: fixed; z-index: 1300; right: 0px; bottom: 0px; top: 0px; left: 0px;"><div aria-hidden="true" style="z-index: -1; position: fixed; right: 0px; bottom: 0px; top: 0px; left: 0px; background-color: rgba(0, 0, 0, 0.5); -webkit-tap-highlight-color: transparent;"></div><div tabindex="0" data-test="sentinelStart"></div><div class="centered" tabindex="-1">Please choose an instrument! <br><button class="MuiButtonBase-root MuiButton-root MuiButton-text" tabindex="0" type="button"><span class="MuiButton-label">Drum</span><span class="MuiTouchRipple-root"></span></button><button class="MuiButtonBase-root MuiButton-root MuiButton-text" tabindex="0" type="button"><span class="MuiButton-label">Piano</span><span class="MuiTouchRipple-root"></span></button><button class="MuiButtonBase-root MuiButton-root MuiButton-text" tabindex="0" type="button"><span class="MuiButton-label">Guitar</span><span class="MuiTouchRipple-root"></span></button><button class="MuiButtonBase-root MuiButton-root MuiButton-text" tabindex="0" type="button"><span class="MuiButton-label">Trumpet</span><span class="MuiTouchRipple-root"></span></button></div><div tabindex="0" data-test="sentinelEnd"></div></div>
+  <script src="./index_files/bundle.js.download"></script><script src="./index_files/0.chunk.js.download"></script><script src="./index_files/main.chunk.js.download"></script>
 
 </body></html>
