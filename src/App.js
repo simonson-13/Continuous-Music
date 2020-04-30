@@ -7,6 +7,12 @@ import Visualization from './Visualization/Visualization.js'
 import Bar from './Bar/Bar.js'
 import PianoDrawer from './PianoDrawer/PianoDrawer.js'
 import ChatDrawer from './ChatDrawer/ChatDrawer.js'
+import LivePlayBack from './ophir_piano/LivePlayBack.js';
+
+// webkitAudioContext fallback needed to support Safari
+const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+const soundfontHostname = 'https://d1pzp51pvbm36p.cloudfront.net';
+
 
 
 class App extends Component {
@@ -115,6 +121,32 @@ class App extends Component {
           handleClickPiano={this.handleClickPiano}
           showBar={this.state.showBar}
           handleBarChange={this.handleBarChange}
+        />
+
+        <LivePlayBack
+          audioContext={audioContext}
+          instrumentName={'piano'}
+          hostname={soundfontHostname}
+        />
+        <LivePlayBack
+          audioContext={audioContext}
+          instrumentName={'cello'}
+          hostname={soundfontHostname}
+        />
+        <LivePlayBack
+          audioContext={audioContext}
+          instrumentName={'trumpet'}
+          hostname={soundfontHostname}
+        />
+        <LivePlayBack
+          audioContext={audioContext}
+          instrumentName={'guitar'}
+          hostname={soundfontHostname}
+        />
+        <LivePlayBack
+          audioContext={audioContext}
+          instrumentName={'xylophone'}
+          hostname={soundfontHostname}
         />
       </div>
     );
