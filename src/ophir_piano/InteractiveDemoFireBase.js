@@ -4,12 +4,7 @@ import { Piano, KeyboardShortcuts, MidiNumbers } from 'react-piano';
 import DimensionsProvider from './DimensionsProvider';
 import SoundfontProvider from './SoundfontProvider';
 import PianoConfig from './PianoConfig';
-import LivePlayBack from './LivePlayBack.js';
 import * as firebase from 'firebase'; // import firebase!
-
-// webkitAudioContext fallback needed to support Safari
-const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-const soundfontHostname = 'https://d1pzp51pvbm36p.cloudfront.net';
 
 
 const properToShortName = {
@@ -82,10 +77,15 @@ class InteractiveDemoFireBase extends Component {
   }
 
   onPlayNoteInput = (midiNumber, { prevActiveNotes }) => {
+    let instName = this.props.instrument ? this.props.instrument : 'piano';
+    this.dbLiveInstRef = this.dbRef.child('live').child(properToShortName[instName]);
     this.dbLiveInstRef.child(midiNumber).set(1);
+    console.log(properToShortName[instName]);
   }
 
   onStopNoteInput = (midiNumber, { prevActiveNotes }) => {
+    let instName = this.props.instrument ? this.props.instrument : 'piano';
+    this.dbLiveInstRef = this.dbRef.child('live').child(properToShortName[instName]);
     this.dbLiveInstRef.child(midiNumber).set(0);
   }
 
@@ -97,7 +97,7 @@ class InteractiveDemoFireBase extends Component {
     });
 
     return (
-      <SoundfontProvider
+      [<SoundfontProvider
         audioContext={this.props.audioContext}
         instrumentName={this.props.instrument}
         hostname={this.props.soundfontHostname}
@@ -146,36 +146,8 @@ class InteractiveDemoFireBase extends Component {
 
               </div>
             )
-            
-            /*
-            <LivePlayBack
-              audioContext={audioContext}
-              instrumentName={'piano'}
-              hostname={soundfontHostname}
-            />
-            <LivePlayBack
-              audioContext={audioContext}
-              instrumentName={'cello'}
-              hostname={soundfontHostname}
-            />
-            <LivePlayBack
-              audioContext={audioContext}
-              instrumentName={'trumpet'}
-              hostname={soundfontHostname}
-            />
-            <LivePlayBack
-              audioContext={audioContext}
-              instrumentName={'guitar'}
-              hostname={soundfontHostname}
-            />
-            <LivePlayBack
-              audioContext={audioContext}
-              instrumentName={'xylophone'}
-              hostname={soundfontHostname}
-            />
-            */
         }
-      />
+      />]
     );
   }
 }
