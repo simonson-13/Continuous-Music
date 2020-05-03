@@ -86,7 +86,6 @@ class InteractiveDemoFireBase extends Component {
     let instName = this.props.instrument ? this.props.instrument : 'piano';
     this.dbLiveInstRef = this.dbRef.child('live').child(properToShortName[instName]);
     this.dbLiveInstRef.child(midiNumber).set(1);
-    console.log(properToShortName[instName]);
 
     //simon added
     if (this.notes[midiNumber] == 0) {
@@ -101,7 +100,6 @@ class InteractiveDemoFireBase extends Component {
     this.dbLiveInstRef = this.dbRef.child('live').child(properToShortName[instName]);
     this.dbLiveInstRef.child(midiNumber).set(0);
 
-    console.log(this.props.isRecording);
     if (this.props.isRecording){
       var d = new Date();
 

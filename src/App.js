@@ -185,6 +185,8 @@ class App extends Component {
           tempStrFun={this.handleTempStr}
           tempStr={this.state.tempStr}
           userID={this.state.userID}
+          audioContext={audioContext}
+          instrument={this.state.instrument}
         />
 
         <LivePlayBack

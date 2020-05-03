@@ -43,7 +43,6 @@ class LivePlayBack extends React.Component {
   componentDidMount() {
     this.loadInstrument(shortToProperName[this.props.instrumentName]);
     this.dbInstRef.on('value', snap => {
-      console.log('DB changed');
       let liveNotesDB = snap.val();
       for (let note=0; note < liveNotesDB.length; note++){
         if (liveNotesDB[note] > 0) { // TODO: add check that only plays if note not already playing
