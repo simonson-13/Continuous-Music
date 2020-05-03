@@ -16,6 +16,7 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import SendIcon from '@material-ui/icons/Send';
 import StraightenIcon from '@material-ui/icons/Straighten';
 import GetAppIcon from '@material-ui/icons/GetApp';
+import Soundfont from 'soundfont-player'
 
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -55,7 +56,7 @@ export default function Bar (props) {
     const classes = useStyles();
     const [hasRecording, setHasRecording] = React.useState(false);
     var isRecording = false;
-    var recording = "";
+    var recording = "Hello OPHIR";
 
     const handleDelete = () => {
         setHasRecording((prev) => !prev);
@@ -64,17 +65,16 @@ export default function Bar (props) {
         // logic to delete local recording
         isRecording = false;
         props.tempStrFun(-1); //resets the recording variable back in app.js to be empty
-        recording = "";
+        Bar.recording = "";
     }
 
     const handleRecordHelper = () => {
       isRecording = !isRecording;
       props.isRecordingFun(isRecording);
-
+    
       if(!isRecording){
-        recording = props.tempStrFun(-2);
+        Bar.recording = props.tempStrFun(-2);
         props.tempStrFun(-1);
-        console.log(recording);
       }
     }
 
@@ -84,13 +84,32 @@ export default function Bar (props) {
 
         handleRecordHelper();
         setTimeout(handleRecordHelper, 3000); //3 seconds to record
+    }
 
+    const _convertStringRecToArray = (r) => {
+        let melody = [];
+        let rec = r.split("\n").map(line => line.split(","));
+        for (let note of rec){  
+            melody.push({time: parseFloat(note[0])/1000,
+                         note: parseInt(note[1]),
+                         duration: parseFloat(note[2])/1000});
+        }
+        console.log(melody);
+        return melody;
     }
 
     const playRecording = () => {
-
         // logic to listen to recording
         // make sure people cant play the recording while ur still recording it
+        if (!isRecording) {
+            // The first step is always create an instrument:
+            Soundfont.instrument(props.audioContext, props.instrument)
+            .then(function (instrument) {
+                // Or schedule events at a given time
+                instrument.schedule(props.audioContext.currentTime,
+                                    _convertStringRecToArray(Bar.recording));
+            })
+        }
     }
 
     const handleUpload = () => {
