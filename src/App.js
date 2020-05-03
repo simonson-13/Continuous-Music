@@ -33,7 +33,11 @@ class App extends Component {
       showChat: false,
       usernameSet: false,
       username: "",
-      userCount: userCount
+      userCount: userCount,
+      userID: Math.floor((Math.random() * 10000)),
+      isRecording: false,
+      startTime: 0,
+      tempStr: "",
     };
     this.dbRef = firebase.database().ref();
   }
@@ -52,7 +56,7 @@ class App extends Component {
       }
     });
 
-    
+
     listRef.on('value', snap => {
       this.setState({
         userCount: snap.numChildren() - 1
@@ -89,6 +93,28 @@ class App extends Component {
     this.setState({
       showBar: !this.state.showBar
     })
+  }
+
+  handleIsRecording = (isRecording) => {
+    var d = new Date();
+    this.setState({
+      isRecording: isRecording,
+      startTime: d.getTime(),
+    })
+  }
+
+  handleTempStr = (toAppend) => {
+    if(toAppend == -1) {
+      this.setState({
+        tempStr: "",
+      });
+    } else if(toAppend == -2) {
+      return this.state.tempStr;
+    } else {
+      this.setState({
+        tempStr: (this.state.tempStr + toAppend),
+      });
+    }
   }
 
   handleChatChange = () => {
@@ -144,6 +170,10 @@ class App extends Component {
           instrument={this.state.instrument}
           //showPiano={this.state.showPiano}
           showPiano={this.state.showBar}
+          userID={this.state.userID}
+          isRecording={this.state.isRecording}
+          startTime={this.state.startTime}
+          tempStrFun={this.handleTempStr}
         />
 
         <Bar
@@ -151,6 +181,10 @@ class App extends Component {
           handleClickPiano={this.handleClickPiano}
           showBar={this.state.showBar}
           handleBarChange={this.handleBarChange}
+          isRecordingFun={this.handleIsRecording}
+          tempStrFun={this.handleTempStr}
+          tempStr={this.state.tempStr}
+          userID={this.state.userID}
         />
 
         <LivePlayBack

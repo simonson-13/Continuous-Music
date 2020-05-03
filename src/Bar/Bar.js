@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
         //width: 100 + theme.spacing(2),
     },
 
-    closeDrop: { 
+    closeDrop: {
        // marginTop: "-10vh",
         marginLeft: "-.5vw"
     },
@@ -41,12 +41,12 @@ const useStyles = makeStyles((theme) => ({
         color: "black"
     },
 
-    centerButtons: { 
+    centerButtons: {
         marginLeft: "auto",
         marginRight: "auto"
     },
 
-    button: { 
+    button: {
         margin: "0px 25px",
     }
 }));
@@ -54,34 +54,53 @@ const useStyles = makeStyles((theme) => ({
 export default function Bar (props) {
     const classes = useStyles();
     const [hasRecording, setHasRecording] = React.useState(false);
+    var isRecording = false;
+    var recording = "";
 
-    const handleDelete = () => { 
+    const handleDelete = () => {
         setHasRecording((prev) => !prev);
         // if in the middle of recording, stop recording b4 delete
 
         // logic to delete local recording
+        isRecording = false;
+        props.tempStrFun(-1); //resets the recording variable back in app.js to be empty
+        recording = "";
     }
 
-    const handleRecord = () => { 
-        // logic to record 
+    const handleRecordHelper = () => {
+      isRecording = !isRecording;
+      props.isRecordingFun(isRecording);
+
+      if(!isRecording){
+        recording = props.tempStrFun(-2);
+        props.tempStrFun(-1);
+        console.log(recording);
+      }
+    }
+
+    const handleRecord = () => {
+        // logic to record
         setHasRecording((prev) => !prev);
 
+        handleRecordHelper();
+        setTimeout(handleRecordHelper, 3000); //3 seconds to record
+
     }
 
-    const playRecording = () => { 
+    const playRecording = () => {
 
-        // logic to listen to recording 
+        // logic to listen to recording
         // make sure people cant play the recording while ur still recording it
     }
 
-    const handleUpload = () => { 
+    const handleUpload = () => {
 
-        // logic to listen to recording 
+        // logic to listen to recording
         // make sure people cant play the recording while ur still recording it
     }
 
-    const handleDownload = () => { 
-        // logic to download your recording 
+    const handleDownload = () => {
+        // logic to download your recording
     }
 
 
@@ -89,18 +108,18 @@ export default function Bar (props) {
         <div className={classes.root}>
             <div className={classes.wrapper}>
                 <Slide direction="up" in={props.showBar} mountOnEnter unmountOnExit>
-                    <AppBar className={classes.appBar} position="fixed" > 
-                        <Toolbar className={classes.toolbar}> 
-                            <Tooltip title="Close Toolbar" arrow> 
-                                <IconButton edge="start" className={classes.closeDrop} onClick={props.handleBarChange}> 
+                    <AppBar className={classes.appBar} position="fixed" >
+                        <Toolbar className={classes.toolbar}>
+                            <Tooltip title="Close Toolbar" arrow>
+                                <IconButton edge="start" className={classes.closeDrop} onClick={props.handleBarChange}>
                                     <KeyboardArrowDownIcon/>
                                 </IconButton>
                             </Tooltip>
-                            
+
                             <div className={classes.centerButtons}>
-                                <Tooltip title="Delete Recording" arrow> 
+                                <Tooltip title="Delete Recording" arrow>
                                     <span className={classes.button}>
-                                    <Button  
+                                    <Button
                                         variant="contained"
                                         size="large"
                                         onClick={handleDelete}
@@ -110,10 +129,10 @@ export default function Bar (props) {
                                     </Button>
                                     </span>
                                 </Tooltip>
-                                
+
                                 <Tooltip title="Record" arrow>
                                     <span className={classes.button}>
-                                    <Button  
+                                    <Button
                                         variant="contained"
                                         size="large"
                                         onClick={handleRecord}
@@ -126,7 +145,7 @@ export default function Bar (props) {
 
                                 <Tooltip title="Listen" arrow>
                                     <span className={classes.button}>
-                                    <Button  
+                                    <Button
                                         variant="contained"
                                         size="large"
                                         onClick={playRecording}
@@ -142,8 +161,8 @@ export default function Bar (props) {
                                 some kinda progress bar for recording
 
                                 <Tooltip title="Upload" arrow>
-                                    <span className={classes.button}> 
-                                    <Button  
+                                    <span className={classes.button}>
+                                    <Button
                                         variant="contained"
                                         size="large"
                                         onClick={handleUpload}
@@ -154,9 +173,9 @@ export default function Bar (props) {
                                     </span>
                                 </Tooltip>
 
-                                <Tooltip title="Download" arrow> 
+                                <Tooltip title="Download" arrow>
                                     <span className={classes.button}>
-                                    <Button  
+                                    <Button
                                         variant="contained"
                                         size="large"
                                         onClick={handleDownload}
@@ -167,9 +186,9 @@ export default function Bar (props) {
                                     </span>
                                 </Tooltip>
 
-                                {/* <Tooltip title="Toggle Piano" arrow> 
+                                {/* <Tooltip title="Toggle Piano" arrow>
                                     <span className={classes.button}>
-                                    <Button  
+                                    <Button
                                         variant="contained"
                                         size="large"
                                         onClick={props.handleClickPiano}

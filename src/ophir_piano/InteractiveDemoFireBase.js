@@ -33,6 +33,11 @@ class InteractiveDemoFireBase extends Component {
     this.dbRef = firebase.database().ref();
     let instName = this.props.instrument ? this.props.instrument : 'piano';
     this.dbLiveInstRef = this.dbRef.child('live').child(instName);
+
+    this.startTime = 0;
+    this.notes = [];
+    this.tempStr = "";
+    this.idNum = this.props.userID;
   }
 
   componentDidMount() {
@@ -81,12 +86,32 @@ class InteractiveDemoFireBase extends Component {
     this.dbLiveInstRef = this.dbRef.child('live').child(properToShortName[instName]);
     this.dbLiveInstRef.child(midiNumber).set(1);
     console.log(properToShortName[instName]);
+
+    //simon added
+    if (this.notes[midiNumber] == 0) {
+      var d = new Date();
+      this.notes[midiNumber] = d.getTime();
+    }
+    //end: simon added
   }
 
   onStopNoteInput = (midiNumber, { prevActiveNotes }) => {
     let instName = this.props.instrument ? this.props.instrument : 'piano';
     this.dbLiveInstRef = this.dbRef.child('live').child(properToShortName[instName]);
     this.dbLiveInstRef.child(midiNumber).set(0);
+
+    console.log(this.props.isRecording);
+    if (this.props.isRecording){
+      var d = new Date();
+
+      var timePassed = this.notes[midiNumber] - this.props.startTime;
+      var note = midiNumber;
+      var duration = d.getTime() - this.notes[midiNumber];
+
+      var tempStr = "" + timePassed + "," + note + "," + duration + "\n";
+      this.props.tempStrFun(tempStr); //appending to other existing notes
+    }
+    this.notes[midiNumber] = 0; //reset start time for note
   }
 
   render() {
@@ -101,7 +126,7 @@ class InteractiveDemoFireBase extends Component {
         audioContext={this.props.audioContext}
         instrumentName={this.props.instrument}
         hostname={this.props.soundfontHostname}
-        render={({ isLoading, playNote, stopNote, stopAllNotes }) => 
+        render={({ isLoading, playNote, stopNote, stopAllNotes }) =>
             (this.props.showPiano) ?
             (
               <div>
@@ -140,7 +165,7 @@ class InteractiveDemoFireBase extends Component {
                   </div>
                 </div>
               </div>
-            ) : 
+            ) :
             (
               <div>
 

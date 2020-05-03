@@ -32,18 +32,22 @@ class PianoApp extends Component {
   render() {
     return (
         <div
-          className="container" 
+          className="container"
           style={{color:"lightgray", fontWeight: "bold"}}>
           <div className="row mt-0">
             <div className="col-md-8 offset-md-2">
-              <InteractiveDemoFireBase 
-                audioContext={audioContext} 
+              <InteractiveDemoFireBase
+                audioContext={audioContext}
                 soundfontHostname={soundfontHostname}
-                instrument={this.props.instrument} 
-                showPiano={this.props.showPiano}  
+                instrument={this.props.instrument}
+                showPiano={this.props.showPiano}
+                userID={this.props.userID}
+                isRecording={this.props.isRecording}
+                startTime={this.props.startTime}
+                tempStrFun={this.props.tempStrFun}
               />
             </div>
-          </div>  
+          </div>
         </div>
     );
   }
