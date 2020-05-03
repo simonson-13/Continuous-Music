@@ -35,7 +35,8 @@ class InteractiveDemoFireBase extends Component {
     this.dbLiveInstRef = this.dbRef.child('live').child(instName);
 
     this.startTime = 0;
-    this.notes = [];
+    // this.notes = [];
+    this.notes = new Array(127).fill(0);
     this.tempStr = "";
     this.idNum = this.props.userID;
   }
