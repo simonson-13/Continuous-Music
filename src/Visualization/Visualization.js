@@ -60,6 +60,8 @@ export default function Visualization(props) {
                 </IconButton>
             </Tooltip>
 
+            <br/><br/>&nbsp;Users:&nbsp;{props.userCount}
+
             {/* TODO:
                 p5.js Sketch as Background tutorial: 
                     https://www.youtube.com/watch?v=OIfEHD3KqCg

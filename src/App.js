@@ -19,6 +19,11 @@ const soundfontHostname = 'https://d1pzp51pvbm36p.cloudfront.net';
 class App extends Component {
   constructor() {
     super()
+    // Get user count
+    let userCount = 0;
+    firebase.database().ref('/presence/').once('value', snap => {
+      userCount = snap.numChildren() - 1;
+    })
     this.state = {
       instrumentSelected: false,
       instrument: "",
@@ -28,7 +33,8 @@ class App extends Component {
       showChat: false,
       usernameSet: false,
       username: "",
-    }
+      userCount: userCount
+    };
     this.dbRef = firebase.database().ref();
   }
 
@@ -45,6 +51,13 @@ class App extends Component {
         userRef.set(true);
       }
     });
+
+    
+    listRef.on('value', snap => {
+      this.setState({
+        userCount: snap.numChildren() - 1
+      })
+    })
   }
 
   handleInstrumentClick(instrument) {
@@ -99,9 +112,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App" onbeforeunload="this.liveUserCountRef.once('value').then(snap =>{
-        this.liveUserCountRef.set(snap.val() - 1);
-      });">
+      <div className="App">
 
         <InstrumentSelection
           open={!this.state.instrumentSelected}
@@ -118,6 +129,7 @@ class App extends Component {
           openInfo={this.handleOpenInfo}
           handleBarChange={this.handleBarChange}
           handleChatChange={this.handleChatChange}
+          userCount={this.state.userCount}
         />
 
         <ChatDrawer
