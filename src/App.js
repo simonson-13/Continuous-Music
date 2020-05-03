@@ -8,6 +8,7 @@ import Bar from './Bar/Bar.js'
 import PianoDrawer from './PianoDrawer/PianoDrawer.js'
 import ChatDrawer from './ChatDrawer/ChatDrawer.js'
 import LivePlayBack from './ophir_piano/LivePlayBack.js';
+import * as firebase from 'firebase'; // import firebase!
 
 // webkitAudioContext fallback needed to support Safari
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -18,7 +19,6 @@ const soundfontHostname = 'https://d1pzp51pvbm36p.cloudfront.net';
 class App extends Component {
   constructor() {
     super()
-
     this.state = {
       instrumentSelected: false,
       instrument: "",
@@ -29,6 +29,22 @@ class App extends Component {
       usernameSet: false,
       username: "",
     }
+    this.dbRef = firebase.database().ref();
+  }
+
+  componentDidMount() {
+    var listRef = firebase.database().ref("/presence/");
+    var userRef = listRef.push();
+
+    // Add ourselves to presence list when online.
+    var presenceRef = firebase.database().ref("/.info/connected");
+    presenceRef.on("value", function(snap) {
+      if (snap.val()) {
+        // Remove ourselves when we disconnect.
+        userRef.onDisconnect().remove();
+        userRef.set(true);
+      }
+    });
   }
 
   handleInstrumentClick(instrument) {
@@ -83,7 +99,9 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App" onbeforeunload="this.liveUserCountRef.once('value').then(snap =>{
+        this.liveUserCountRef.set(snap.val() - 1);
+      });">
 
         <InstrumentSelection
           open={!this.state.instrumentSelected}
