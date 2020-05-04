@@ -1,0 +1,39 @@
+#myProgress {
+    position: relative;
+    width: 40%;
+    height: 30px;
+    background-color: #ddd;
+    border-radius: 50px;
+    border: 1px solid #333;
+    display: inline-block;
+    vertical-align: middle
+  }
+  
+  #myBar {
+    position: absolute;
+    width: 10%;
+    height: 100%;
+    background-color: #4CAF50;
+    border-radius: inherit;
+    /*transition: width .2s ease-in;*/
+  }
+  
+  #label {
+    text-align: center;
+    line-height: 30px;
+    color: white;
+  }
+.progress-bar {
+    position: relative;
+    height: 20px;
+    width: 350px;
+    border-radius: 50px;
+    border: 1px solid #333;
+  }
+  
+  .filler {
+    background: #1DA598;
+    height: 100%;
+    border-radius: inherit;
+    transition: width .2s ease-in;
+  }

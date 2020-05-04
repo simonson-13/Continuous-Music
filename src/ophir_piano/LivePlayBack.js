@@ -3,15 +3,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Soundfont from 'soundfont-player';
-import * as firebase from 'firebase'; // import firebase!
-
-const shortToProperName = {
-                            'piano':'acoustic_grand_piano',
-                            'cello':'cello',
-                            'guitar':'acoustic_guitar_nylon',
-                            'trumpet':'trumpet',
-                            'xylophone':'xylophone'
-                          };
 
 class LivePlayBack extends React.Component {
   static propTypes = {
@@ -36,20 +27,23 @@ class LivePlayBack extends React.Component {
       activeAudioNodes: {},
       instrument: null,
     };
-    this.dbRef = firebase.database().ref();
-    this.dbInstRef = this.dbRef.child('live').child(this.props.instrumentName);
   }
 
   componentDidMount() {
-    this.loadInstrument(shortToProperName[this.props.instrumentName]);
-    this.dbInstRef.on('value', snap => {
-      console.log('DB changed');
-      let liveNotesDB = snap.val();
-      for (let note=0; note < liveNotesDB.length; note++){
-        if (liveNotesDB[note] > 0) { // TODO: add check that only plays if note not already playing
-          this.playNote(note);
-        } else {
-          this.stopNote(note);
+    this.loadInstrument(this.props.instrumentName);
+    this.props.allUsersRef.on('child_changed', (snap, prevKey) => {
+      // only play this is the right instrument
+      if (snap.val().instrument === this.props.instrumentName){
+        // only play if the one playing IS NOT the current user
+        if (snap.key !== this.props.userHash){
+          let liveNotesDB = snap.val().midi;
+          for (let note=0; note < liveNotesDB.length; note++){
+            if (liveNotesDB[note] > 0) {  
+              this.playNote(note);
+            } else {
+              this.stopNote(note);
+            }
+          }
         }
       }
     });
