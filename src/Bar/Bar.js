@@ -94,7 +94,6 @@ export default function Bar (props) {
                          note: parseInt(note[1]),
                          duration: parseFloat(note[2])/1000});
         }
-        console.log(melody);
         return melody;
     }
 
