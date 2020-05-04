@@ -72,7 +72,7 @@ class InteractiveDemoFireBase extends Component {
 
   _removeActiveNote = (noteNum, arr) => {
     for (let i=0; i<this.activeNotes.length; i++){
-      if (this.activeNotes[i] == noteNum){
+      if (this.activeNotes[i] === noteNum){
         this.activeNotes.splice(i);
         return;
       }
@@ -102,7 +102,7 @@ class InteractiveDemoFireBase extends Component {
     this.props.userRef.child('midi').child(midiNumber).set(1);
     this.dbLiveInstRef.child(midiNumber).set(1);
     //simon added
-    if (this.notes[midiNumber] == 0) {
+    if (this.notes[midiNumber] === 0) {
       var d = new Date();
       this.notes[midiNumber] = d.getTime();
     }
@@ -140,8 +140,6 @@ class InteractiveDemoFireBase extends Component {
         instrumentName={this.props.instrument}
         hostname={this.props.soundfontHostname}
         render={({ isLoading, playNote, stopNote, stopAllNotes }) =>
-            (this.props.showPiano) ?
-            (
               <div>
                 <div className="mt-2">
                   <DimensionsProvider>
@@ -160,9 +158,9 @@ class InteractiveDemoFireBase extends Component {
                     )}
                   </DimensionsProvider>
                 </div>
-                <div className="row mt-3">
-                  <div className="col-lg-8 offset-lg-2">
-                    Selected Instrument: {this.props.instrument}
+                <div className="row mt-2">
+                  <div className="col-md-8 offset-md-2">
+                    <span><small>Selected Instrument: {this.props.instrument}</small></span>
 
                     <PianoConfig
                       config={this.state.config}
@@ -178,12 +176,6 @@ class InteractiveDemoFireBase extends Component {
                   </div>
                 </div>
               </div>
-            ) :
-            (
-              <div>
-
-              </div>
-            )
         }
       />]
     );

@@ -117,11 +117,11 @@ class App extends Component {
   }
 
   handleTempStr = (toAppend) => {
-    if(toAppend == -1) {
+    if(toAppend === -1) {
       this.setState({
         tempStr: "",
       });
-    } else if(toAppend == -2) {
+    } else if(toAppend === -2) {
       return this.state.tempStr;
     } else {
       this.setState({

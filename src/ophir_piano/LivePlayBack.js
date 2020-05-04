@@ -33,9 +33,9 @@ class LivePlayBack extends React.Component {
     this.loadInstrument(this.props.instrumentName);
     this.props.allUsersRef.on('child_changed', (snap, prevKey) => {
       // only play this is the right instrument
-      if (snap.val().instrument == this.props.instrumentName){
+      if (snap.val().instrument === this.props.instrumentName){
         // only play if the one playing IS NOT the current user
-        if (snap.key != this.props.userHash){
+        if (snap.key !== this.props.userHash){
           let liveNotesDB = snap.val().midi;
           for (let note=0; note < liveNotesDB.length; note++){
             if (liveNotesDB[note] > 0) {  

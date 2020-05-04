@@ -1,4 +1,5 @@
 import React from 'react';
+import ProgressBarContainer from '../ProgressBar/ProgressBarContainer'
 
 import {
     IconButton,
@@ -8,54 +9,54 @@ import {
     Button,
     Tooltip
 } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import DeleteIcon from '@material-ui/icons/Delete';
 import MicIcon from '@material-ui/icons/Mic';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import SendIcon from '@material-ui/icons/Send';
-import StraightenIcon from '@material-ui/icons/Straighten';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import Soundfont from 'soundfont-player'
 
-
-import { makeStyles } from '@material-ui/core/styles';
-
 const useStyles = makeStyles((theme) => ({
     root: {
-        justifyContent:"center"
+        justifyContent:"center",
+        width: "100%"
     },
     wrapper: {
         //width: 100 + theme.spacing(2),
+        width: "100%"
     },
 
     closeDrop: {
-       // marginTop: "-10vh",
         marginLeft: "-.5vw"
     },
 
     appBar: {
         top: 'auto',
         bottom: 0,
-        //height: "20vh",
         background: "white",
         color: "black"
     },
 
     centerButtons: {
         marginLeft: "auto",
-        marginRight: "auto"
+        marginRight: "auto",
+        width: "100%"
     },
 
     button: {
         margin: "0px 25px",
+        display: "inline-block",
+        verticalAlign: "middle"
     }
 }));
 
 export default function Bar (props) {
     const classes = useStyles();
     const [hasRecording, setHasRecording] = React.useState(false);
-    var isRecording = false;
+    const [isRecording, setIsRecording] = React.useState(false);
     var recording = "Hello OPHIR";
 
     const handleDelete = () => {
@@ -63,13 +64,13 @@ export default function Bar (props) {
         // if in the middle of recording, stop recording b4 delete
 
         // logic to delete local recording
-        isRecording = false;
+        setIsRecording(false);
         props.tempStrFun(-1); //resets the recording variable back in app.js to be empty
         Bar.recording = "";
     }
 
     const handleRecordHelper = () => {
-      isRecording = !isRecording;
+      setIsRecording((prev) => !prev);
       props.isRecordingFun(isRecording);
     
       if(!isRecording){
@@ -114,7 +115,7 @@ export default function Bar (props) {
     const handleUpload = () => {
         // logic to listen to handle upload click
         // make sure people cant upload an empty recording
-        if (recording != ""){
+        if (recording !== ""){
             //upload to user's database ref
         }
     }
@@ -178,7 +179,7 @@ export default function Bar (props) {
 
                                 {/* TODO: make button styling and hovertext better */}
 
-                                some kinda progress bar for recording
+                                <ProgressBarContainer isRecording={isRecording}/>
 
                                 <Tooltip title="Upload" arrow>
                                     <span className={classes.button}>
@@ -205,20 +206,7 @@ export default function Bar (props) {
                                     </Button>
                                     </span>
                                 </Tooltip>
-
-                                {/* <Tooltip title="Toggle Piano" arrow>
-                                    <span className={classes.button}>
-                                    <Button
-                                        variant="contained"
-                                        size="large"
-                                        onClick={props.handleClickPiano}
-                                    >
-                                        <StraightenIcon/>
-                                    </Button>
-                                    </span>
-                                </Tooltip> */}
                             </div>
-
                         </Toolbar>
                     </AppBar>
                 </Slide>
