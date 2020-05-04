@@ -83,7 +83,7 @@ export default function Bar (props) {
         setHasRecording((prev) => !prev);
 
         handleRecordHelper();
-        setTimeout(handleRecordHelper, 3000); //3 seconds to record
+        setTimeout(handleRecordHelper, 5000); //3 seconds to record
     }
 
     const _convertStringRecToArray = (r) => {
