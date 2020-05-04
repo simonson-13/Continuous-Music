@@ -120,6 +120,10 @@ export default class Sketch extends React.Component {
         stars[i].update();
           stars[i].show();
       }
+      for (var i = 0; i < (transparency*2)+50; i++) {
+        stars[i].update();
+          stars[i].show();
+      }
   
       p.push()
       p.translate(p.width/2, p.height/2)
@@ -183,7 +187,7 @@ export default class Sketch extends React.Component {
       }
       
       update() {
-        this.z = this.z - speed;
+        this.z = this.z - (transparency/20) - 5;
         if (this.z < 1) {
           this.z = p.width;
           this.x = p.random(-p.width, p.width);
@@ -199,14 +203,15 @@ export default class Sketch extends React.Component {
         var sx = p.map(this.x/this.z, 0, 1, 0, p.width);
         var sy = p.map(this.y/this.z, 0, 1, 0, p.height);
         var r = p.map(this.z, 0, p.width, 8, 0);
-        p.ellipse(sx, sy, r, r);    
+        p.triangle(sx-r/1.6, sy-r/1.6, sx+r/1.6, sy, sx, sy+r/1.6);
+        p.triangle(sx+r/1.6, sy+r/1.6, sx+r/1.6, sy, sx, sy+r/1.6);    
         
         var px = p.map(this.x/this.pz, 0, 1, 0, p.width);
         var py = p.map(this.y/this.pz, 0, 1, 0, p.height);
         this.pz = this.z;
         
         p.stroke(255);
-        p.line(px, py, sx, sy);
+        //p.line(px, py, sx, sy);
       }
     }
 
