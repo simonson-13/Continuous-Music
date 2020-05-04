@@ -21,6 +21,7 @@ export default class PianoDrawer extends Component {
                     isRecording={this.props.isRecording}
                     startTime={this.props.startTime}
                     tempStrFun={this.props.tempStrFun}
+                    userRef={this.props.userRef}
                 />
             </Drawer>
         )
