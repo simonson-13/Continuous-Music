@@ -113,9 +113,11 @@ export default function Bar (props) {
     }
 
     const handleUpload = () => {
-
-        // logic to listen to recording
-        // make sure people cant play the recording while ur still recording it
+        // logic to listen to handle upload click
+        // make sure people cant upload an empty recording
+        if (recording != ""){
+            //upload to user's database ref
+        }
     }
 
     const handleDownload = () => {

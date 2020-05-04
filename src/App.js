@@ -31,6 +31,9 @@ class App extends Component {
       showPiano: false,
       showBar: false,
       showChat: false,
+      userRef: null,
+      userHash: null,
+      allUsersRef: firebase.database().ref("/presence/"),
       usernameSet: false,
       username: "",
       userCount: userCount,
@@ -42,9 +45,16 @@ class App extends Component {
     this.dbRef = firebase.database().ref();
   }
 
-  componentDidMount() {
-    var listRef = firebase.database().ref("/presence/");
-    var userRef = listRef.push();
+  // Set up user's entry on database
+  componentWillMount() {
+    var listRef = firebase.database().ref("/presence/"); 
+    var userRef = listRef.push(); // create a user
+    // update our state
+    this.setState({
+      userRef: userRef,
+      allUsersRef: listRef,
+      userHash: userRef.key
+    });
 
     // Add ourselves to presence list when online.
     var presenceRef = firebase.database().ref("/.info/connected");
@@ -52,11 +62,12 @@ class App extends Component {
       if (snap.val()) {
         // Remove ourselves when we disconnect.
         userRef.onDisconnect().remove();
-        userRef.set(true);
+        // create array of midi notes in user's entry in database
+        userRef.child('midi').set(Array(128).fill(0));
       }
     });
 
-
+    // Set event handler for our userCount
     listRef.on('value', snap => {
       this.setState({
         userCount: snap.numChildren() - 1
@@ -69,6 +80,8 @@ class App extends Component {
       instrumentSelected: true,
       instrument: instrument
     })
+    // Set user's instrument on their database entry
+    this.state.userRef.child('instrument').set(instrument);
   }
 
   handleOpenInfo = () => {
@@ -171,6 +184,7 @@ class App extends Component {
           //showPiano={this.state.showPiano}
           showPiano={this.state.showBar}
           userID={this.state.userID}
+          userRef={this.state.userRef}
           isRecording={this.state.isRecording}
           startTime={this.state.startTime}
           tempStrFun={this.handleTempStr}
@@ -191,28 +205,37 @@ class App extends Component {
 
         <LivePlayBack
           audioContext={audioContext}
-          instrumentName={'piano'}
+          instrumentName={'acoustic_grand_piano'}
           hostname={soundfontHostname}
+          userHash={this.state.userHash}
+          allUsersRef={this.state.allUsersRef}
         />
         <LivePlayBack
           audioContext={audioContext}
           instrumentName={'cello'}
           hostname={soundfontHostname}
+          userHash={this.state.userHash}
+          allUsersRef={this.state.allUsersRef}
         />
         <LivePlayBack
           audioContext={audioContext}
           instrumentName={'trumpet'}
           hostname={soundfontHostname}
+          userHash={this.state.userHash}
+          allUsersRef={this.state.allUsersRef}
         />
         <LivePlayBack
           audioContext={audioContext}
-          instrumentName={'guitar'}
+          instrumentName={'acoustic_guitar_nylon'}
           hostname={soundfontHostname}
+          userHash={this.state.userHash}
+          allUsersRef={this.state.allUsersRef}
         />
         <LivePlayBack
           audioContext={audioContext}
           instrumentName={'xylophone'}
-          hostname={soundfontHostname}
+          userHash={this.state.userHash}
+          allUsersRef={this.state.allUsersRef}
         />
       </div>
     );
