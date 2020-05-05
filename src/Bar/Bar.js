@@ -57,7 +57,8 @@ export default function Bar (props) {
     const classes = useStyles();
     const [hasRecording, setHasRecording] = React.useState(false);
     const [isRecording, setIsRecording] = React.useState(false);
-    var recording = "Hello OPHIR";
+    var isRecordingFlag = false;
+    var recording = "";
 
     const handleDelete = () => {
         setHasRecording((prev) => !prev);
@@ -65,15 +66,17 @@ export default function Bar (props) {
 
         // logic to delete local recording
         setIsRecording(false);
+        isRecordingFlag = false;
         props.tempStrFun(-1); //resets the recording variable back in app.js to be empty
         Bar.recording = "";
     }
 
     const handleRecordHelper = () => {
       setIsRecording((prev) => !prev);
-      props.isRecordingFun(isRecording);
+      isRecordingFlag = !isRecordingFlag;
+      props.isRecordingFun(isRecordingFlag);
     
-      if(!isRecording){
+      if(!isRecordingFlag){
         Bar.recording = props.tempStrFun(-2);
         props.tempStrFun(-1);
       }
@@ -101,7 +104,7 @@ export default function Bar (props) {
     const playRecording = () => {
         // logic to listen to recording
         // make sure people cant play the recording while ur still recording it
-        if (!isRecording) {
+        if (!isRecordingFlag) {
             // The first step is always create an instrument:
             Soundfont.instrument(props.audioContext, props.instrument)
             .then(function (instrument) {
