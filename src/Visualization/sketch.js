@@ -24,17 +24,14 @@ export default class Sketch extends React.Component {
   }
 
   Sketch = (p) => {
-
+    var startValue = 0;
     var stars = [];
     var speed = 5;
-    //var noiseScale = 0;
-
     const triangleNum = 5;
     var noiseAngleTimes = 5;
     var transparency = 0;
     var noiseScale = 0.006;
     let rotVertexes = [];
-    let playing = true;
     let color = ["#C05021", "#FFBA08", "#20A440", "#2F7ED3", "#D79FE1"];
     let colrgb = [[192,80,33],[225,186,8],[32,164,64],[47,126,211],[215,159,225]];
 
@@ -43,6 +40,8 @@ export default class Sketch extends React.Component {
       canvas.position(0, 0);
       canvas.style('z-index', '-1');
       //var star = new Star();
+      p.colorMode(p.HSB,100);
+      p.noStroke();
       this.livePianoRef.on('value', snap => {
         this.pianoMidiNotes = snap.val();
         noiseScale = this.pianoMidiNotes.reduce((total,num) => total+num)/5000+.0015;
@@ -103,13 +102,14 @@ export default class Sketch extends React.Component {
         }
       });
       
+      
     
-      for (var i = 0; i < 1600; i++) {
+      for (var i = 0; i < 400; i++) {
           stars[i] = new Star();
       }
       
    
-      p.colorMode(p.RGB, 255, 255, 255, 255)
+      //p.colorMode(p.RGB, 255, 255, 255, 255)
 
       p.strokeWeight(2)
       p.strokeJoin(p.ROUND)
@@ -119,10 +119,23 @@ export default class Sketch extends React.Component {
 
     p.draw = () => {
       p.background(0);
+
+      for (var iter = 0; iter<=p.width; iter+=5){
+        p.fill((startValue+iter/30)%100,50,100);
+        p.rect(iter,0,5,p.height);
+      }
+      startValue+=0.1;
+      startValue%=100;
+
       for (var i = 0; i < stars.length; i++) {
         stars[i].update();
           stars[i].show();
       }
+      for (var i = 0; i < (transparency*2)+50; i++) {
+        stars[i].update();
+          stars[i].show();
+      }
+
   
       p.push()
       p.translate(p.width/2, p.height/2)
@@ -158,8 +171,11 @@ export default class Sketch extends React.Component {
         p.vertex(miniVecs[i].x, miniVecs[i].y)
         p.vertex(vecs[i].x, vecs[i].y)
         p.vertex(vecs[(i+1)%3].x, vecs[(i+1)%3].y)
-        p.stroke(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2])
-        p.fill(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2], transparency)
+        p.stroke(255)
+        p.strokeWeight(p.random(p.noiseProg/7));
+        p.fill(255, 20)
+        // p.stroke(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2])
+        // p.fill(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2], transparency)
         p.endShape(p.CLOSE)
       }
       for(let i=0; i<3; i++) {
@@ -167,13 +183,15 @@ export default class Sketch extends React.Component {
         p.vertex(center.x, center.y)
         p.vertex(miniVecs[i].x, miniVecs[i].y)
         p.vertex(vecs[(i+1)%3].x, vecs[(i+1)%3].y)
-        p.stroke(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2])
-        p.fill(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2], transparency)
+        p.stroke(255)
+        p.fill(0,0,0, 20)
+        // p.stroke(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2])
+        // p.fill(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2], transparency)
         p.endShape(p.CLOSE)
       }
     
       p.triangle(vec1.x, vec1.y, vec2.x, vec2.y, vec3.x, vec3.y)
-      
+      p.fill(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2], transparency)
     }
 
     class Star {
@@ -186,13 +204,28 @@ export default class Sketch extends React.Component {
       }
       
       update() {
-        this.z = this.z - speed;
+        this.z = this.z - (transparency/18) - 5;
         if (this.z < 1) {
           this.z = p.width;
           this.x = p.random(-p.width, p.width);
           this.y = p.random(-p.height, p.height);
           this.pz = this.z;
         }
+      }
+      star(x, y, radius1, radius2, npoints) {
+        var angle = p.TWO_PI / npoints;
+        var halfAngle = angle / 2.0;
+        p.beginShape();
+        for (let a = 0; a < p.TWO_PI; a += angle) {
+          let sx = x + p.cos(a) * radius2;
+          let sy = y + p.sin(a) * radius2;
+          p.vertex(sx, sy);
+          sx = x + p.cos(a + halfAngle) * radius1;
+          sy = y + p.sin(a + halfAngle) * radius1;
+          p.vertex(sx, sy);
+        }
+
+        p.endShape(p.CLOSE);
       }
       
       show() {
@@ -202,14 +235,15 @@ export default class Sketch extends React.Component {
         var sx = p.map(this.x/this.z, 0, 1, 0, p.width);
         var sy = p.map(this.y/this.z, 0, 1, 0, p.height);
         var r = p.map(this.z, 0, p.width, 8, 0);
-        p.ellipse(sx, sy, r, r);    
-        
+        p.triangle(sx-r/1.6, sy-r/1.6, sx+r/1.6, sy, sx, sy+r/1.6);
+        p.triangle(sx+r/1.6, sy+r/1.6, sx+r/1.6, sy, sx, sy+r/1.6);    
+        this.star(sx, sy, r, r/2,10); 
         var px = p.map(this.x/this.pz, 0, 1, 0, p.width);
         var py = p.map(this.y/this.pz, 0, 1, 0, p.height);
         this.pz = this.z;
         
         p.stroke(255);
-        p.line(px, py, sx, sy);
+        //p.line(px, py, sx, sy);
       }
     }
 
