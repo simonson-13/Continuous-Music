@@ -19,6 +19,8 @@ import SendIcon from '@material-ui/icons/Send';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import Soundfont from 'soundfont-player'
 
+import * as firebase from 'firebase'; // import firebase!
+
 const useStyles = makeStyles((theme) => ({
     root: {
         justifyContent:"center",
@@ -59,6 +61,7 @@ export default function Bar (props) {
     const [isRecording, setIsRecording] = React.useState(false);
     var isRecordingFlag = false;
     var recording = "";
+    var uploaded = false;
 
     const handleDelete = () => {
         setHasRecording((prev) => !prev);
@@ -69,13 +72,14 @@ export default function Bar (props) {
         isRecordingFlag = false;
         props.tempStrFun(-1); //resets the recording variable back in app.js to be empty
         Bar.recording = "";
+        uploaded = false;
     }
 
     const handleRecordHelper = () => {
       setIsRecording((prev) => !prev);
       isRecordingFlag = !isRecordingFlag;
       props.isRecordingFun(isRecordingFlag);
-    
+
       if(!isRecordingFlag){
         Bar.recording = props.tempStrFun(-2);
         props.tempStrFun(-1);
@@ -87,13 +91,13 @@ export default function Bar (props) {
         setHasRecording((prev) => !prev);
 
         handleRecordHelper();
-        setTimeout(handleRecordHelper, 5000); //3 seconds to record
+        setTimeout(handleRecordHelper, 5000); //5 seconds to record
     }
 
     const _convertStringRecToArray = (r) => {
         let melody = [];
         let rec = r.split("\n").map(line => line.split(","));
-        for (let note of rec){  
+        for (let note of rec){
             melody.push({time: parseFloat(note[0])/1000,
                          note: parseInt(note[1]),
                          duration: parseFloat(note[2])/1000});
@@ -118,8 +122,10 @@ export default function Bar (props) {
     const handleUpload = () => {
         // logic to listen to handle upload click
         // make sure people cant upload an empty recording
-        if (recording !== ""){
+        if (Bar.recording !== "" && !uploaded){
             //upload to user's database ref
+            var temp = firebase.database().ref("recs").push().set(Bar.recording);
+            uploaded = true;
         }
     }
 
