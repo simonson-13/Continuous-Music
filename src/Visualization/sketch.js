@@ -34,7 +34,7 @@ export default class Sketch extends React.Component {
     let noiseProg = (x) => (x);
     //var color = ["#C05021", "#FFBA08", "#20A440", "#2F7ED3", "#D79FE1"];
     var colrgb = [[192,80,33],[225,186,8],[32,164,64],[47,126,211],[215,159,225]];
-    var serial;
+    //var serial;
     var particles = []
     var a = 0;
     var s = 0;
@@ -165,8 +165,8 @@ export default class Sketch extends React.Component {
         rotVertexes[i].update(p.frameCount)
       }
 
-      if (p.mouseIsPressed == true){
-        if (p.inRange()){
+      if (p.mouseIsPressed === true){
+        if (inRange()){
             a = a + 0.04;
             s = p.cos(a) * 2;
             p.push();
@@ -177,7 +177,7 @@ export default class Sketch extends React.Component {
             p.triangle(0, 20, -20, -20, 20, -20);
             //rect(30, 20, 50, 50);
             
-          if (p.mouseIsPressed == false){
+          if (p.mouseIsPressed === false){
               
               p.pop();
               pressed = false;
