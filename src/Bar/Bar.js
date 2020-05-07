@@ -61,6 +61,7 @@ export default function Bar (props) {
     const [isRecording, setIsRecording] = React.useState(false);
     var isRecordingFlag = false;
     var recording = "";
+    var counter = 0;
     var uploaded = false;
 
     const handleDelete = () => {
@@ -119,13 +120,39 @@ export default function Bar (props) {
         }
     }
 
+    const removeUpload = (ref) => {
+      ref.remove();
+    }
+
     const handleUpload = () => {
         // logic to listen to handle upload click
         // make sure people cant upload an empty recording
         if (Bar.recording !== "" && !uploaded){
-            //upload to user's database ref
-            var temp = firebase.database().ref("recs").push().set(Bar.recording);
-            uploaded = true;
+          //upload to user's database ref
+          var tempRef = firebase.database().ref("recs").push();
+          tempRef.set(Bar.recording);
+          uploaded = true;
+
+          //get number of recordings
+          var numRecs = firebase.database().ref("recs").once("value").then(function(snapshot){
+            return snapshot.numChildren();
+          });
+
+          // if (true) {
+          //   firebase.database().ref("recs").once("value").then(function(snapshot){
+          //     counter = 0;
+          //     snapshot.forEach(function(childSnapshot){
+          //       if(counter == 0) {
+          //         // firebase.database().ref("recs").child(childSnapshot.key).remove();
+          //         firebase.database().ref("recs").child(childSnapshot.key).remove();
+          //         counter = counter + 1;
+          //       }
+          //     });
+          //   });
+          // }
+
+          //playback for 10 seconds on database before removal
+          setTimeout(function(){ removeUpload(tempRef);}, 10000);
         }
     }
 
