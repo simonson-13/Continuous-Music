@@ -26,14 +26,21 @@ export default class Sketch extends React.Component {
   Sketch = (p) => {
     var startValue = 0;
     var stars = [];
-    var speed = 5;
-    const triangleNum = 5;
+    var triangleNum = 5;
     var noiseAngleTimes = 5;
     var transparency = 0;
     var noiseScale = 0.006;
-    let rotVertexes = [];
-    let color = ["#C05021", "#FFBA08", "#20A440", "#2F7ED3", "#D79FE1"];
-    let colrgb = [[192,80,33],[225,186,8],[32,164,64],[47,126,211],[215,159,225]];
+    var rotVertexes = [];
+    let noiseProg = (x) => (x);
+    //var color = ["#C05021", "#FFBA08", "#20A440", "#2F7ED3", "#D79FE1"];
+    var colrgb = [[192,80,33],[225,186,8],[32,164,64],[47,126,211],[215,159,225]];
+    var serial;
+    var particles = []
+    var a = 0;
+    var s = 0;
+    var count = 0;
+    var redrw = 0;
+    var pressed = false;
 
     p.setup = () => {
       let canvas = p.createCanvas(this.props.width, this.props.height);
@@ -104,8 +111,11 @@ export default class Sketch extends React.Component {
       
       
     
-      for (var i = 0; i < 400; i++) {
-          stars[i] = new Star();
+      for (let i = 0; i < 400; i++) {
+        stars[i] = new Star();
+      }
+      for (let i = 0; i < 10; i++) {
+        particles[i] = new Clickable();
       }
       
    
@@ -127,15 +137,17 @@ export default class Sketch extends React.Component {
       startValue+=0.1;
       startValue%=100;
 
-      for (var i = 0; i < stars.length; i++) {
+      for (let i = 0; i < stars.length; i++) {
         stars[i].update();
           stars[i].show();
       }
-      for (var i = 0; i < (transparency*2)+50; i++) {
+      for (let i = 0; i < (transparency*2)+50; i++) {
         stars[i].update();
           stars[i].show();
       }
-
+      for (let i=0; i<particles.length; i++){
+        particles[i].drawNow();
+      }
   
       p.push()
       p.translate(p.width/2, p.height/2)
@@ -152,7 +164,39 @@ export default class Sketch extends React.Component {
       for(let i=0; i<rotVertexes.length; i++) {
         rotVertexes[i].update(p.frameCount)
       }
+
+      if (p.mouseIsPressed == true){
+        if (p.inRange()){
+            a = a + 0.04;
+            s = p.cos(a) * 2;
+            p.push();
+            p.translate(redrw.x+30, redrw.y-30);
+            //applyMatrix(1 / step, 0, 0, 1 / step, 0, 0);
+            p.scale(7);
+            p.fill(51);
+            p.triangle(0, 20, -20, -20, 20, -20);
+            //rect(30, 20, 50, 50);
+            
+          if (p.mouseIsPressed == false){
+              
+              p.pop();
+              pressed = false;
+              redrw = 0;
+              count = 0;
+          }
+        } 
+      }
     }
+
+    function inRange(){
+      for (let i = 0; i < 10; i++) {
+        if (p.mouseX>=particles[i].x && p.mouseX<=particles[i].x+20 && p.mouseY>=particles[i].y-20 && p.mouseY<=particles[i].y){
+          redrw = particles[i];
+          return true;
+        }
+      }
+    }      
+    
 
     function drawTriangle(vec1, vec2, vec3, n) {
       let center = p5.Vector.add(vec1, vec2)
@@ -172,7 +216,7 @@ export default class Sketch extends React.Component {
         p.vertex(vecs[i].x, vecs[i].y)
         p.vertex(vecs[(i+1)%3].x, vecs[(i+1)%3].y)
         p.stroke(255)
-        p.strokeWeight(p.random(p.noiseProg/7));
+        p.strokeWeight(p.random(noiseProg/7));
         p.fill(255, 20)
         // p.stroke(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2])
         // p.fill(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2], transparency)
@@ -235,14 +279,12 @@ export default class Sketch extends React.Component {
         var sx = p.map(this.x/this.z, 0, 1, 0, p.width);
         var sy = p.map(this.y/this.z, 0, 1, 0, p.height);
         var r = p.map(this.z, 0, p.width, 8, 0);
-        p.triangle(sx-r/1.6, sy-r/1.6, sx+r/1.6, sy, sx, sy+r/1.6);
-        p.triangle(sx+r/1.6, sy+r/1.6, sx+r/1.6, sy, sx, sy+r/1.6);    
         this.star(sx, sy, r, r/2,10); 
         var px = p.map(this.x/this.pz, 0, 1, 0, p.width);
         var py = p.map(this.y/this.pz, 0, 1, 0, p.height);
         this.pz = this.z;
         
-        p.stroke(255);
+        //p.stroke(255);
         //p.line(px, py, sx, sy);
       }
     }
@@ -267,6 +309,25 @@ export default class Sketch extends React.Component {
         let x = this.center.x + this.radius*p.cos(this.initAngle + this.clockWise * rotRatio*p.TWO_PI)
         let y = this.center.y + this.radius*p.sin(this.initAngle + this.clockWise * rotRatio*p.TWO_PI)
         return p.createVector(x, y)
+      }
+    }
+    class Clickable {
+      constructor(){
+      this.x = p.random(p.windowWidth);
+      this.y = p.random(p.windowHeight-200);
+      }
+      
+      drawNow(){
+        p.noStroke();
+        p.fill(255,p.random(100));
+        p.push();
+        p.translate(this.x,this.y);
+        p.rotate(p.frameCount*0.1);
+        p.triangle(0, 20, -20, -20, 20, -20);
+        p.pop();
+        
+        // frameRate(1);
+        
       }
     }
   }
