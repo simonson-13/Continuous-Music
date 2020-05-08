@@ -67,6 +67,7 @@ export default function Visualization(props) {
                     <Sketch
                         width={containerWidth}
                         height={containerHeight}
+                        userCount={props.userCount}
                     />
                 )}
             </DimensionsProvider>
