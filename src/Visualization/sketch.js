@@ -179,11 +179,12 @@ export default class Sketch extends React.Component {
             //rect(30, 20, 50, 50);
             
           if (p.mouseIsPressed === false){
-              
-              p.pop();
-              pressed = false;
-              redrw = 0;
-              count = 0;
+              if (p.mouseIsPressed === true){
+                p.pop();
+                pressed = false;
+                redrw = 0;
+                count = 0;
+              }
           }
         } 
       }
@@ -191,7 +192,7 @@ export default class Sketch extends React.Component {
 
     function inRange(){
       for (let i = 0; i < 10; i++) {
-        if (p.mouseX>=particles[i].x && p.mouseX<=particles[i].x+20 && p.mouseY>=particles[i].y-20 && p.mouseY<=particles[i].y){
+        if (p.mouseX>=particles[i].x-20 && p.mouseX<=particles[i].x+20 && p.mouseY>=particles[i].y-20 && p.mouseY<=particles[i].y+20){
           redrw = particles[i];
           return true;
         }
