@@ -175,6 +175,7 @@ export default class Sketch extends React.Component {
             p.scale(7);
             p.fill(51);
             p.triangle(0, 20, -20, -20, 20, -20);
+            
             //rect(30, 20, 50, 50);
             
           if (p.mouseIsPressed === false){
