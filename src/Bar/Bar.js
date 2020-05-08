@@ -19,6 +19,8 @@ import SendIcon from '@material-ui/icons/Send';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import Soundfont from 'soundfont-player'
 
+import * as firebase from 'firebase'; // import firebase!
+
 const useStyles = makeStyles((theme) => ({
     root: {
         justifyContent:"center",
@@ -57,7 +59,10 @@ export default function Bar (props) {
     const classes = useStyles();
     const [hasRecording, setHasRecording] = React.useState(false);
     const [isRecording, setIsRecording] = React.useState(false);
-    var recording = "Hello OPHIR";
+    var isRecordingFlag = false;
+    var recording = "";
+    var counter = 0;
+    var uploaded = false;
 
     const handleDelete = () => {
         setHasRecording((prev) => !prev);
@@ -65,15 +70,18 @@ export default function Bar (props) {
 
         // logic to delete local recording
         setIsRecording(false);
+        isRecordingFlag = false;
         props.tempStrFun(-1); //resets the recording variable back in app.js to be empty
         Bar.recording = "";
+        uploaded = false;
     }
 
     const handleRecordHelper = () => {
       setIsRecording((prev) => !prev);
-      props.isRecordingFun(isRecording);
-    
-      if(!isRecording){
+      isRecordingFlag = !isRecordingFlag;
+      props.isRecordingFun(isRecordingFlag);
+
+      if(!isRecordingFlag){
         Bar.recording = props.tempStrFun(-2);
         props.tempStrFun(-1);
       }
@@ -84,13 +92,13 @@ export default function Bar (props) {
         setHasRecording((prev) => !prev);
 
         handleRecordHelper();
-        setTimeout(handleRecordHelper, 5000); //3 seconds to record
+        setTimeout(handleRecordHelper, 5000); //5 seconds to record
     }
 
     const _convertStringRecToArray = (r) => {
         let melody = [];
         let rec = r.split("\n").map(line => line.split(","));
-        for (let note of rec){  
+        for (let note of rec){
             melody.push({time: parseFloat(note[0])/1000,
                          note: parseInt(note[1]),
                          duration: parseFloat(note[2])/1000});
@@ -101,7 +109,7 @@ export default function Bar (props) {
     const playRecording = () => {
         // logic to listen to recording
         // make sure people cant play the recording while ur still recording it
-        if (!isRecording) {
+        if (!isRecordingFlag) {
             // The first step is always create an instrument:
             Soundfont.instrument(props.audioContext, props.instrument)
             .then(function (instrument) {
@@ -112,11 +120,39 @@ export default function Bar (props) {
         }
     }
 
+    const removeUpload = (ref) => {
+      ref.remove();
+    }
+
     const handleUpload = () => {
         // logic to listen to handle upload click
         // make sure people cant upload an empty recording
-        if (recording !== ""){
-            //upload to user's database ref
+        if (Bar.recording !== "" && !uploaded){
+          //upload to user's database ref
+          var tempRef = firebase.database().ref("recs").push();
+          tempRef.set(Bar.recording);
+          uploaded = true;
+
+          //get number of recordings
+          var numRecs = firebase.database().ref("recs").once("value").then(function(snapshot){
+            return snapshot.numChildren();
+          });
+
+          // if (true) {
+          //   firebase.database().ref("recs").once("value").then(function(snapshot){
+          //     counter = 0;
+          //     snapshot.forEach(function(childSnapshot){
+          //       if(counter == 0) {
+          //         // firebase.database().ref("recs").child(childSnapshot.key).remove();
+          //         firebase.database().ref("recs").child(childSnapshot.key).remove();
+          //         counter = counter + 1;
+          //       }
+          //     });
+          //   });
+          // }
+
+          //playback for 10 seconds on database before removal
+          setTimeout(function(){ removeUpload(tempRef);}, 10000);
         }
     }
 
