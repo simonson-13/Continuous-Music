@@ -8,12 +8,12 @@ import Bar from './Bar/Bar.js'
 import PianoDrawer from './PianoDrawer/PianoDrawer.js'
 import ChatDrawer from './ChatDrawer/ChatDrawer.js'
 import LivePlayBack from './ophir_piano/LivePlayBack.js';
+import LiveLoop from './ophir_piano/LiveLoop.js';
 import * as firebase from 'firebase'; // import firebase!
 
 // webkitAudioContext fallback needed to support Safari
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 const soundfontHostname = 'https://d1pzp51pvbm36p.cloudfront.net';
-
 
 
 class App extends Component {
@@ -236,6 +236,10 @@ class App extends Component {
           instrumentName={'xylophone'}
           userHash={this.state.userHash}
           allUsersRef={this.state.allUsersRef}
+        />
+
+        <LiveLoop
+          audioContext={audioContext}
         />
       </div>
     );
