@@ -2,6 +2,7 @@
 import React from 'react';
 import p5 from 'p5';
 import 'p5/lib/addons/p5.sound.js';
+import Soundfont from 'soundfont-player';
 import * as firebase from 'firebase'; // import firebase!
 
 export default class Sketch extends React.Component {
@@ -9,6 +10,7 @@ export default class Sketch extends React.Component {
     super(props)
     this.myRef = React.createRef()
     this.dbRef = firebase.database().ref();
+    this.recsRef = this.dbRef.child('recs');
     
     this.livePianoRef = this.dbRef.child('live').child('piano');
     this.liveCelloRef = this.dbRef.child('live').child('cello');
@@ -191,6 +193,26 @@ export default class Sketch extends React.Component {
       }
     }
 
+    // If mouse was clicked
+    p.mouseClicked = () => {
+      if (inRange()){
+        // Play Random recordin
+        this.recsRef.once('value', snap => {
+          let idx = 0;
+          let rand_num = Math.floor(Math.random() * 10);
+          let rec = "";
+          let recsDict = snap.val();
+          for (let key in recsDict){
+            if (idx === rand_num){
+              rec += recsDict[key]
+            }
+            idx++
+          }
+          this.playRecording(rec)
+        })
+      }
+    }
+
     function inRange(){
       for (let i = 0; i < 10; i++) {
         if (p.mouseX>=particles[i].x-20 && p.mouseX<=particles[i].x+20 && p.mouseY>=particles[i].y-20 && p.mouseY<=particles[i].y+20){
@@ -337,6 +359,29 @@ export default class Sketch extends React.Component {
 
   componentDidMount() {
     this.myP5 = new p5(this.Sketch, this.myRef.current)
+  }
+
+  _convertStringRecToArray = (r) => {
+    let melody = [];
+    let rec = r.split("\n").map(line => line.split(","));
+    for (let note of rec){
+        melody.push({time: parseFloat(note[0])/1000,
+                    note: parseInt(note[1]),
+                    duration: parseFloat(note[2])/1000});
+    }
+    return melody;
+  }
+
+  playRecording = (rec) => {
+    var props = this.props;
+    var _convertStringRecToArray = this._convertStringRecToArray;
+    // The first step is always create an instrument:
+    Soundfont.instrument(this.props.audioContext, 'acoustic_grand_piano')
+    .then(function (instrument) {
+        // Or schedule events at a given time
+        instrument.schedule(props.audioContext.currentTime,
+                            _convertStringRecToArray(rec));
+    })
   }
 
   render() {

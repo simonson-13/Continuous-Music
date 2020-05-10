@@ -68,6 +68,7 @@ export default function Visualization(props) {
                         width={containerWidth}
                         height={containerHeight}
                         userCount={props.userCount}
+                        audioContext={props.audioContext}
                     />
                 )}
             </DimensionsProvider>

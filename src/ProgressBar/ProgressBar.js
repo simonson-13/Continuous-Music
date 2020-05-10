@@ -25,7 +25,6 @@ export default class ProgressBar extends Component {
                 progress: prevState.progress + this.state.speed,
                 color: "#" + this.red() + this.green() + "50"
             }));
-            console.log(this.state.color);
         }
     }
 

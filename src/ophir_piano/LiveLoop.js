@@ -40,11 +40,9 @@ class LiveLoop extends React.Component {
                     this.recsRef.once('value', snap => {
                         let all_recs = "";
                         let recsDict = snap.val();
-                        console.log('recsDict',recsDict)
                         for (let key in recsDict){
                             all_recs += recsDict[key]
                         }
-                        console.log('all_recs', all_recs)
                         this.playRecording(all_recs)
                     })
                 }

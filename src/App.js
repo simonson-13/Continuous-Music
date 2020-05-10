@@ -169,6 +169,7 @@ class App extends Component {
           handleBarChange={this.handleBarChange}
           handleChatChange={this.handleChatChange}
           userCount={this.state.userCount}
+          audioContext={audioContext}
         />
 
         <ChatDrawer
