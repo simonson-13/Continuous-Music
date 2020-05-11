@@ -2,6 +2,7 @@
 import React from 'react';
 import p5 from 'p5';
 import 'p5/lib/addons/p5.sound.js';
+import Soundfont from 'soundfont-player';
 import * as firebase from 'firebase'; // import firebase!
 
 export default class Sketch extends React.Component {
@@ -9,6 +10,7 @@ export default class Sketch extends React.Component {
     super(props)
     this.myRef = React.createRef()
     this.dbRef = firebase.database().ref();
+    this.recsRef = this.dbRef.child('recs');
     
     this.livePianoRef = this.dbRef.child('live').child('piano');
     this.liveCelloRef = this.dbRef.child('live').child('cello');
@@ -24,25 +26,31 @@ export default class Sketch extends React.Component {
   }
 
   Sketch = (p) => {
-
+    var startValue = 0;
     var stars = [];
-    var speed = 5;
-    //var noiseScale = 0;
-
-    const triangleNum = 5;
+    var triangleNum = 5;  //var triangleNum = this.props.userCount;
     var noiseAngleTimes = 5;
     var transparency = 0;
     var noiseScale = 0.006;
-    let rotVertexes = [];
-    let playing = true;
-    let color = ["#C05021", "#FFBA08", "#20A440", "#2F7ED3", "#D79FE1"];
-    let colrgb = [[192,80,33],[225,186,8],[32,164,64],[47,126,211],[215,159,225]];
+    var rotVertexes = [];
+    let noiseProg = (x) => (x);
+    //var color = ["#C05021", "#FFBA08", "#20A440", "#2F7ED3", "#D79FE1"];
+    var colrgb = [[192,80,33],[225,186,8],[32,164,64],[47,126,211],[215,159,225]];
+    //var serial;
+    var particles = []
+    var a = 0;
+    var s = 0;
+    var count = 0;
+    var redrw = 0;
+    var pressed = false;
 
     p.setup = () => {
       let canvas = p.createCanvas(this.props.width, this.props.height);
       canvas.position(0, 0);
       canvas.style('z-index', '-1');
       //var star = new Star();
+      p.colorMode(p.HSB,100);
+      p.noStroke();
       this.livePianoRef.on('value', snap => {
         this.pianoMidiNotes = snap.val();
         noiseScale = this.pianoMidiNotes.reduce((total,num) => total+num)/5000+.0015;
@@ -103,13 +111,17 @@ export default class Sketch extends React.Component {
         }
       });
       
+      
     
-      for (var i = 0; i < 1600; i++) {
-          stars[i] = new Star();
+      for (let i = 0; i < 400; i++) {
+        stars[i] = new Star();
+      }
+      for (let i = 0; i < 10; i++) {
+        particles[i] = new Clickable();
       }
       
    
-      p.colorMode(p.RGB, 255, 255, 255, 255)
+      //p.colorMode(p.RGB, 255, 255, 255, 255)
 
       p.strokeWeight(2)
       p.strokeJoin(p.ROUND)
@@ -118,10 +130,26 @@ export default class Sketch extends React.Component {
     }
 
     p.draw = () => {
+      //triangleNum = this.props.userCount;
       p.background(0);
-      for (var i = 0; i < stars.length; i++) {
+
+      for (var iter = 0; iter<=p.width; iter+=5){
+        p.fill((startValue+iter/30)%100,50,100);
+        p.rect(iter,0,5,p.height);
+      }
+      startValue+=0.1;
+      startValue%=100;
+
+      for (let i = 0; i < stars.length; i++) {
         stars[i].update();
           stars[i].show();
+      }
+      for (let i = 0; i < (transparency*2)+50; i++) {
+        stars[i].update();
+          stars[i].show();
+      }
+      for (let i=0; i<particles.length; i++){
+        particles[i].drawNow();
       }
   
       p.push()
@@ -139,7 +167,61 @@ export default class Sketch extends React.Component {
       for(let i=0; i<rotVertexes.length; i++) {
         rotVertexes[i].update(p.frameCount)
       }
+
+      if (p.mouseIsPressed === true){
+        if (inRange()){
+            a = a + 0.04;
+            s = p.cos(a) * 2;
+            p.push();
+            p.translate(redrw.x+30, redrw.y-30);
+            //applyMatrix(1 / step, 0, 0, 1 / step, 0, 0);
+            p.scale(7);
+            p.fill(51);
+            p.triangle(0, 20, -20, -20, 20, -20);
+            
+            //rect(30, 20, 50, 50);
+            
+          if (p.mouseIsPressed === false){
+              if (p.mouseIsPressed === true){
+                p.pop();
+                pressed = false;
+                redrw = 0;
+                count = 0;
+              }
+          }
+        } 
+      }
     }
+
+    // If mouse was clicked
+    p.mouseClicked = () => {
+      if (inRange()){
+        // Play Random recordin
+        this.recsRef.once('value', snap => {
+          let idx = 0;
+          let rand_num = Math.floor(Math.random() * 10);
+          let rec = "";
+          let recsDict = snap.val();
+          for (let key in recsDict){
+            if (idx === rand_num){
+              rec += recsDict[key]
+            }
+            idx++
+          }
+          this.playRecording(rec)
+        })
+      }
+    }
+
+    function inRange(){
+      for (let i = 0; i < 10; i++) {
+        if (p.mouseX>=particles[i].x-20 && p.mouseX<=particles[i].x+20 && p.mouseY>=particles[i].y-20 && p.mouseY<=particles[i].y+20){
+          redrw = particles[i];
+          return true;
+        }
+      }
+    }      
+    
 
     function drawTriangle(vec1, vec2, vec3, n) {
       let center = p5.Vector.add(vec1, vec2)
@@ -158,8 +240,11 @@ export default class Sketch extends React.Component {
         p.vertex(miniVecs[i].x, miniVecs[i].y)
         p.vertex(vecs[i].x, vecs[i].y)
         p.vertex(vecs[(i+1)%3].x, vecs[(i+1)%3].y)
-        p.stroke(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2])
-        p.fill(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2], transparency)
+        p.stroke(255)
+        p.strokeWeight(p.random(noiseProg/7));
+        p.fill(255, 20)
+        // p.stroke(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2])
+        // p.fill(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2], transparency)
         p.endShape(p.CLOSE)
       }
       for(let i=0; i<3; i++) {
@@ -167,13 +252,15 @@ export default class Sketch extends React.Component {
         p.vertex(center.x, center.y)
         p.vertex(miniVecs[i].x, miniVecs[i].y)
         p.vertex(vecs[(i+1)%3].x, vecs[(i+1)%3].y)
-        p.stroke(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2])
-        p.fill(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2], transparency)
+        p.stroke(255)
+        p.fill(0,0,0, 20)
+        // p.stroke(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2])
+        // p.fill(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2], transparency)
         p.endShape(p.CLOSE)
       }
     
       p.triangle(vec1.x, vec1.y, vec2.x, vec2.y, vec3.x, vec3.y)
-      
+      p.fill(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2], transparency)
     }
 
     class Star {
@@ -186,13 +273,28 @@ export default class Sketch extends React.Component {
       }
       
       update() {
-        this.z = this.z - speed;
+        this.z = this.z - (transparency/18) - 5;
         if (this.z < 1) {
           this.z = p.width;
           this.x = p.random(-p.width, p.width);
           this.y = p.random(-p.height, p.height);
           this.pz = this.z;
         }
+      }
+      star(x, y, radius1, radius2, npoints) {
+        var angle = p.TWO_PI / npoints;
+        var halfAngle = angle / 2.0;
+        p.beginShape();
+        for (let a = 0; a < p.TWO_PI; a += angle) {
+          let sx = x + p.cos(a) * radius2;
+          let sy = y + p.sin(a) * radius2;
+          p.vertex(sx, sy);
+          sx = x + p.cos(a + halfAngle) * radius1;
+          sy = y + p.sin(a + halfAngle) * radius1;
+          p.vertex(sx, sy);
+        }
+
+        p.endShape(p.CLOSE);
       }
       
       show() {
@@ -202,14 +304,13 @@ export default class Sketch extends React.Component {
         var sx = p.map(this.x/this.z, 0, 1, 0, p.width);
         var sy = p.map(this.y/this.z, 0, 1, 0, p.height);
         var r = p.map(this.z, 0, p.width, 8, 0);
-        p.ellipse(sx, sy, r, r);    
-        
+        this.star(sx, sy, r, r/2,10); 
         var px = p.map(this.x/this.pz, 0, 1, 0, p.width);
         var py = p.map(this.y/this.pz, 0, 1, 0, p.height);
         this.pz = this.z;
         
-        p.stroke(255);
-        p.line(px, py, sx, sy);
+        //p.stroke(255);
+        //p.line(px, py, sx, sy);
       }
     }
 
@@ -235,10 +336,52 @@ export default class Sketch extends React.Component {
         return p.createVector(x, y)
       }
     }
+    class Clickable {
+      constructor(){
+      this.x = p.random(p.windowWidth);
+      this.y = p.random(p.windowHeight-200);
+      }
+      
+      drawNow(){
+        p.noStroke();
+        p.fill(255,p.random(100));
+        p.push();
+        p.translate(this.x,this.y);
+        p.rotate(p.frameCount*0.1);
+        p.triangle(0, 20, -20, -20, 20, -20);
+        p.pop();
+        
+        // frameRate(1);
+        
+      }
+    }
   }
 
   componentDidMount() {
     this.myP5 = new p5(this.Sketch, this.myRef.current)
+  }
+
+  _convertStringRecToArray = (r) => {
+    let melody = [];
+    let rec = r.split("\n").map(line => line.split(","));
+    for (let note of rec){
+        melody.push({time: parseFloat(note[0])/1000,
+                    note: parseInt(note[1]),
+                    duration: parseFloat(note[2])/1000});
+    }
+    return melody;
+  }
+
+  playRecording = (rec) => {
+    var props = this.props;
+    var _convertStringRecToArray = this._convertStringRecToArray;
+    // The first step is always create an instrument:
+    Soundfont.instrument(this.props.audioContext, 'acoustic_grand_piano')
+    .then(function (instrument) {
+        // Or schedule events at a given time
+        instrument.schedule(props.audioContext.currentTime,
+                            _convertStringRecToArray(rec));
+    })
   }
 
   render() {

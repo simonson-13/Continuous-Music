@@ -27,17 +27,25 @@ class InteractiveDemoFireBase extends Component {
         },
         keyboardShortcutOffset: 0,
       },
-      activeNotes: [],
       midiData: {},
     };
     this.dbRef = firebase.database().ref();
-    let instName = this.props.instrument ? this.props.instrument : 'piano';
-    this.dbLiveInstRef = this.dbRef.child('live').child(instName);
+    this.dbLiveInstRef = null;
+    this.activeNotes = [];
+    
+    this.startTime = 0;
+    // this.notes = [];
+    this.notes = new Array(127).fill(0);
+    this.tempStr = "";
+    this.idNum = this.props.userID;
+  }
+
+  componentDidUpdate() { // update instrument when user picked it
+    let instName = this.props.instrument ? this.props.instrument : 'acoustic_grand_piano';
+    this.dbLiveInstRef = this.dbRef.child('live').child(properToShortName[instName]);
   }
 
   componentDidMount() {
-    let instName = this.props.instrument ? this.props.instrument : 'piano';
-    this.dbLiveInstRef = this.dbRef.child('live').child(instName);
     // Try connecting to MIDI controller
     if (navigator.requestMIDIAccess) {
       navigator.requestMIDIAccess({
@@ -62,12 +70,26 @@ class InteractiveDemoFireBase extends Component {
     }
   }
 
+  _removeActiveNote = (noteNum, arr) => {
+    for (let i=0; i<this.activeNotes.length; i++){
+      if (this.activeNotes[i] === noteNum){
+        this.activeNotes.splice(i);
+        return;
+      }
+    }
+  }
+
   // handle midi event
   gotMIDImessage = (messageData) => {
+    let midiNumber = messageData.data[1];
     if (messageData.data[0] === 144) {  // handle pressing key
-      this.onPlayNoteInput(messageData.data[1], { undefined });  // handle note number
+      this.onPlayNoteInput(midiNumber, { undefined });  // handle note number
+      if (!this.activeNotes.includes(midiNumber)){
+        this.activeNotes.push(midiNumber);
+      }
     } else {  // handle releasing key
-      this.onStopNoteInput(messageData.data[1], { undefined });
+      this.onStopNoteInput(midiNumber, { undefined });
+      this._removeActiveNote(midiNumber);
     }
   }
 
@@ -77,16 +99,32 @@ class InteractiveDemoFireBase extends Component {
   }
 
   onPlayNoteInput = (midiNumber, { prevActiveNotes }) => {
-    let instName = this.props.instrument ? this.props.instrument : 'piano';
-    this.dbLiveInstRef = this.dbRef.child('live').child(properToShortName[instName]);
+    this.props.userRef.child('midi').child(midiNumber).set(1);
     this.dbLiveInstRef.child(midiNumber).set(1);
-    console.log(properToShortName[instName]);
+    //simon added
+    if (this.notes[midiNumber] === 0) {
+      var d = new Date();
+      this.notes[midiNumber] = d.getTime();
+    }
+    //end: simon added
   }
 
   onStopNoteInput = (midiNumber, { prevActiveNotes }) => {
-    let instName = this.props.instrument ? this.props.instrument : 'piano';
-    this.dbLiveInstRef = this.dbRef.child('live').child(properToShortName[instName]);
+    this.props.userRef.child('midi').child(midiNumber).set(0);
     this.dbLiveInstRef.child(midiNumber).set(0);
+    //Simon added
+    if (this.props.isRecording){
+      var d = new Date();
+
+      var timePassed = this.notes[midiNumber] - this.props.startTime;
+      var note = midiNumber;
+      var duration = d.getTime() - this.notes[midiNumber];
+
+      var tempStr = "" + timePassed + "," + note + "," + duration + "\n";
+      this.props.tempStrFun(tempStr); //appending to other existing notes
+    }
+    this.notes[midiNumber] = 0; //reset start time for note
+    //end: Simon added
   }
 
   render() {
@@ -101,9 +139,7 @@ class InteractiveDemoFireBase extends Component {
         audioContext={this.props.audioContext}
         instrumentName={this.props.instrument}
         hostname={this.props.soundfontHostname}
-        render={({ isLoading, playNote, stopNote, stopAllNotes }) => 
-            (this.props.showPiano) ?
-            (
+        render={({ isLoading, playNote, stopNote, stopAllNotes }) =>
               <div>
                 <div className="mt-2">
                   <DimensionsProvider>
@@ -115,16 +151,16 @@ class InteractiveDemoFireBase extends Component {
                         stopNote={stopNote}
                         onPlayNoteInput={this.onPlayNoteInput}
                         onStopNoteInput={this.onStopNoteInput}
-                        activeNotes={this.state.activeNotes}
+                        activeNotes={this.activeNotes}
                         disabled={isLoading}
                         width={containerWidth}
                       />
                     )}
                   </DimensionsProvider>
                 </div>
-                <div className="row mt-3">
-                  <div className="col-lg-8 offset-lg-2">
-                    Selected Instrument: {this.props.instrument}
+                <div className="row mt-2">
+                  <div className="col-md-8 offset-md-2">
+                    <span><small>Selected Instrument: {this.props.instrument}</small></span>
 
                     <PianoConfig
                       config={this.state.config}
@@ -140,12 +176,6 @@ class InteractiveDemoFireBase extends Component {
                   </div>
                 </div>
               </div>
-            ) : 
-            (
-              <div>
-
-              </div>
-            )
         }
       />]
     );

@@ -8,12 +8,12 @@ import Bar from './Bar/Bar.js'
 import PianoDrawer from './PianoDrawer/PianoDrawer.js'
 import ChatDrawer from './ChatDrawer/ChatDrawer.js'
 import LivePlayBack from './ophir_piano/LivePlayBack.js';
-import LiveLoop from './ophir_piano/LiveLoop.js';
 import * as firebase from 'firebase'; // import firebase!
 
 // webkitAudioContext fallback needed to support Safari
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 const soundfontHostname = 'https://d1pzp51pvbm36p.cloudfront.net';
+
 
 
 class App extends Component {
@@ -31,30 +31,16 @@ class App extends Component {
       showPiano: false,
       showBar: false,
       showChat: false,
-      userRef: null,
-      userHash: null,
-      allUsersRef: firebase.database().ref("/presence/"),
       usernameSet: false,
       username: "",
-      userCount: userCount,
-      userID: Math.floor((Math.random() * 10000)),
-      isRecording: false,
-      startTime: 0,
-      tempStr: "",
+      userCount: userCount
     };
     this.dbRef = firebase.database().ref();
   }
 
-  // Set up user's entry on database
-  componentWillMount() {
-    var listRef = firebase.database().ref("/presence/"); 
-    var userRef = listRef.push(); // create a user
-    // update our state
-    this.setState({
-      userRef: userRef,
-      allUsersRef: listRef,
-      userHash: userRef.key
-    });
+  componentDidMount() {
+    var listRef = firebase.database().ref("/presence/");
+    var userRef = listRef.push();
 
     // Add ourselves to presence list when online.
     var presenceRef = firebase.database().ref("/.info/connected");
@@ -62,12 +48,11 @@ class App extends Component {
       if (snap.val()) {
         // Remove ourselves when we disconnect.
         userRef.onDisconnect().remove();
-        // create array of midi notes in user's entry in database
-        userRef.child('midi').set(Array(128).fill(0));
+        userRef.set(true);
       }
     });
 
-    // Set event handler for our userCount
+    
     listRef.on('value', snap => {
       this.setState({
         userCount: snap.numChildren() - 1
@@ -80,8 +65,6 @@ class App extends Component {
       instrumentSelected: true,
       instrument: instrument
     })
-    // Set user's instrument on their database entry
-    this.state.userRef.child('instrument').set(instrument);
   }
 
   handleOpenInfo = () => {
@@ -106,28 +89,6 @@ class App extends Component {
     this.setState({
       showBar: !this.state.showBar
     })
-  }
-
-  handleIsRecording = (isRecording) => {
-    var d = new Date();
-    this.setState({
-      isRecording: isRecording,
-      startTime: d.getTime(),
-    })
-  }
-
-  handleTempStr = (toAppend) => {
-    if(toAppend === -1) {
-      this.setState({
-        tempStr: "",
-      });
-    } else if(toAppend === -2) {
-      return this.state.tempStr;
-    } else {
-      this.setState({
-        tempStr: (this.state.tempStr + toAppend),
-      });
-    }
   }
 
   handleChatChange = () => {
@@ -169,7 +130,6 @@ class App extends Component {
           handleBarChange={this.handleBarChange}
           handleChatChange={this.handleChatChange}
           userCount={this.state.userCount}
-          audioContext={audioContext}
         />
 
         <ChatDrawer
@@ -184,11 +144,6 @@ class App extends Component {
           instrument={this.state.instrument}
           //showPiano={this.state.showPiano}
           showPiano={this.state.showBar}
-          userID={this.state.userID}
-          userRef={this.state.userRef}
-          isRecording={this.state.isRecording}
-          startTime={this.state.startTime}
-          tempStrFun={this.handleTempStr}
         />
 
         <Bar
@@ -196,55 +151,36 @@ class App extends Component {
           handleClickPiano={this.handleClickPiano}
           showBar={this.state.showBar}
           handleBarChange={this.handleBarChange}
-          isRecordingFun={this.handleIsRecording}
-          tempStrFun={this.handleTempStr}
-          tempStr={this.state.tempStr}
-          userID={this.state.userID}
-          audioContext={audioContext}
-          instrument={this.state.instrument}
         />
 
         <LivePlayBack
           audioContext={audioContext}
-          instrumentName={'acoustic_grand_piano'}
+          instrumentName={'piano'}
           hostname={soundfontHostname}
-          userHash={this.state.userHash}
-          allUsersRef={this.state.allUsersRef}
         />
         <LivePlayBack
           audioContext={audioContext}
           instrumentName={'cello'}
           hostname={soundfontHostname}
-          userHash={this.state.userHash}
-          allUsersRef={this.state.allUsersRef}
         />
         <LivePlayBack
           audioContext={audioContext}
           instrumentName={'trumpet'}
           hostname={soundfontHostname}
-          userHash={this.state.userHash}
-          allUsersRef={this.state.allUsersRef}
         />
         <LivePlayBack
           audioContext={audioContext}
-          instrumentName={'acoustic_guitar_nylon'}
+          instrumentName={'guitar'}
           hostname={soundfontHostname}
-          userHash={this.state.userHash}
-          allUsersRef={this.state.allUsersRef}
         />
         <LivePlayBack
           audioContext={audioContext}
           instrumentName={'xylophone'}
-          userHash={this.state.userHash}
-          allUsersRef={this.state.allUsersRef}
-        />
-
-        <LiveLoop
-          audioContext={audioContext}
+          hostname={soundfontHostname}
         />
       </div>
     );
   }
 }
-//hello
+
 export default App;

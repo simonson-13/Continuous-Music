@@ -13,7 +13,6 @@ export default class ChatBox extends Component {
 			isLoading: false
 		};
 		this.sendMessageLoading = this.sendMessageLoading.bind(this);
-		var timeout = null;
 	}
 
 	/* catch the sendMessage signal and update the loading state then continues the sending instruction */

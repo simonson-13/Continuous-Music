@@ -26,11 +26,49 @@ class SoundfontProvider extends React.Component {
     this.state = {
       activeAudioNodes: {},
       instrument: null,
+      midiData: {},
     };
   }
 
   componentDidMount() {
     this.loadInstrument(this.props.instrumentName);
+    // Try connecting to MIDI controller
+    if (navigator.requestMIDIAccess) {
+      navigator.requestMIDIAccess({
+        sysex: false
+      }).then(this.onMIDISuccess, this.onMIDIFailure);
+    } else {
+      console.warn("No MIDI support in your browser")
+    }
+  }
+
+  // on success of MIDI device
+  onMIDISuccess = (midi_data) => {
+    // this is all our MIDI data
+    this.setState({
+      midiData: midi_data
+    })
+    var allInputs = this.state.midiData.inputs.values();
+    // loop over all available inputs and listen for any MIDI input
+    for (var input = allInputs.next(); input && !input.done; input = allInputs.next()) {
+      // when a MIDI value is received call the onMIDIMessage function
+      input.value.onmidimessage = this.gotMIDImessage;
+    }
+  }
+
+  // handle midi event
+  gotMIDImessage = (messageData) => {
+    let midiNumber = messageData.data[1];
+    if (messageData.data[0] === 144) {  // handle pressing key
+      this.playNote(midiNumber);
+    } else {  // handle releasing key
+      this.stopNote(midiNumber);
+    }
+  }
+
+  // on failure
+  onMIDIFailure = () => {
+    console.warn("Not recognising MIDI controller")
   }
 
   componentDidUpdate(prevProps, prevState) {
