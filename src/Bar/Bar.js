@@ -92,7 +92,7 @@ export default function Bar (props) {
         setHasRecording((prev) => !prev);
 
         handleRecordHelper();
-        setTimeout(handleRecordHelper, 5000); //5 seconds to record
+        setTimeout(handleRecordHelper, 4000); //4 seconds to record
     }
 
     const _convertStringRecToArray = (r) => {
@@ -128,31 +128,52 @@ export default function Bar (props) {
         // logic to listen to handle upload click
         // make sure people cant upload an empty recording
         if (Bar.recording !== "" && !uploaded){
-          //upload to user's database ref
-          var tempRef = firebase.database().ref("recs").push();
-          tempRef.set(Bar.recording);
-          uploaded = true;
 
-          //get number of recordings
-          var numRecs = firebase.database().ref("recs").once("value").then(function(snapshot){
-            return snapshot.numChildren();
+          //counting current number of children the ghetto way because numChildren is not working
+          firebase.database().ref("recs").once("value").then(function(snapshot){
+
+            var max = -1;
+            var min = 100000000;
+            var numRecs = 0;
+            snapshot.forEach(function(childSnapshot){
+              //increment recs
+              numRecs++;
+
+              var currKey = parseInt(childSnapshot.key);
+              //check min
+              if(currKey < min) {
+                min = currKey;
+              }
+              //check max
+              if(currKey > max) {
+                max = currKey;
+              }
+            });
+
+            //what to do if there are already 10 recordings
+            if(numRecs >= 10){
+              //delete oldest
+              removeUpload(firebase.database().ref("recs").child(min));
+            }
+
+            //add new recording
+            var newKey = max + 1;
+            var newRecRef = firebase.database().ref("recs").child(newKey);
+            newRecRef.set(props.instrument + "\n" + Bar.recording);
+            uploaded = true;
+
+            //8 seconds until auto removed
+            setTimeout(function(){ removeUpload(newRecRef);}, 8000);
           });
 
-          // if (true) {
-          //   firebase.database().ref("recs").once("value").then(function(snapshot){
-          //     counter = 0;
-          //     snapshot.forEach(function(childSnapshot){
-          //       if(counter == 0) {
-          //         // firebase.database().ref("recs").child(childSnapshot.key).remove();
-          //         firebase.database().ref("recs").child(childSnapshot.key).remove();
-          //         counter = counter + 1;
-          //       }
-          //     });
-          //   });
-          // }
+          //upload to user's database ref (ALL RECORDINGS)
+
+          // var tempRef = firebase.database().ref("recs").push();
+          // tempRef.set(Bar.recording);
+          // uploaded = true;
 
           //playback for 10 seconds on database before removal
-          setTimeout(function(){ removeUpload(tempRef);}, 10000);
+          // setTimeout(function(){ removeUpload(tempRef);}, 10000);
         }
     }
 
