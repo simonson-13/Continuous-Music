@@ -198,17 +198,13 @@ export default class Sketch extends React.Component {
       if (inRange()){
         // Play Random recordin
         this.recsRef.once('value', snap => {
-          let idx = 0;
-          let rand_num = Math.floor(Math.random() * 10);
-          let rec = "";
           let recsDict = snap.val();
-          for (let key in recsDict){
-            if (idx === rand_num){
-              rec += recsDict[key]
-            }
-            idx++
-          }
-          this.playRecording(rec)
+          let num_recs = Object.keys(recsDict).length
+          let rand_num = Math.floor(Math.random() * num_recs);
+          let inst_and_rec = recsDict[Object.keys(recsDict)[rand_num]]
+          let inst = inst_and_rec.split("\n")[0]
+          let rec = inst_and_rec.substr(inst.length)
+          this.playRecording(rec, inst)
         })
       }
     }
@@ -372,11 +368,11 @@ export default class Sketch extends React.Component {
     return melody;
   }
 
-  playRecording = (rec) => {
+  playRecording = (rec, instrument) => {
     var props = this.props;
     var _convertStringRecToArray = this._convertStringRecToArray;
     // The first step is always create an instrument:
-    Soundfont.instrument(this.props.audioContext, 'acoustic_grand_piano')
+    Soundfont.instrument(props.audioContext, instrument)
     .then(function (instrument) {
         // Or schedule events at a given time
         instrument.schedule(props.audioContext.currentTime,
