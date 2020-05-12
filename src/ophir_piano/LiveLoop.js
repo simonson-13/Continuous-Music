@@ -1,5 +1,5 @@
 import React from 'react';
-import Soundfont from 'soundfont-player';
+import Soundfont, { instrument } from 'soundfont-player';
 import * as firebase from 'firebase';  // importing firebase!!!
 
 class LiveLoop extends React.Component {
@@ -21,11 +21,11 @@ class LiveLoop extends React.Component {
         return melody;
     }
     
-    playRecording = (rec) => {
+    playRecording = (rec, instrument) => {
         var props = this.props;
         var _convertStringRecToArray = this._convertStringRecToArray;
         // The first step is always create an instrument:
-        Soundfont.instrument(this.props.audioContext, 'acoustic_grand_piano')
+        Soundfont.instrument(props.audioContext, instrument)
         .then(function (instrument) {
             // Or schedule events at a given time
             instrument.schedule(props.audioContext.currentTime,
@@ -38,12 +38,13 @@ class LiveLoop extends React.Component {
         this.playbackRef.on('value', snap => {
                 if (snap.val() === 'true'){
                     this.recsRef.once('value', snap => {
-                        let all_recs = "";
                         let recsDict = snap.val();
                         for (let key in recsDict){
-                            all_recs += recsDict[key]
+                            let inst_and_rec = recsDict[key]
+                            let inst = inst_and_rec.split("\n")[0]
+                            let rec = inst_and_rec.substr(inst.length)
+                            this.playRecording(rec, inst)
                         }
-                        this.playRecording(all_recs)
                     })
                 }
         })
