@@ -54,7 +54,7 @@ export default class Sketch extends React.Component {
       this.livePianoRef.on('value', snap => {
         this.pianoMidiNotes = snap.val();
         noiseScale = this.pianoMidiNotes.reduce((total,num) => total+num)/5000+.0015;
-        transparency = this.pianoMidiNotes.reduce((total,num) => total+num)*10;
+        transparency = this.pianoMidiNotes.reduce((total,num) => total+num)*1;
         if (noiseScale === 0) {
           noiseScale = .0015;
         }
@@ -240,7 +240,7 @@ export default class Sketch extends React.Component {
         p.strokeWeight(p.random(noiseProg/7));
         p.fill(255, 20)
         // p.stroke(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2])
-        // p.fill(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2], transparency)
+        //p.fill(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2], transparency)
         p.endShape(p.CLOSE)
       }
       for(let i=0; i<3; i++) {
@@ -251,7 +251,7 @@ export default class Sketch extends React.Component {
         p.stroke(255)
         p.fill(0,0,0, 20)
         // p.stroke(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2])
-        // p.fill(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2], transparency)
+        //p.fill(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2], transparency)
         p.endShape(p.CLOSE)
       }
     
