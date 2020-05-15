@@ -34,9 +34,11 @@ class LiveLoop extends React.Component {
     }
   
     componentDidMount() {
-        // Play all recordings in DB when playback is triggers
+        // Play all recordings in DB when playback is triggered
+        // AND given the mute button is not pressed
+        var isMutePressed = this.props.isMutePressed;
         this.playbackRef.on('value', snap => {
-                if (snap.val() === 'true'){
+                if (snap.val() === 'true' && (!isMutePressed)){
                     this.recsRef.once('value', snap => {
                         let recsDict = snap.val();
                         for (let key in recsDict){
