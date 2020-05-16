@@ -99,8 +99,17 @@ class InteractiveDemoFireBase extends Component {
   }
 
   onPlayNoteInput = (midiNumber, { prevActiveNotes }) => {
-    this.props.userRef.child('midi').child(midiNumber).set(1);
-    this.dbLiveInstRef.child(midiNumber).set(1);
+    // Only broadcast if not currently recording
+    if (!this.props.isRecording) {
+      this.props.userRef.child('midi').child(midiNumber)
+      .once('value', note => {
+        this.props.userRef.child('midi').child(midiNumber).set({
+          prev_value: note.val().value,
+          value: 1
+        });
+      });
+      this.dbLiveInstRef.child(midiNumber).set(1);
+    }
     //simon added
     if (this.notes[midiNumber] === 0) {
       var d = new Date();
@@ -110,8 +119,17 @@ class InteractiveDemoFireBase extends Component {
   }
 
   onStopNoteInput = (midiNumber, { prevActiveNotes }) => {
-    this.props.userRef.child('midi').child(midiNumber).set(0);
-    this.dbLiveInstRef.child(midiNumber).set(0);
+    // Only broadcast if not currently recording
+    if (!this.props.isRecording) {
+      this.props.userRef.child('midi').child(midiNumber)
+      .once('value', note => {
+        this.props.userRef.child('midi').child(midiNumber).set({
+          prev_value: note.val().value,
+          value: 0
+        });
+      });
+      this.dbLiveInstRef.child(midiNumber).set(0);
+    }
     //Simon added
     if (this.props.isRecording){
       var d = new Date();
