@@ -340,11 +340,15 @@ export default class Sketch extends React.Component {
       
       drawNow(){
         p.noStroke();
-        p.fill(255,p.random(100));
+         //,p.random(100)
         p.push();
         p.translate(this.x,this.y);
-        p.rotate(p.frameCount*0.1);
-        p.triangle(0, 20, -20, -20, 20, -20);
+        p.rotate(-1.6); //p.frameCount*
+        p.fill(50);
+        p.circle(0,-3,60);
+        p.fill(255);
+        p.triangle(0, 18, -18, -18, 18, -18);
+        
         p.pop();
         
         // frameRate(1);
