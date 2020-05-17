@@ -41,6 +41,7 @@ class App extends Component {
       isRecording: false,
       startTime: 0,
       tempStr: "",
+      isMutePressed: false
     };
     this.dbRef = firebase.database().ref();
   }
@@ -62,14 +63,18 @@ class App extends Component {
       if (snap.val()) {
         // Remove ourselves when we disconnect.
         userRef.onDisconnect().remove();
-        // create array of midi notes in user's entry in database
-        userRef.child('midi').set(Array(128).fill(0));
+        // create array of midi notes (prev and current values)
+        // in user's entry in database
+        userRef.child('midi').set(Array(128).fill({
+          'prev_value': 0,
+          'value': 0
+        }));
       }
     });
 
     // Set event handler for our userCount
     listRef.on('value', snap => {
-      this.setState({
+    this.setState({
         userCount: snap.numChildren() - 1
       })
     })
@@ -202,6 +207,7 @@ class App extends Component {
           userID={this.state.userID}
           audioContext={audioContext}
           instrument={this.state.instrument}
+          isMutePressed={this.state.isMutePressed}
         />
 
         <LivePlayBack
@@ -210,6 +216,7 @@ class App extends Component {
           hostname={soundfontHostname}
           userHash={this.state.userHash}
           allUsersRef={this.state.allUsersRef}
+          isMutePressed={this.state.isMutePressed}
         />
         <LivePlayBack
           audioContext={audioContext}
@@ -217,6 +224,7 @@ class App extends Component {
           hostname={soundfontHostname}
           userHash={this.state.userHash}
           allUsersRef={this.state.allUsersRef}
+          isMutePressed={this.state.isMutePressed}
         />
         <LivePlayBack
           audioContext={audioContext}
@@ -224,6 +232,7 @@ class App extends Component {
           hostname={soundfontHostname}
           userHash={this.state.userHash}
           allUsersRef={this.state.allUsersRef}
+          isMutePressed={this.state.isMutePressed}
         />
         <LivePlayBack
           audioContext={audioContext}
@@ -231,16 +240,19 @@ class App extends Component {
           hostname={soundfontHostname}
           userHash={this.state.userHash}
           allUsersRef={this.state.allUsersRef}
+          isMutePressed={this.state.isMutePressed}
         />
         <LivePlayBack
           audioContext={audioContext}
           instrumentName={'xylophone'}
           userHash={this.state.userHash}
           allUsersRef={this.state.allUsersRef}
+          isMutePressed={this.state.isMutePressed}
         />
 
         <LiveLoop
           audioContext={audioContext}
+          isMutePressed={this.state.isMutePressed}
         />
       </div>
     );
