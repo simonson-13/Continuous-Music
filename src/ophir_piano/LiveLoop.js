@@ -1,5 +1,5 @@
 import React from 'react';
-import Soundfont, { instrument } from 'soundfont-player';
+import Soundfont from 'soundfont-player';
 import * as firebase from 'firebase';  // importing firebase!!!
 
 class LiveLoop extends React.Component {
