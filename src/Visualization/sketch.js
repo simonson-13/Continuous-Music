@@ -28,7 +28,7 @@ export default class Sketch extends React.Component {
   Sketch = (p) => {
     var startValue = 0;
     var stars = [];
-    var triangleNum = 5;  //var triangleNum = this.props.userCount;
+    var triangleNum = this.props.userCount; //var triangleNum = 5;  //
     var noiseAngleTimes = 5;
     var transparency = 0;
     var noiseScale = 0.006;
@@ -130,7 +130,7 @@ export default class Sketch extends React.Component {
     }
 
     p.draw = () => {
-      //triangleNum = this.props.userCount;
+      triangleNum = this.props.userCount;
       p.background(0);
 
       for (var iter = 0; iter<=p.width; iter+=5){
