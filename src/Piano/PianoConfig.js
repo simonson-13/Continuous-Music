@@ -1,4 +1,5 @@
 import React from 'react';
+import '../App.css';
 import { MidiNumbers } from 'react-piano';
 
 // Controls range of notes
@@ -120,10 +121,12 @@ class PianoConfig extends React.Component {
           </AutoblurSelect>
         </div>
         <div className="col mt-2">
-          <small className="text-muted">
-            Use <strong>left arrow</strong> and <strong>right arrow</strong> to move the keyboard
-            shortcuts around.
-          </small>
+          <span className="words-backdrop">
+            <small className="text-muted">
+              Use <strong>left arrow</strong> and <strong>right arrow</strong> to move the keyboard
+              shortcuts around.
+            </small>
+          </span>
         </div>
       </div>
     );
