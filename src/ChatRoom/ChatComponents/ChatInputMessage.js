@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import '../ChatRoom.css'
 
-
 export default class ChatInputMessage extends Component {
 	constructor(props, context) {
         super(props, context);
         
 		this.handleSendMessage = this.handleSendMessage.bind(this);
-		this.handleTyping = this.handleTyping.bind(this);
     }
     
 	handleSendMessage(event) {
@@ -17,17 +15,6 @@ export default class ChatInputMessage extends Component {
 			this.props.sendMessageLoading(this.ownerInput.value, this.ownerAvatarInput.value, this.messageInput.value);
 			/* Reset input after send*/
 			this.messageInput.value = '';
-		}
-    }
-    
-	handleTyping(event) {
-		/* Tell users when another user has at least started to write */
-		if( this.messageInput.value.length > 0 ) {
-			this.props.typing(this.ownerInput.value);
-		}
-		else {
-			/* When there is no more character, the user no longer writes */
-			this.props.resetTyping(this.ownerInput.value);
 		}
     }
     
@@ -52,8 +39,6 @@ export default class ChatInputMessage extends Component {
 					ref={message => (this.messageInput = message)}
 					className={"chatApp__convInput"}
 					placeholder="Text message"
-					onKeyDown={this.handleTyping}
-					onKeyUp={this.handleTyping}
 					tabIndex="0"
 				/>
                 <div 

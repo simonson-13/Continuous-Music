@@ -7,8 +7,8 @@ import Visualization from './Visualization/Visualization.js'
 import Bar from './Bar/Bar.js'
 import PianoDrawer from './PianoDrawer/PianoDrawer.js'
 import ChatDrawer from './ChatDrawer/ChatDrawer.js'
-import LivePlayBack from './ophir_piano/LivePlayBack.js';
-import LiveLoop from './ophir_piano/LiveLoop.js';
+import LivePlayBack from './Piano/LivePlayBack.js';
+import LiveLoop from './Piano/LiveLoop.js';
 import * as firebase from 'firebase'; // import firebase!
 
 // webkitAudioContext fallback needed to support Safari
@@ -154,6 +154,12 @@ class App extends Component {
     })
   }
 
+  handleMutePressed = () => { 
+    this.setState({
+      isMutePressed: !this.state.isMutePressed
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -187,7 +193,6 @@ class App extends Component {
 
         <PianoDrawer
           instrument={this.state.instrument}
-          //showPiano={this.state.showPiano}
           showPiano={this.state.showBar}
           userID={this.state.userID}
           userRef={this.state.userRef}
@@ -208,6 +213,7 @@ class App extends Component {
           audioContext={audioContext}
           instrument={this.state.instrument}
           isMutePressed={this.state.isMutePressed}
+          handleMutePressed={this.handleMutePressed}
         />
 
         <LivePlayBack
