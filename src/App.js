@@ -7,8 +7,8 @@ import Visualization from './Visualization/Visualization.js'
 import Bar from './Bar/Bar.js'
 import PianoDrawer from './PianoDrawer/PianoDrawer.js'
 import ChatDrawer from './ChatDrawer/ChatDrawer.js'
-import LivePlayBack from './ophir_piano/LivePlayBack.js';
-import LiveLoop from './ophir_piano/LiveLoop.js';
+import LivePlayBack from './Piano/LivePlayBack.js';
+import LiveLoop from './Piano/LiveLoop.js';
 import * as firebase from 'firebase'; // import firebase!
 
 // webkitAudioContext fallback needed to support Safari
