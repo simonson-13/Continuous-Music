@@ -188,14 +188,26 @@ export default class Sketch extends React.Component {
             a = a + 0.04;
             s = p.cos(a) * 2;
             p.push();
-            p.translate(redrw.x+30, redrw.y-30);
-            //applyMatrix(1 / step, 0, 0, 1 / step, 0, 0);
-            p.scale(7);
-            p.fill(51);
-            p.triangle(0, 20, -20, -20, 20, -20);
+            p.translate(redrw.x-2,redrw.y+2);
+            
+            p.fill(50);
+            p.circle(0,-3,55);
+            p.fill(255);
+            //var fc = p.frameCount
+            p.rotate(-1.6+(p.frameCount*.1)); //p.frameCount*
+            p.triangle(2, 20, -16, -16, 20, -16);
+
+            // var fc = p.frameCount
+            // while (p.frameCount < (fc + 3)){
+            //   p.rotate(p.frameCount); //p.frameCount*
+            // }
+            // p.translate(redrw.x+30, redrw.y-30);
+            // //applyMatrix(1 / step, 0, 0, 1 / step, 0, 0);
+            // p.scale(7);
+            // p.fill(51);
+            // p.triangle(0, 20, -20, -20, 20, -20);
             
             //rect(30, 20, 50, 50);
-            
           if (p.mouseIsPressed === false){
               if (p.mouseIsPressed === true){
                 p.pop();
@@ -374,11 +386,15 @@ export default class Sketch extends React.Component {
       
       drawNow(){
         p.noStroke();
-        p.fill(255,p.random(100));
+         //,p.random(100)
         p.push();
         p.translate(this.x,this.y);
-        p.rotate(p.frameCount*0.1);
-        p.triangle(0, 20, -20, -20, 20, -20);
+        p.rotate(-1.6); //p.frameCount*
+        p.fill(50);
+        p.circle(0,-3,60);
+        p.fill(255);
+        p.triangle(0, 18, -18, -18, 18, -18);
+        
         p.pop();
         
         // frameRate(1);
