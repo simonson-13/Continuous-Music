@@ -193,7 +193,6 @@ class App extends Component {
 
         <PianoDrawer
           instrument={this.state.instrument}
-          //showPiano={this.state.showPiano}
           showPiano={this.state.showBar}
           userID={this.state.userID}
           userRef={this.state.userRef}

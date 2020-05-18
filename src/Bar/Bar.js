@@ -216,7 +216,7 @@ export default function Bar (props) {
                                     </span>
                                 </Tooltip>
 
-                                <Tooltip title="Listen" arrow>
+                                <Tooltip title="Playback" arrow>
                                     <span className={classes.button}>
                                     <Button
                                         variant="contained"
