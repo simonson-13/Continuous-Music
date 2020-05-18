@@ -154,6 +154,12 @@ class App extends Component {
     })
   }
 
+  handleMutePressed = () => { 
+    this.setState({
+      isMutePressed: !this.state.isMutePressed
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -208,6 +214,7 @@ class App extends Component {
           audioContext={audioContext}
           instrument={this.state.instrument}
           isMutePressed={this.state.isMutePressed}
+          handleMutePressed={this.handleMutePressed}
         />
 
         <LivePlayBack
