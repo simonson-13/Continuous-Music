@@ -3,7 +3,6 @@ import '../ChatRoom.css';
 
 import ChatTitle from './ChatTitle.js';
 import MessageList from './MessageList.js';
-import TypingIndicator from './TypingIndicator.js';
 import ChatInputMessage from './ChatInputMessage.js'
 
 export default class ChatBox extends Component {
@@ -35,18 +34,12 @@ export default class ChatBox extends Component {
 					messages={this.props.messages}
 				/>
 				<div className={"chatApp__convSendMessage clearfix"}>
-					<TypingIndicator
-						owner={this.props.owner}
-						isTyping={this.props.isTyping}
-					/>
 					<ChatInputMessage
 						isLoading={this.state.isLoading}
 						owner={this.props.owner}
 						ownerAvatar={this.props.ownerAvatar}
 						sendMessage={this.props.sendMessage}
 						sendMessageLoading={this.sendMessageLoading}
-						typing={this.props.typing}
-						resetTyping={this.props.resetTyping}
 					/>
 				</div>
 			</div>

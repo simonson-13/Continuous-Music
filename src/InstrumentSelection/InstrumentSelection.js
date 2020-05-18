@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './InstrumentSelection.css'
+import '../App.css'
 
 import {
     Button,
@@ -8,8 +8,6 @@ import {
 
 
 class InstrumentSelection extends Component {
-   // TODO: style this better, move styling into same file
-
     render() {
         return (
             <div>
@@ -17,7 +15,16 @@ class InstrumentSelection extends Component {
                     open={this.props.open}
                 >
                     <div className="centered">
-                        Please choose an instrument! <br/>
+                        <p>
+                        Welcome! This site is all about playing music with others and seeing how
+                        what you make together can unify into something beautiful. 
+                        </p>
+                        <p>
+                        <i>Open the toolbar below</i> to get started playing + recording,
+                        and <i>click on the info button</i> to learn more about what you can do here.
+                        </p>
+                        <b>But first, please choose an instrument:</b> <br/>
+                        (This will be what you'll be playing in this "virtual band" experience.) <br/>
                         <Button 
                             onClick={() => this.props.onClick("acoustic_grand_piano")}
                         >

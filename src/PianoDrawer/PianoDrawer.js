@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PianoApp from '../ophir_piano/PianoApp.js'
+import PianoApp from '../Piano/PianoApp.js'
 import {
     Drawer
 } from '@material-ui/core';
