@@ -28,7 +28,7 @@ export default class Sketch extends React.Component {
   Sketch = (p) => {
     var startValue = 0;
     var stars = [];
-    var triangleNum = this.props.userCount; //var triangleNum = 5;  //
+    var triangleNum = 5;  //var triangleNum = this.props.userCount; //
     var noiseAngleTimes = 5;
     var transparency = 0;
     var noiseScale = 0.006;
@@ -130,7 +130,7 @@ export default class Sketch extends React.Component {
     }
 
     p.draw = () => {
-      triangleNum = this.props.userCount;
+      //triangleNum = this.props.userCount;
       p.background(0);
 
       for (var iter = 0; iter<=p.width; iter+=5){
@@ -173,11 +173,24 @@ export default class Sketch extends React.Component {
             a = a + 0.04;
             s = p.cos(a) * 2;
             p.push();
-            p.translate(redrw.x+30, redrw.y-30);
-            //applyMatrix(1 / step, 0, 0, 1 / step, 0, 0);
-            p.scale(7);
-            p.fill(51);
-            p.triangle(0, 20, -20, -20, 20, -20);
+            p.translate(redrw.x-2,redrw.y+2);
+            
+            p.fill(50);
+            p.circle(0,-3,55);
+            p.fill(255);
+            //var fc = p.frameCount
+            p.rotate(-1.6+(p.frameCount*.1)); //p.frameCount*
+            p.triangle(2, 20, -16, -16, 20, -16);
+
+            // var fc = p.frameCount
+            // while (p.frameCount < (fc + 3)){
+            //   p.rotate(p.frameCount); //p.frameCount*
+            // }
+            // p.translate(redrw.x+30, redrw.y-30);
+            // //applyMatrix(1 / step, 0, 0, 1 / step, 0, 0);
+            // p.scale(7);
+            // p.fill(51);
+            // p.triangle(0, 20, -20, -20, 20, -20);
             
             //rect(30, 20, 50, 50);
             
