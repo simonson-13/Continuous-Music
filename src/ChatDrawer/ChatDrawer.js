@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import UsernameModal from './UsernameModal.js'
 import ChatRoom from '../ChatRoom/ChatRoom.js'
 

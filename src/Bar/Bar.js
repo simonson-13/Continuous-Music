@@ -16,7 +16,9 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import MicIcon from '@material-ui/icons/Mic';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import SendIcon from '@material-ui/icons/Send';
-import GetAppIcon from '@material-ui/icons/GetApp';
+import VolumeOffIcon from '@material-ui/icons/VolumeOff';
+import VolumeUpIcon from '@material-ui/icons/VolumeUp';
+
 import Soundfont from 'soundfont-player'
 
 import * as firebase from 'firebase'; // import firebase!
@@ -60,8 +62,6 @@ export default function Bar (props) {
     const [hasRecording, setHasRecording] = React.useState(false);
     const [isRecording, setIsRecording] = React.useState(false);
     var isRecordingFlag = false;
-    var recording = "";
-    var counter = 0;
     var uploaded = false;
 
     const handleDelete = () => {
@@ -177,11 +177,6 @@ export default function Bar (props) {
         }
     }
 
-    const handleDownload = () => {
-        // logic to download your recording
-    }
-
-
     return (
         <div className={classes.root}>
             <div className={classes.wrapper}>
@@ -221,7 +216,7 @@ export default function Bar (props) {
                                     </span>
                                 </Tooltip>
 
-                                <Tooltip title="Listen" arrow>
+                                <Tooltip title="Playback" arrow>
                                     <span className={classes.button}>
                                     <Button
                                         variant="contained"
@@ -233,8 +228,6 @@ export default function Bar (props) {
                                     </Button>
                                     </span>
                                 </Tooltip>
-
-                                {/* TODO: make button styling and hovertext better */}
 
                                 <ProgressBarContainer isRecording={isRecording}/>
 
@@ -251,15 +244,17 @@ export default function Bar (props) {
                                     </span>
                                 </Tooltip>
 
-                                <Tooltip title="Download" arrow>
+                                <Tooltip 
+                                    title={props.isMutePressed ? "Unmute All" : "Mute All"} 
+                                    arrow
+                                >
                                     <span className={classes.button}>
                                     <Button
                                         variant="contained"
                                         size="large"
-                                        onClick={handleDownload}
-                                        disabled={!hasRecording}
+                                        onClick={props.handleMutePressed}
                                     >
-                                        <GetAppIcon/>
+                                        {props.isMutePressed ? <VolumeUpIcon/> : <VolumeOffIcon/>}
                                     </Button>
                                     </span>
                                 </Tooltip>
