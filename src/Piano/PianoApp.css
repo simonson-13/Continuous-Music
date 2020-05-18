@@ -5,3 +5,7 @@
   background-color: rgba(0,0,0,0) !important;
   border: 0;
 }
+
+.container { 
+  overflow: hidden;
+}
