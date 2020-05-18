@@ -1,10 +1,8 @@
 import React from 'react';
-
 import {
     IconButton,
     Tooltip
 } from '@material-ui/core';
-
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
@@ -13,7 +11,7 @@ import Sketch from './sketch.js';
 import DimensionsProvider from './DimensionsProvider';
 
 import { makeStyles } from '@material-ui/core/styles';
-import './Visualization.css';
+import '../App.css';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -60,7 +58,7 @@ export default function Visualization(props) {
                 </IconButton>
             </Tooltip>
 
-            <br /><br />&nbsp;Users:&nbsp;{props.userCount}
+            <br /><br /> <span className="words-backdrop">&nbsp;Users:&nbsp;{props.userCount}</span>
 
             <DimensionsProvider>
                 {({ containerWidth, containerHeight }) => (
