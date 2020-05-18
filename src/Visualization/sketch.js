@@ -36,6 +36,7 @@ export default class Sketch extends React.Component {
     let noiseProg = (x) => (x);
     //var color = ["#C05021", "#FFBA08", "#20A440", "#2F7ED3", "#D79FE1"];
     var colrgb = [[192,80,33],[225,186,8],[32,164,64],[47,126,211],[215,159,225]];
+    let elColor;
     //var serial;
     var particles = []
     var a = 0;
@@ -140,10 +141,22 @@ export default class Sketch extends React.Component {
       p.strokeJoin(p.ROUND)
       indexer = 0;
       rotVertexes = [new RotationVertex(1), new RotationVertex(1), new RotationVertex(-1)]
+      elColor = 0;
     }
 
     p.draw = () => {
       //triangleNum = this.props.userCount;
+      if (indexer == 2){
+      indexer = 0;
+      elColor = p.color(255);
+      
+    }
+    else{
+      indexer++;
+      elColor = p.color(keyColors[parseInt(Math.random(13)*13)])
+      
+    }
+
 
       setGradient(0, 0, p.width / 2, p.height, color2, color1, 'X');
       setGradient(p.width / 2, 0, p.width / 2, p.height, color1, color2, 'X');
@@ -174,8 +187,8 @@ export default class Sketch extends React.Component {
           rotVertexes[0].getVector((i/triangleNum + p.frameCount*p.TWO_PI/360/2)%1),
           rotVertexes[1].getVector((i/triangleNum + p.frameCount*p.TWO_PI/360/2)%1),
           rotVertexes[2].getVector((i/triangleNum + p.frameCount*p.TWO_PI/360/2)%1),
-          i
-        )
+          elColor);
+        
       }
       p.pop()
 
@@ -263,7 +276,7 @@ export default class Sketch extends React.Component {
         p.vertex(miniVecs[i].x, miniVecs[i].y)
         p.vertex(vecs[i].x, vecs[i].y)
         p.vertex(vecs[(i+1)%3].x, vecs[(i+1)%3].y)
-        p.stroke(255)
+        p.stroke(n)
         p.strokeWeight(p.random(noiseProg/7));
         p.fill(255, 20)
         // p.stroke(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2])
@@ -275,7 +288,7 @@ export default class Sketch extends React.Component {
         p.vertex(center.x, center.y)
         p.vertex(miniVecs[i].x, miniVecs[i].y)
         p.vertex(vecs[(i+1)%3].x, vecs[(i+1)%3].y)
-        p.stroke(255)
+        p.stroke(n)
         p.fill(0,0,0, 20)
         // p.stroke(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2])
         // p.fill(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2], transparency)
@@ -283,7 +296,7 @@ export default class Sketch extends React.Component {
       }
     
       p.triangle(vec1.x, vec1.y, vec2.x, vec2.y, vec3.x, vec3.y)
-      p.fill(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2], transparency)
+      p.fill(255, transparency)
     }
     function setGradient(x, y, w, h, c1, c2, axis) {
   p.noFill();
