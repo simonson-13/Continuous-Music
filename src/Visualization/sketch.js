@@ -44,12 +44,25 @@ export default class Sketch extends React.Component {
     var redrw = 0;
     var pressed = false;
 
+    //colors
+    var keyColors = ['#e6c200','#D2691E','#50c878','#002366','#cd5832','#ffea00','#cc7000','#66ff00','#ffa500', '##ff8c00','#51412D', '#fa5b3d','#e6c200' ] // c,c#,d,d#,  
+    let color1;
+    var color2;
+//(204, 51, 0);
+
+    let c;
+    let changing;
+    var indexer;
+
     p.setup = () => {
       let canvas = p.createCanvas(this.props.width, this.props.height);
       canvas.position(0, 0);
       canvas.style('z-index', '-1');
       //var star = new Star();
-      p.colorMode(p.HSB,100);
+      //p.colorMode(p.HSB,100);
+      color2 = p.color('#424242');
+      color1 = p.color('#c2c2cf');
+
       p.noStroke();
       this.livePianoRef.on('value', snap => {
         this.pianoMidiNotes = snap.val();
@@ -125,20 +138,22 @@ export default class Sketch extends React.Component {
 
       p.strokeWeight(2)
       p.strokeJoin(p.ROUND)
-
+      indexer = 0;
       rotVertexes = [new RotationVertex(1), new RotationVertex(1), new RotationVertex(-1)]
     }
 
     p.draw = () => {
       //triangleNum = this.props.userCount;
-      p.background(0);
 
-      for (var iter = 0; iter<=p.width; iter+=5){
-        p.fill((startValue+iter/30)%100,50,100);
-        p.rect(iter,0,5,p.height);
-      }
-      startValue+=0.1;
-      startValue%=100;
+      setGradient(0, 0, p.width / 2, p.height, color2, color1, 'X');
+      setGradient(p.width / 2, 0, p.width / 2, p.height, color1, color2, 'X');
+
+      // for (var iter = 0; iter<=p.width; iter+=5){
+      //   p.fill((startValue+iter/30)%100,50,100);
+      //   p.rect(iter,0,5,p.height);
+      // }
+      // startValue+=0.1;
+      // startValue%=100;
 
       for (let i = 0; i < stars.length; i++) {
         stars[i].update();
@@ -258,6 +273,25 @@ export default class Sketch extends React.Component {
       p.triangle(vec1.x, vec1.y, vec2.x, vec2.y, vec3.x, vec3.y)
       p.fill(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2], transparency)
     }
+    function setGradient(x, y, w, h, c1, c2, axis) {
+  p.noFill();
+  if (axis == "Y") {  // Top to bottom gradient
+    for (let i = y; i <= y+h; i++) {
+      var inter = p.map(i, y, y+h, 0, 1);
+      var c = p.lerpColor(c1, c2, inter);
+      p.stroke(c);
+      p.line(x, i, x+w, i);
+    }
+  }  
+  else if (axis == "X") {  // Left to right gradient
+    for (let j = x; j <= x+w; j++) {
+      var inter2 = p.map(j, x, x+w, 0, 1);
+      var d = p.lerpColor(c1, c2, inter2);
+      p.stroke(d);
+      p.line(j, y, j, y+h);
+    }
+  }
+}
 
     class Star {
       constructor() {
