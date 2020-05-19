@@ -29,7 +29,6 @@ const useStyles = makeStyles((theme) => ({
         width: "100%"
     },
     wrapper: {
-        //width: 100 + theme.spacing(2),
         width: "100%"
     },
 
@@ -60,16 +59,17 @@ const useStyles = makeStyles((theme) => ({
 export default function Bar (props) {
     const classes = useStyles();
     const [hasRecording, setHasRecording] = React.useState(false);
-    const [isRecording, setIsRecording] = React.useState(false);
+    const [useProgressBar, setUseProgressBar] = React.useState(false);
     var isRecordingFlag = false;
     var uploaded = false;
+    
 
     const handleDelete = () => {
         setHasRecording((prev) => !prev);
         // if in the middle of recording, stop recording b4 delete
 
         // logic to delete local recording
-        setIsRecording(false);
+        setUseProgressBar(false);   // stop progress bar
         isRecordingFlag = false;
         props.tempStrFun(-1); //resets the recording variable back in app.js to be empty
         Bar.recording = "";
@@ -77,7 +77,7 @@ export default function Bar (props) {
     }
 
     const handleRecordHelper = () => {
-      setIsRecording((prev) => !prev);
+      setUseProgressBar(true);   // start progress bar
       isRecordingFlag = !isRecordingFlag;
       props.isRecordingFun(isRecordingFlag);
 
@@ -93,6 +93,11 @@ export default function Bar (props) {
 
         handleRecordHelper();
         setTimeout(handleRecordHelper, 4000); //4 seconds to record
+        setTimeout(() => {
+            if (!isRecordingFlag) { 
+                setUseProgressBar(false)    // end progress bar
+            }
+        }, 5000);
     }
 
     const _convertStringRecToArray = (r) => {
@@ -107,6 +112,10 @@ export default function Bar (props) {
     }
 
     const playRecording = () => {
+        setTimeout(() => {
+            setUseProgressBar(true);   // start progress bar after waiting a bit for recording fetch
+        }, 1000);
+
         // logic to listen to recording
         // make sure people cant play the recording while ur still recording it
         if (!isRecordingFlag) {
@@ -117,6 +126,12 @@ export default function Bar (props) {
                 instrument.schedule(props.audioContext.currentTime,
                                     _convertStringRecToArray(Bar.recording));
             })
+
+            setTimeout(() => {
+                if (!isRecordingFlag) {
+                    setUseProgressBar(false)
+                }
+            }, 8000);   // wait 5 seconds before resetting progress bar
         }
     }
 
@@ -129,7 +144,7 @@ export default function Bar (props) {
         // make sure people cant upload an empty recording
         if (Bar.recording !== "" && !uploaded){
 
-          //counting current number of children the ghetto way because numChildren is not working
+          //counting current number of children
           firebase.database().ref("recs").once("value").then(function(snapshot){
 
             var max = -1;
@@ -161,7 +176,8 @@ export default function Bar (props) {
             var newRecRef = firebase.database().ref("recs").child(newKey);
             newRecRef.set(props.instrument + "\n" + Bar.recording);
             uploaded = true;
-
+            alert("Recording uploaded!");
+            
             //8 seconds until auto removed
             // setTimeout(function(){ removeUpload(newRecRef);}, 8000);
           });
@@ -174,6 +190,9 @@ export default function Bar (props) {
 
           //playback for 10 seconds on database before removal
           // setTimeout(function(){ removeUpload(tempRef);}, 10000);
+        }
+        else { 
+            alert("Already uploaded this recording! If you want to upload again, delete and re-record.")
         }
     }
 
@@ -229,7 +248,7 @@ export default function Bar (props) {
                                     </span>
                                 </Tooltip>
 
-                                <ProgressBarContainer isRecording={isRecording}/>
+                                <ProgressBarContainer useProgressBar={useProgressBar}/>
 
                                 <Tooltip title="Upload" arrow>
                                     <span className={classes.button}>
