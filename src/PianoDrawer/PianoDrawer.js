@@ -14,6 +14,7 @@ export default class PianoDrawer extends Component {
                 variant="persistent"
                 anchor="top"
                 open={this.props.showPiano}
+                style={{position: "relative", zIndex: "2"}}
             >
                 <PianoApp
                     instrument={this.props.instrument}

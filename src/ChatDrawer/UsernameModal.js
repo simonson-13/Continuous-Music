@@ -14,7 +14,6 @@ class UsernameModal extends Component {
             error: false
         }
     }
-   // TODO: style this better, move styling into same file
 
     render() {
         return (

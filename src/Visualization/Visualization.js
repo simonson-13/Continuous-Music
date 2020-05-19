@@ -37,28 +37,30 @@ export default function Visualization(props) {
 
     return (
         <div className={classes.root}>
-            <Tooltip title="Info" arrow>
-                <IconButton
-                    className={classes.openButton}
-                    type="button"
-                    onClick={props.openInfo}
-                >
-                    <HelpOutlineIcon />
-                </IconButton>
-            </Tooltip>
+            <div className="icons"> 
+                <Tooltip title="Info" arrow>
+                    <IconButton
+                        className={classes.openButton}
+                        type="button"
+                        onClick={props.openInfo}
+                    >
+                        <HelpOutlineIcon />
+                    </IconButton>
+                </Tooltip>
 
-            <br />
-            <Tooltip title="Chat" arrow>
-                <IconButton
-                    className={classes.openButton}
-                    type="button"
-                    onClick={props.handleChatChange}
-                >
-                    <QuestionAnswerIcon />
-                </IconButton>
-            </Tooltip>
+                <br />
+                <Tooltip title="Chat" arrow>
+                    <IconButton
+                        className={classes.openButton}
+                        type="button"
+                        onClick={props.handleChatChange}
+                    >
+                        <QuestionAnswerIcon />
+                    </IconButton>
+                </Tooltip>
 
-            <br /><br /> <span className="words-backdrop">&nbsp;Users:&nbsp;{props.userCount}</span>
+                <br /><br /> <span className="words-backdrop">&nbsp;Users:&nbsp;{props.userCount}</span>
+            </div>
 
             <DimensionsProvider>
                 {({ containerWidth, containerHeight }) => (
