@@ -31,26 +31,6 @@ class LivePlayBack extends React.Component {
 
   componentDidMount() {
     this.loadInstrument(this.props.instrumentName);
-    this.props.allUsersRef.on('child_changed', (snap, prevKey) => {
-      // only play this is the right instrument
-      if (snap.val().instrument === this.props.instrumentName){
-        // only play if the one playing IS NOT the current user
-        if (snap.key !== this.props.userHash){
-          let liveNotesDB = snap.val().midi;
-          for (let note=0; note < liveNotesDB.length; note++){
-            if (liveNotesDB[note] > 0) {  
-              this.playNote(note);
-            } else {
-              this.stopNote(note);
-            }
-          }
-        }
-      }
-    });
-  }
-
-  componentDidMount() {
-    this.loadInstrument(this.props.instrumentName);
     // if a user was potentially added 
     this.props.allUsersRef.on('child_added', (snap, prevKey) => {
       // for each user currently online (or recently added)
@@ -65,7 +45,6 @@ class LivePlayBack extends React.Component {
         for (let i=0; i<128; i++) {
           this.props.allUsersRef.child(user_id).child('midi').child(i)
           .on('value', noteSnap => {
-            console.log('noteSnap.val()', noteSnap.val());
             if (noteSnap.val() == null) {
               return;
             }
@@ -116,6 +95,9 @@ class LivePlayBack extends React.Component {
   };
 
   playNote = (midiNumber) => {
+    if (this.state.instrument === null){
+      return;
+    }
     var isMutePressed = this.props.isMutePressed;
     if (!isMutePressed) {  // if mute button is not pressed
       this.resumeAudio().then(() => {

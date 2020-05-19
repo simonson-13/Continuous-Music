@@ -251,6 +251,7 @@ class App extends Component {
         <LivePlayBack
           audioContext={audioContext}
           instrumentName={'xylophone'}
+          hostname={soundfontHostname}
           userHash={this.state.userHash}
           allUsersRef={this.state.allUsersRef}
           isMutePressed={this.state.isMutePressed}
