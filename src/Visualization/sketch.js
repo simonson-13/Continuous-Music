@@ -46,7 +46,8 @@ export default class Sketch extends React.Component {
     var pressed = false;
     var elColor = 0;
     //colors
-    var keyColors = ['#e6c200','#D2691E','#50c878','#002366','#cd5832','#ffea00','#cc7000','#66ff00','#ffa500', '##ff8c00','#51412D', '#fa5b3d','#e6c200' ] // c,c#,d,d#,  
+    var keyColors = ['#ffffff','#002366','#ffffff','#e6c200','#ffffff','#e6c200','#ffffff','#002366','#ffffff','#e6c200','#ffffff','#002366','#e6c200']
+    //var keyColors = ['#e6c200','#D2691E','#50c878','#002366','#cd5832','#ffea00','#cc7000','#66ff00','#ffa500', '##ff8c00','#51412D', '#fa5b3d','#e6c200' ] // c,c#,d,d#,  
     let color1;
     var color2;
 //(204, 51, 0);
@@ -54,6 +55,7 @@ export default class Sketch extends React.Component {
     let c;
     let changing;
     var indexer;
+    let idx = 0;
 
     p.setup = () => {
       let canvas = p.createCanvas(this.props.width, this.props.height);
@@ -140,12 +142,14 @@ export default class Sketch extends React.Component {
       p.strokeWeight(2)
       p.strokeJoin(p.ROUND)
       indexer = 0;
+      idx=0;
       rotVertexes = [new RotationVertex(1), new RotationVertex(1), new RotationVertex(-1)]
       elColor = 0;
     }
 
     p.draw = () => {
       //triangleNum = this.props.userCount;
+      
 
       if (indexer == 2){
       indexer = 0;
@@ -181,18 +185,22 @@ export default class Sketch extends React.Component {
         particles[i].drawNow();
       }
   
-      p.push()
+      //p.push()
       p.translate(p.width/2, p.height/2)
       
       for(let i = 0; i < triangleNum; i++) {
+        
         drawTriangle(
           rotVertexes[0].getVector((i/triangleNum + p.frameCount*p.TWO_PI/360/2)%1),
           rotVertexes[1].getVector((i/triangleNum + p.frameCount*p.TWO_PI/360/2)%1),
           rotVertexes[2].getVector((i/triangleNum + p.frameCount*p.TWO_PI/360/2)%1),
           elColor);
-        
       }
-      p.pop()
+        
+      
+      //p.pop()
+
+
 
       for(let i=0; i<rotVertexes.length; i++) {
         rotVertexes[i].update(p.frameCount)
@@ -359,7 +367,7 @@ export default class Sketch extends React.Component {
       }
       
       show() {
-        p.fill(255);
+        p.fill(elColor);
         p.noStroke();
         
         var sx = p.map(this.x/this.z, 0, 1, 0, p.width);
