@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Piano, KeyboardShortcuts, MidiNumbers } from 'react-piano';
-import '../App.css'
+
 import DimensionsProvider from './DimensionsProvider';
 import SoundfontProvider from './SoundfontProvider';
 import PianoConfig from './PianoConfig';
@@ -178,7 +178,7 @@ class InteractiveDemoFireBase extends Component {
                 </div>
                 <div className="row mt-2">
                   <div className="col-md-8 offset-md-2">
-                    <span className="words-backdrop"><small>Selected Instrument: {this.props.instrument}</small></span>
+                    <span><small>Selected Instrument: {this.props.instrument}</small></span>
 
                     <PianoConfig
                       config={this.state.config}
