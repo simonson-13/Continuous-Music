@@ -6,7 +6,7 @@ export default class ProgressBarContainer extends React.Component {
     render() { 
         return (
             <div id="myProgress">
-                { this.props.isRecording ? <ProgressBar/> : null }
+                { this.props.useProgressBar ? <ProgressBar/> : null }
             </div>
         )
     }

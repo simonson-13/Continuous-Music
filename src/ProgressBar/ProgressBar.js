@@ -54,7 +54,7 @@ export default class ProgressBar extends Component {
                 width: this.state.progress + "%",
                 backgroundColor: this.state.color
             }}>
-                <div id="label">Recording Done {this.state.progress}%</div>
+                <div id="label">{this.state.progress}%</div>
             </div>);
     }
 }
