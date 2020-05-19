@@ -163,7 +163,7 @@ export default function Bar (props) {
             uploaded = true;
 
             //8 seconds until auto removed
-            setTimeout(function(){ removeUpload(newRecRef);}, 8000);
+            // setTimeout(function(){ removeUpload(newRecRef);}, 8000);
           });
 
           //upload to user's database ref (ALL RECORDINGS)
@@ -244,8 +244,8 @@ export default function Bar (props) {
                                     </span>
                                 </Tooltip>
 
-                                <Tooltip 
-                                    title={props.isMutePressed ? "Unmute All" : "Mute All"} 
+                                <Tooltip
+                                    title={props.isMutePressed ? "Unmute All" : "Mute All"}
                                     arrow
                                 >
                                     <span className={classes.button}>
