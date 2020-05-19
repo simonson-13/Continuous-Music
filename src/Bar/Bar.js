@@ -62,7 +62,7 @@ export default function Bar (props) {
     const [useProgressBar, setUseProgressBar] = React.useState(false);
     var isRecordingFlag = false;
     var uploaded = false;
-    
+
 
     const handleDelete = () => {
         setHasRecording((prev) => !prev);
@@ -92,9 +92,9 @@ export default function Bar (props) {
         setHasRecording((prev) => !prev);
 
         handleRecordHelper();
-        setTimeout(handleRecordHelper, 4000); //4 seconds to record
+        setTimeout(handleRecordHelper, 4100); //4 seconds to record
         setTimeout(() => {
-            if (!isRecordingFlag) { 
+            if (!isRecordingFlag) {
                 setUseProgressBar(false)    // end progress bar
             }
         }, 5000);
@@ -165,8 +165,8 @@ export default function Bar (props) {
               }
             });
 
-            //what to do if there are already 10 recordings
-            if(numRecs >= 10){
+            //what to do if there are already 5 recordings
+            if(numRecs >= 5){
               //delete oldest
               removeUpload(firebase.database().ref("recs").child(min));
             }
@@ -177,7 +177,7 @@ export default function Bar (props) {
             newRecRef.set(props.instrument + "\n" + Bar.recording);
             uploaded = true;
             alert("Recording uploaded!");
-            
+
             //8 seconds until auto removed
             // setTimeout(function(){ removeUpload(newRecRef);}, 8000);
           });
@@ -191,7 +191,7 @@ export default function Bar (props) {
           //playback for 10 seconds on database before removal
           // setTimeout(function(){ removeUpload(tempRef);}, 10000);
         }
-        else { 
+        else {
             alert("Already uploaded this recording! If you want to upload again, delete and re-record.")
         }
     }
