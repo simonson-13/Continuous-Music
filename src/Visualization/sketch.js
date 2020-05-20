@@ -28,7 +28,7 @@ export default class Sketch extends React.Component {
   Sketch = (p) => {
     var startValue = 0;
     var stars = [];
-    var triangleNum = 5;  //var triangleNum = this.props.userCount;
+    var triangleNum = 0;// parseInt(this.props.userCount);  //var triangleNum = this.props.userCount;
     var noiseAngleTimes = 5;
     var transparency = 0;
     var noiseScale = 0.006;
@@ -63,6 +63,7 @@ export default class Sketch extends React.Component {
       tt = 0
       canvas.position(0, 0);
       canvas.style('z-index', '-1');
+
       //var star = new Star();
       //p.colorMode(p.HSB,100);
       color2 = p.color('#424242');
@@ -147,11 +148,12 @@ export default class Sketch extends React.Component {
       idx=0;
       rotVertexes = [new RotationVertex(1), new RotationVertex(1), new RotationVertex(-1)]
       elColor = 0;
+      triangleNum = this.props.userCount;
     }
 
     p.draw = () => {
       //triangleNum = this.props.userCount;
-      
+      triangleNum = this.props.userCount;
 
       if (indexer == 2){
       indexer = 0;
