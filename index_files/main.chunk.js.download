@@ -3719,7 +3719,7 @@ class Sketch extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
     this.Sketch = p => {
       var startValue = 0;
       var stars = [];
-      var triangleNum = 5; //var triangleNum = this.props.userCount;
+      var triangleNum = 0; // parseInt(this.props.userCount);  //var triangleNum = this.props.userCount;
 
       var noiseAngleTimes = 5;
       var transparency = 0;
@@ -3844,10 +3844,13 @@ class Sketch extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
         idx = 0;
         rotVertexes = [new RotationVertex(1), new RotationVertex(1), new RotationVertex(-1)];
         elColor = 0;
+        triangleNum = this.props.userCount;
       };
 
       p.draw = () => {
         //triangleNum = this.props.userCount;
+        triangleNum = this.props.userCount;
+
         if (indexer == 2) {
           indexer = 0;
           elColor = p.color(255);
@@ -4164,7 +4167,7 @@ class Sketch extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 467,
+        lineNumber: 469,
         columnNumber: 7
       }
     });
