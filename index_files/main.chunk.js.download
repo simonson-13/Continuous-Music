@@ -551,7 +551,6 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__["
     width: "100%"
   },
   wrapper: {
-    //width: 100 + theme.spacing(2),
     width: "100%"
   },
   closeDrop: {
@@ -577,7 +576,7 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__["
 function Bar(props) {
   const classes = useStyles();
   const [hasRecording, setHasRecording] = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(false);
-  const [isRecording, setIsRecording] = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(false);
+  const [useProgressBar, setUseProgressBar] = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(false);
   var isRecordingFlag = false;
   var uploaded = false;
 
@@ -585,7 +584,8 @@ function Bar(props) {
     setHasRecording(prev => !prev); // if in the middle of recording, stop recording b4 delete
     // logic to delete local recording
 
-    setIsRecording(false);
+    setUseProgressBar(false); // stop progress bar
+
     isRecordingFlag = false;
     props.tempStrFun(-1); //resets the recording variable back in app.js to be empty
 
@@ -594,7 +594,8 @@ function Bar(props) {
   };
 
   const handleRecordHelper = () => {
-    setIsRecording(prev => !prev);
+    setUseProgressBar(true); // start progress bar
+
     isRecordingFlag = !isRecordingFlag;
     props.isRecordingFun(isRecordingFlag);
 
@@ -608,7 +609,13 @@ function Bar(props) {
     // logic to record
     setHasRecording(prev => !prev);
     handleRecordHelper();
-    setTimeout(handleRecordHelper, 4000); //4 seconds to record
+    setTimeout(handleRecordHelper, 4100); //4 seconds to record
+
+    setTimeout(() => {
+      if (!isRecordingFlag) {
+        setUseProgressBar(false); // end progress bar
+      }
+    }, 5000);
   };
 
   const _convertStringRecToArray = r => {
@@ -627,14 +634,22 @@ function Bar(props) {
   };
 
   const playRecording = () => {
-    // logic to listen to recording
+    setTimeout(() => {
+      setUseProgressBar(true); // start progress bar after waiting a bit for recording fetch
+    }, 1000); // logic to listen to recording
     // make sure people cant play the recording while ur still recording it
+
     if (!isRecordingFlag) {
       // The first step is always create an instrument:
       soundfont_player__WEBPACK_IMPORTED_MODULE_11___default.a.instrument(props.audioContext, props.instrument).then(function (instrument) {
         // Or schedule events at a given time
         instrument.schedule(props.audioContext.currentTime, _convertStringRecToArray(Bar.recording));
       });
+      setTimeout(() => {
+        if (!isRecordingFlag) {
+          setUseProgressBar(false);
+        }
+      }, 8000); // wait 5 seconds before resetting progress bar
     }
   };
 
@@ -646,7 +661,7 @@ function Bar(props) {
     // logic to listen to handle upload click
     // make sure people cant upload an empty recording
     if (Bar.recording !== "" && !uploaded) {
-      //counting current number of children the ghetto way because numChildren is not working
+      //counting current number of children
       firebase__WEBPACK_IMPORTED_MODULE_12__["database"]().ref("recs").once("value").then(function (snapshot) {
         var max = -1;
         var min = 100000000;
@@ -664,9 +679,9 @@ function Bar(props) {
           if (currKey > max) {
             max = currKey;
           }
-        }); //what to do if there are already 10 recordings
+        }); //what to do if there are already 5 recordings
 
-        if (numRecs >= 10) {
+        if (numRecs >= 5) {
           //delete oldest
           removeUpload(firebase__WEBPACK_IMPORTED_MODULE_12__["database"]().ref("recs").child(min));
         } //add new recording
@@ -675,7 +690,8 @@ function Bar(props) {
         var newKey = max + 1;
         var newRecRef = firebase__WEBPACK_IMPORTED_MODULE_12__["database"]().ref("recs").child(newKey);
         newRecRef.set(props.instrument + "\n" + Bar.recording);
-        uploaded = true; //8 seconds until auto removed
+        uploaded = true;
+        alert("Recording uploaded!"); //8 seconds until auto removed
         // setTimeout(function(){ removeUpload(newRecRef);}, 8000);
       }); //upload to user's database ref (ALL RECORDINGS)
       // var tempRef = firebase.database().ref("recs").push();
@@ -683,6 +699,8 @@ function Bar(props) {
       // uploaded = true;
       //playback for 10 seconds on database before removal
       // setTimeout(function(){ removeUpload(tempRef);}, 10000);
+    } else {
+      alert("Already uploaded this recording! If you want to upload again, delete and re-record.");
     }
   };
 
@@ -691,7 +709,7 @@ function Bar(props) {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 181,
+      lineNumber: 200,
       columnNumber: 9
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -699,7 +717,7 @@ function Bar(props) {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 182,
+      lineNumber: 201,
       columnNumber: 13
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Slide"], {
@@ -710,7 +728,7 @@ function Bar(props) {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 183,
+      lineNumber: 202,
       columnNumber: 17
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["AppBar"], {
@@ -719,7 +737,7 @@ function Bar(props) {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 184,
+      lineNumber: 203,
       columnNumber: 21
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Toolbar"], {
@@ -727,7 +745,7 @@ function Bar(props) {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 185,
+      lineNumber: 204,
       columnNumber: 25
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Tooltip"], {
@@ -736,7 +754,7 @@ function Bar(props) {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 186,
+      lineNumber: 205,
       columnNumber: 29
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["IconButton"], {
@@ -746,14 +764,14 @@ function Bar(props) {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 187,
+      lineNumber: 206,
       columnNumber: 33
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_KeyboardArrowDown__WEBPACK_IMPORTED_MODULE_4___default.a, {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 188,
+      lineNumber: 207,
       columnNumber: 37
     }
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -761,7 +779,7 @@ function Bar(props) {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 192,
+      lineNumber: 211,
       columnNumber: 29
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Tooltip"], {
@@ -770,7 +788,7 @@ function Bar(props) {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 193,
+      lineNumber: 212,
       columnNumber: 33
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -778,7 +796,7 @@ function Bar(props) {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 194,
+      lineNumber: 213,
       columnNumber: 37
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Button"], {
@@ -789,14 +807,14 @@ function Bar(props) {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 195,
+      lineNumber: 214,
       columnNumber: 37
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Delete__WEBPACK_IMPORTED_MODULE_5___default.a, {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 201,
+      lineNumber: 220,
       columnNumber: 41
     }
   })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Tooltip"], {
@@ -805,7 +823,7 @@ function Bar(props) {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 206,
+      lineNumber: 225,
       columnNumber: 33
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -813,7 +831,7 @@ function Bar(props) {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 207,
+      lineNumber: 226,
       columnNumber: 37
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Button"], {
@@ -824,14 +842,14 @@ function Bar(props) {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 208,
+      lineNumber: 227,
       columnNumber: 37
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Mic__WEBPACK_IMPORTED_MODULE_6___default.a, {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 214,
+      lineNumber: 233,
       columnNumber: 41
     }
   })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Tooltip"], {
@@ -840,7 +858,7 @@ function Bar(props) {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 219,
+      lineNumber: 238,
       columnNumber: 33
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -848,7 +866,7 @@ function Bar(props) {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 220,
+      lineNumber: 239,
       columnNumber: 37
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Button"], {
@@ -859,22 +877,22 @@ function Bar(props) {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 221,
+      lineNumber: 240,
       columnNumber: 37
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_PlayArrow__WEBPACK_IMPORTED_MODULE_7___default.a, {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 227,
+      lineNumber: 246,
       columnNumber: 41
     }
   })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProgressBar_ProgressBarContainer__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    isRecording: isRecording,
+    useProgressBar: useProgressBar,
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 232,
+      lineNumber: 251,
       columnNumber: 33
     }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Tooltip"], {
@@ -883,7 +901,7 @@ function Bar(props) {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 234,
+      lineNumber: 253,
       columnNumber: 33
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -891,7 +909,7 @@ function Bar(props) {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 235,
+      lineNumber: 254,
       columnNumber: 37
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Button"], {
@@ -902,14 +920,14 @@ function Bar(props) {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 236,
+      lineNumber: 255,
       columnNumber: 37
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_Send__WEBPACK_IMPORTED_MODULE_8___default.a, {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 242,
+      lineNumber: 261,
       columnNumber: 41
     }
   })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Tooltip"], {
@@ -918,7 +936,7 @@ function Bar(props) {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 247,
+      lineNumber: 266,
       columnNumber: 33
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -926,7 +944,7 @@ function Bar(props) {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 251,
+      lineNumber: 270,
       columnNumber: 37
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Button"], {
@@ -936,21 +954,21 @@ function Bar(props) {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 252,
+      lineNumber: 271,
       columnNumber: 37
     }
   }, props.isMutePressed ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_VolumeUp__WEBPACK_IMPORTED_MODULE_10___default.a, {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 257,
+      lineNumber: 276,
       columnNumber: 64
     }
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_VolumeOff__WEBPACK_IMPORTED_MODULE_9___default.a, {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 257,
+      lineNumber: 276,
       columnNumber: 82
     }
   }))))))))));
@@ -3371,7 +3389,7 @@ class ProgressBar extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         lineNumber: 57,
         columnNumber: 17
       }
-    }, "Recording Done ", this.state.progress, "%"));
+    }, this.state.progress, "%"));
   }
 
 }
@@ -3407,12 +3425,12 @@ class ProgressBarContainer extends react__WEBPACK_IMPORTED_MODULE_0___default.a.
         lineNumber: 8,
         columnNumber: 13
       }
-    }, this.props.isRecording ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProgressBar__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    }, this.props.useProgressBar ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProgressBar__WEBPACK_IMPORTED_MODULE_1__["default"], {
       __self: this,
       __source: {
         fileName: _jsxFileName,
         lineNumber: 9,
-        columnNumber: 44
+        columnNumber: 47
       }
     }) : null);
   }
@@ -3720,6 +3738,7 @@ class Sketch extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
       var redrw = 0;
       var pressed = false;
       var elColor = 0; //colors
+      //var keyColors = ['#ffffff','#002366','#ffffff','#e6c200','#ffffff','#e6c200','#ffffff','#002366','#ffffff','#e6c200','#ffffff','#002366','#e6c200']
 
       var keyColors = ['#e6c200', '#D2691E', '#50c878', '#002366', '#cd5832', '#ffea00', '#cc7000', '#66ff00', '#ffa500', '##ff8c00', '#51412D', '#fa5b3d', '#e6c200']; // c,c#,d,d#,  
 
@@ -3730,9 +3749,12 @@ class Sketch extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
       let c;
       let changing;
       var indexer;
+      let idx = 0;
+      let tt;
 
       p.setup = () => {
         let canvas = p.createCanvas(this.props.width, this.props.height);
+        tt = 0;
         canvas.position(0, 0);
         canvas.style('z-index', '-1'); //var star = new Star();
         //p.colorMode(p.HSB,100);
@@ -3819,6 +3841,7 @@ class Sketch extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
         p.strokeWeight(2);
         p.strokeJoin(p.ROUND);
         indexer = 0;
+        idx = 0;
         rotVertexes = [new RotationVertex(1), new RotationVertex(1), new RotationVertex(-1)];
         elColor = 0;
       };
@@ -3853,16 +3876,16 @@ class Sketch extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
 
         for (let i = 0; i < particles.length; i++) {
           particles[i].drawNow();
-        }
+        } //p.push()
 
-        p.push();
+
         p.translate(p.width / 2, p.height / 2);
 
-        for (let i = 0; i < triangleNum; i++) {
-          drawTriangle(rotVertexes[0].getVector((i / triangleNum + p.frameCount * p.TWO_PI / 360 / 2) % 1), rotVertexes[1].getVector((i / triangleNum + p.frameCount * p.TWO_PI / 360 / 2) % 1), rotVertexes[2].getVector((i / triangleNum + p.frameCount * p.TWO_PI / 360 / 2) % 1), elColor);
-        }
+        for (var i = 0; i < triangleNum; i++) {
+          drawTriangle(rotVertexes[0].getVector((i / triangleNum + p.frameCount * p.TWO_PI / 360 / 2) % 1), rotVertexes[1].getVector((i / triangleNum + p.frameCount * p.TWO_PI / 360 / 2) % 1), rotVertexes[2].getVector((i / triangleNum + p.frameCount * p.TWO_PI / 360 / 2) % 1), keyColors[idx % triangleNum]);
+          idx++;
+        } //p.pop()
 
-        p.pop();
 
         for (let i = 0; i < rotVertexes.length; i++) {
           rotVertexes[i].update(p.frameCount);
@@ -3929,6 +3952,7 @@ class Sketch extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
       }
 
       function drawTriangle(vec1, vec2, vec3, n, times) {
+        p.stroke(n);
         let center = p5__WEBPACK_IMPORTED_MODULE_1___default.a.Vector.add(vec1, vec2);
         center = p5__WEBPACK_IMPORTED_MODULE_1___default.a.Vector.add(center, vec3);
         center.div(3);
@@ -3946,8 +3970,8 @@ class Sketch extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
           p.vertex(miniVecs[i].x, miniVecs[i].y);
           p.vertex(vecs[i].x, vecs[i].y);
           p.vertex(vecs[(i + 1) % 3].x, vecs[(i + 1) % 3].y);
-          p.stroke(elColor);
-          p.strokeWeight(p.random(noiseProg / 7));
+          p.stroke(n);
+          p.strokeWeight(p.random(noiseProg / 20));
           p.fill(255, 20); // p.stroke(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2])
           // p.fill(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2], transparency)
 
@@ -4029,7 +4053,7 @@ class Sketch extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
         }
 
         show() {
-          p.fill(255);
+          p.fill(elColor);
           p.noStroke();
           var sx = p.map(this.x / this.z, 0, 1, 0, p.width);
           var sy = p.map(this.y / this.z, 0, 1, 0, p.height);
@@ -4140,7 +4164,7 @@ class Sketch extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
       __self: this,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 454,
+        lineNumber: 467,
         columnNumber: 7
       }
     });
