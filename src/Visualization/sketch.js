@@ -46,8 +46,8 @@ export default class Sketch extends React.Component {
     var pressed = false;
     var elColor = 0;
     //colors
-    var keyColors = ['#ffffff','#002366','#ffffff','#e6c200','#ffffff','#e6c200','#ffffff','#002366','#ffffff','#e6c200','#ffffff','#002366','#e6c200']
-    //var keyColors = ['#e6c200','#D2691E','#50c878','#002366','#cd5832','#ffea00','#cc7000','#66ff00','#ffa500', '##ff8c00','#51412D', '#fa5b3d','#e6c200' ] // c,c#,d,d#,  
+    //var keyColors = ['#ffffff','#002366','#ffffff','#e6c200','#ffffff','#e6c200','#ffffff','#002366','#ffffff','#e6c200','#ffffff','#002366','#e6c200']
+    var keyColors = ['#e6c200','#D2691E','#50c878','#002366','#cd5832','#ffea00','#cc7000','#66ff00','#ffa500', '##ff8c00','#51412D', '#fa5b3d','#e6c200' ] // c,c#,d,d#,  
     let color1;
     var color2;
 //(204, 51, 0);
@@ -56,9 +56,11 @@ export default class Sketch extends React.Component {
     let changing;
     var indexer;
     let idx = 0;
+    let tt;
 
     p.setup = () => {
       let canvas = p.createCanvas(this.props.width, this.props.height);
+      tt = 0
       canvas.position(0, 0);
       canvas.style('z-index', '-1');
       //var star = new Star();
@@ -188,13 +190,15 @@ export default class Sketch extends React.Component {
       //p.push()
       p.translate(p.width/2, p.height/2)
       
-      for(let i = 0; i < triangleNum; i++) {
+      for (var i =0; i< triangleNum; i++) {
         
         drawTriangle(
           rotVertexes[0].getVector((i/triangleNum + p.frameCount*p.TWO_PI/360/2)%1),
           rotVertexes[1].getVector((i/triangleNum + p.frameCount*p.TWO_PI/360/2)%1),
           rotVertexes[2].getVector((i/triangleNum + p.frameCount*p.TWO_PI/360/2)%1),
-          elColor);
+          keyColors[idx%triangleNum]);
+        idx++;
+        
       }
         
       
@@ -270,6 +274,7 @@ export default class Sketch extends React.Component {
     
 
     function drawTriangle(vec1, vec2, vec3, n, times) {
+      p.stroke(n)
       let center = p5.Vector.add(vec1, vec2)
       center = p5.Vector.add(center, vec3)
       center.div(3)
@@ -286,9 +291,9 @@ export default class Sketch extends React.Component {
         p.vertex(miniVecs[i].x, miniVecs[i].y)
         p.vertex(vecs[i].x, vecs[i].y)
         p.vertex(vecs[(i+1)%3].x, vecs[(i+1)%3].y)
-        p.stroke(elColor)
+        p.stroke(n)
 
-        p.strokeWeight(p.random(noiseProg/7));
+        p.strokeWeight(p.random(noiseProg/20));
         p.fill(255, 20)
         // p.stroke(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2])
         // p.fill(colrgb[(n%5)][0],colrgb[(n%5)][1],colrgb[(n%5)][2], transparency)
